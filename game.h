@@ -16,7 +16,7 @@ typedef struct player {
     int state;
     int spellselect;
     char name[50];
-    int number,mana;
+    int number,mana,basemana;
     int spelltab[3];
     int casex,casey;
     int x,y;

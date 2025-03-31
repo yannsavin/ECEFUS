@@ -22,10 +22,10 @@ void initialisation_allegro() {
 }
 
 void init(player_t *player[],game_t *game, spell_t *spell[]) {
-    spell[0]->manacost=5;
-    spell[0]->damage=50;
-    spell[1]->manacost=3;
-    spell[1]->damage=30;
+    spell[0]->manacost=3;
+    spell[0]->damage=30;
+    spell[1]->manacost=5;
+    spell[1]->damage=50;
     spell[2]->manacost=7;
     spell[2]->damage=70;
     spell[0]->skin=load_bitmap("eau_visu.bmp",NULL);
@@ -51,10 +51,11 @@ void init(player_t *player[],game_t *game, spell_t *spell[]) {
     for(int i=0;i<3;i++) {
         player[i]->casex=rand()%6;
         player[i]->casey=rand()%6;
-        player[i]->mana=10;
-        player[i]->health=100;
+        player[i]->basemana=10;
+        player[i]->mana=player[i]->basemana;
         player[i]->state=1;
         player[i]->spellselect=-1;
+        player[i]->damage=10;
         for (int j=0;j<3;j++) {player[i]->spelltab[j]=j;}
 
     }
@@ -87,6 +88,7 @@ int affichage(player_t *player[], game_t *game, spell_t *spell[]) {
     }
     rectfill(buffer, 0, 0, 250, 800, makecol(0, 0, 0));
     draw_sprite(buffer, player[game->tourjoueur]->skin, 100, 0);
+
     textout_ex(buffer, font, "Tours de :", 10, 35, makecol(255, 255, 255), makecol(0, 0, 0));
     char buffer_text[10];
     sprintf(buffer_text, "%d", player[game->tourjoueur]->mana);
@@ -96,11 +98,18 @@ int affichage(player_t *player[], game_t *game, spell_t *spell[]) {
     draw_sprite(buffer, spell[player[game->tourjoueur]->spelltab[0]]->skin, 85, 200);
     draw_sprite(buffer, spell[player[game->tourjoueur]->spelltab[1]]->skin, 85, 300);
     draw_sprite(buffer, spell[player[game->tourjoueur]->spelltab[2]]->skin, 85, 400);
+    for (int i = 0; i < 3; i++) {
+        if (player[i]->state==1) {
+            draw_sprite(buffer, player[i]->skin, 1400, i*200);
+            sprintf(buffer_text, "%d", player[i]->health);
+            textout_ex(buffer, font, buffer_text, 1300, i*200+35, makecol(0, 255, 0), makecol(0, 0, 0));
+        }
+    }
     blit(buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     rectfill(screen, 150, SCREEN_HEIGHT - 90, 230, SCREEN_HEIGHT - 10, makecol(0, 255, 0));
 }
 void skip(player_t *player[], game_t *game,spell_t *spell[]) {
-    player[game->tourjoueur]->mana=10;
+    player[game->tourjoueur]->mana=player[game->tourjoueur]->basemana;
     game->tourjoueur++;
     if (game->tourjoueur>=3) {
         game->tourjoueur=0;}
@@ -121,6 +130,7 @@ void next(player_t *player[], game_t *game, spell_t *spell[]) {
     }
 }
 
+
 void moove(player_t *player[],game_t *game,spell_t *spell[]) {
     if (mouse_b & 1 && player[game->tourjoueur]->mana >0){
         int src_x = (mouse_x -434)/110;
@@ -139,6 +149,20 @@ void moove(player_t *player[],game_t *game,spell_t *spell[]) {
             player[game->tourjoueur]->casey=src_y;
             player[game->tourjoueur]->mana-=1;
             affichage(player,game,spell);
+        }
+        else if (mouse_x > 435 && mouse_y > 96 &&
+        mouse_x < (6 * 110) + 434 && mouse_y < (6 * 104) + 96 &&
+        src_x - player[game->tourjoueur]->casex >= -1 &&
+        src_x - player[game->tourjoueur]->casex <= 1 &&
+        src_y - player[game->tourjoueur]->casey >= -1 &&
+        src_y - player[game->tourjoueur]->casey <= 1) {
+            for (int i=0; i<3; i++) {
+                if (src_x==player[i]->casex && src_y==player[i]->casey && player[game->tourjoueur]->mana>=2) {
+                    player[i]->health-=player[game->tourjoueur]->damage;
+                    player[game->tourjoueur]->mana-=2;
+                    affichage(player,game,spell);
+                }
+            }
         }
     }
 }

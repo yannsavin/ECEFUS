@@ -103,13 +103,13 @@ void skip(player_t *player[], game_t *game,spell_t *spell[]) {
     player[game->tourjoueur]->mana=10;
     game->tourjoueur++;
     if (game->tourjoueur>=3) {
-        game->tourjoueur=0;
-        while (player[game->tourjoueur]->state==0) {
-            game->tourjoueur++;
-            if (game->tourjoueur>=3) {
-                game->tourjoueur=0;
-            }
+        game->tourjoueur=0;}
+    while (player[game->tourjoueur]->state==0) {
+        game->tourjoueur++;
+        if (game->tourjoueur>=3) {
+            game->tourjoueur=0;
         }
+
     }
     affichage(player,game,spell);
 }

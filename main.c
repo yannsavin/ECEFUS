@@ -53,6 +53,7 @@ void init(player_t *player[],game_t *game, spell_t *spell[]) {
         player[i]->casey=rand()%6;
         player[i]->basemana=10;
         player[i]->mana=player[i]->basemana;
+        player[i]->health=100;
         player[i]->state=1;
         player[i]->spellselect=-1;
         player[i]->damage=10;

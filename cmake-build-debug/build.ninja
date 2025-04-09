@@ -55,14 +55,26 @@ build CMakeFiles/ECEFUS.dir/main.c.obj: C_COMPILER__ECEFUS_unscanned_Debug E$:/C
   OBJECT_DIR = CMakeFiles\ECEFUS.dir
   OBJECT_FILE_DIR = CMakeFiles\ECEFUS.dir
 
-build CMakeFiles/ECEFUS.dir/game.c.obj: C_COMPILER__ECEFUS_unscanned_Debug E$:/Cours/info/projet/ECEFUS/game.c || cmake_object_order_depends_target_ECEFUS
-  DEP_FILE = CMakeFiles\ECEFUS.dir\game.c.obj.d
+build CMakeFiles/ECEFUS.dir/init.c.obj: C_COMPILER__ECEFUS_unscanned_Debug E$:/Cours/info/projet/ECEFUS/init.c || cmake_object_order_depends_target_ECEFUS
+  DEP_FILE = CMakeFiles\ECEFUS.dir\init.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\ECEFUS.dir
   OBJECT_FILE_DIR = CMakeFiles\ECEFUS.dir
 
-build CMakeFiles/ECEFUS.dir/caracter.c.obj: C_COMPILER__ECEFUS_unscanned_Debug E$:/Cours/info/projet/ECEFUS/caracter.c || cmake_object_order_depends_target_ECEFUS
-  DEP_FILE = CMakeFiles\ECEFUS.dir\caracter.c.obj.d
+build CMakeFiles/ECEFUS.dir/affichage.c.obj: C_COMPILER__ECEFUS_unscanned_Debug E$:/Cours/info/projet/ECEFUS/affichage.c || cmake_object_order_depends_target_ECEFUS
+  DEP_FILE = CMakeFiles\ECEFUS.dir\affichage.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\ECEFUS.dir
+  OBJECT_FILE_DIR = CMakeFiles\ECEFUS.dir
+
+build CMakeFiles/ECEFUS.dir/spell.c.obj: C_COMPILER__ECEFUS_unscanned_Debug E$:/Cours/info/projet/ECEFUS/spell.c || cmake_object_order_depends_target_ECEFUS
+  DEP_FILE = CMakeFiles\ECEFUS.dir\spell.c.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\ECEFUS.dir
+  OBJECT_FILE_DIR = CMakeFiles\ECEFUS.dir
+
+build CMakeFiles/ECEFUS.dir/plateau.c.obj: C_COMPILER__ECEFUS_unscanned_Debug E$:/Cours/info/projet/ECEFUS/plateau.c || cmake_object_order_depends_target_ECEFUS
+  DEP_FILE = CMakeFiles\ECEFUS.dir\plateau.c.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\ECEFUS.dir
   OBJECT_FILE_DIR = CMakeFiles\ECEFUS.dir
@@ -75,7 +87,7 @@ build CMakeFiles/ECEFUS.dir/caracter.c.obj: C_COMPILER__ECEFUS_unscanned_Debug E
 #############################################
 # Link the executable ECEFUS.exe
 
-build ECEFUS.exe: C_EXECUTABLE_LINKER__ECEFUS_Debug CMakeFiles/ECEFUS.dir/main.c.obj CMakeFiles/ECEFUS.dir/game.c.obj CMakeFiles/ECEFUS.dir/caracter.c.obj
+build ECEFUS.exe: C_EXECUTABLE_LINKER__ECEFUS_Debug CMakeFiles/ECEFUS.dir/main.c.obj CMakeFiles/ECEFUS.dir/init.c.obj CMakeFiles/ECEFUS.dir/affichage.c.obj CMakeFiles/ECEFUS.dir/spell.c.obj CMakeFiles/ECEFUS.dir/plateau.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lmingw32  -lalleg44  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\ECEFUS.dir

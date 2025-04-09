@@ -4,9 +4,12 @@ project(ECEFUS C)
 set(CMAKE_C_STANDARD 23)
 
 add_executable(ECEFUS main.c
-        game.c
         game.h
-        caracter.c
+        init.c
+        affichage.c
+        affichage.c
+        spell.c
+        plateau.c
 )
 
 target_link_libraries(ECEFUS -lmingw32 -lalleg44)

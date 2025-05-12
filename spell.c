@@ -22,7 +22,11 @@ int sendspell(player_t *player[],game_t *game,spell_t *spell[],int src_y,int src
             rest(100);
             affichage(player,game,spell);
         }
-        damagetaken(player,game,spell,src_y,src_x);
+        switch (spell[player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]]->type) {
+            case 0:damagetaken(player,game,spell,src_y,src_x);
+        }
+
+
         player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]]->PAcost;
         affichage(player,game,spell);
         return 1;

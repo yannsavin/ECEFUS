@@ -25,18 +25,20 @@ typedef struct game {
 
 typedef struct player {
     int state;
-    int spellselect;
+    int spellselect,classe;
     char name[50];
-    int number,PA,basePA,PM,basePM;
+    int number,PA,basePA,PM,basePM,attaquecost;
     int spelltab[3];
     int casex,casey;
     int x,y;
     int health,damage,armor;
+    int stackdamage;
     BITMAP *skin;
 }player_t;
 typedef struct spell {
     char name[50];
     int damage,PAcost;
+    int type;
     BITMAP *skin;
     BITMAP *frame[4];
 }spell_t;

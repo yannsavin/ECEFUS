@@ -57,7 +57,7 @@ void moove(player_t *player[],game_t *game,spell_t *spell[]) {
             for (int i=0; i<3; i++) {
                 if (src_x==player[i]->casex && src_y==player[i]->casey && player[game->tourjoueur]->PA>=2) {
                     player[i]->health-=player[game->tourjoueur]->damage;
-                    player[game->tourjoueur]->PA-=2;
+                    player[game->tourjoueur]->PA-=player[game->tourjoueur]->attaquecost;
                     affichage(player,game,spell);
                 }
             }

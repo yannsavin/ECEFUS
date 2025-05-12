@@ -55,21 +55,48 @@ void init(player_t *player[],game_t *game, spell_t *spell[]) {
     game->cases[0]=load_bitmap("carre0.bmp",NULL);
     game->cases[1]=load_bitmap("carre1.bmp",NULL);
     game->cases[2]=load_bitmap("carre2.bmp",NULL);
-    player[0]->skin=load_bitmap("perso1.bmp",NULL);
-    player[1]->skin=load_bitmap("perso2.bmp",NULL);
-    player[2]->skin=load_bitmap("perso3.bmp",NULL);
 
+    player_t classe[4];
+    //mage
+    classe[0].skin=load_bitmap("perso1.bmp",NULL);
+    classe[0].basePA=10;
+    classe[0].basePM=4;
+    classe[0].health=100;
+    classe[0].damage=5;
+    classe[0].attaquecost=3;
+
+    //guerrier
+    classe[1].skin=load_bitmap("perso2.bmp",NULL);
+    classe[1].basePA=7;
+    classe[1].basePM=6;
+    classe[1].health=130;
+    classe[1].damage=10;
+    classe[1].attaquecost=2;
+
+    //assasin
+    classe[2].skin=load_bitmap("perso3.bmp",NULL);
+    classe[2].basePA=7;
+    classe[2].basePM=6;
+    classe[2].health=110;
+    classe[2].damage=15;
+    classe[2].attaquecost=2;
+
+    player[0]->classe=0;
+    player[1]->classe=1;
+    player[2]->classe=2;
     for(int i=0;i<3;i++) {
+        player[i]->skin=classe[player[i]->classe].skin;
         player[i]->casex=rand()%nbcases;
         player[i]->casey=rand()%nbcases;
-        player[i]->basePA=10;
+        player[i]->basePA=classe[player[i]->classe].basePA;
         player[i]->PA=player[i]->basePA;
-        player[i]->basePM=5;
+        player[i]->basePM=classe[player[i]->classe].basePM;
         player[i]->PM=player[i]->basePM;
-        player[i]->health=100;
+        player[i]->health=classe[player[i]->classe].health;
+        player[i]->attaquecost=classe[player[i]->classe].attaquecost;
         player[i]->state=1;
         player[i]->spellselect=-1;
-        player[i]->damage=10;
+        player[i]->damage=classe[player[i]->classe].damage;
         for (int j=0;j<3;j++) {player[i]->spelltab[j]=j;}
     }
 }

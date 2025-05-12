@@ -5,7 +5,7 @@
 #include "game.h"
 
 
-void skip(player_t *player[], game_t *game,spell_t *spell[]) {
+void skip(player_t *player[], game_t *game,spell_t **spell) {
     player[game->tourjoueur]->PA=player[game->tourjoueur]->basePA;
     player[game->tourjoueur]->PM=player[game->tourjoueur]->basePM;
     game->tourjoueur++;
@@ -20,7 +20,7 @@ void skip(player_t *player[], game_t *game,spell_t *spell[]) {
     }
     affichage(player,game,spell);
 }
-void next(player_t *player[], game_t *game, spell_t *spell[]) {
+void next(player_t *player[], game_t *game, spell_t **spell) {
     if (150<=mouse_x && 230>=mouse_x && (SCREEN_HEIGHT - 90)<=mouse_y && mouse_y<=SCREEN_HEIGHT-10){
         if (mouse_b & 1) {
             skip(player,game,spell);
@@ -29,7 +29,7 @@ void next(player_t *player[], game_t *game, spell_t *spell[]) {
 }
 
 
-void moove(player_t *player[],game_t *game,spell_t *spell[]) {
+void moove(player_t *player[],game_t *game,spell_t **spell) {
     if (mouse_b & 1 && player[game->tourjoueur]->PM >0){
         int src_x = (mouse_x -decalageX)/caseX;
         int src_y = (mouse_y -decalageY)/caseY;

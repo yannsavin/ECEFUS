@@ -6,7 +6,7 @@
 #include "game.h"
 
 
-int affichage(player_t *player[], game_t *game, spell_t *spell[]) {
+int affichage(player_t *player[], game_t *game, spell_t **spell) {
     rest(50);
     clear_bitmap(game->buffer);
     blit(game->map, game->buffer, 0, 0, decalageX, 0, 800, 800);
@@ -42,9 +42,9 @@ int affichage(player_t *player[], game_t *game, spell_t *spell[]) {
     textout_ex(game->buffer, font, buffer_text, 120, 150, makecol(0, 0, 255), makecol(0, 0, 0));
     sprintf(buffer_text, "%d", player[game->tourjoueur]->health);
     textout_ex(game->buffer, font, buffer_text, 115, 170, makecol(0, 255, 0), makecol(0, 0, 0));
-    draw_sprite(game->buffer, spell[player[game->tourjoueur]->spelltab[0]]->skin, 85, 200);
-    draw_sprite(game->buffer, spell[player[game->tourjoueur]->spelltab[1]]->skin, 85, 300);
-    draw_sprite(game->buffer, spell[player[game->tourjoueur]->spelltab[2]]->skin, 85, 400);
+    draw_sprite(game->buffer, spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[0]].skin, 85, 200);
+    draw_sprite(game->buffer, spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[1]].skin, 85, 300);
+    draw_sprite(game->buffer, spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[2]].skin, 85, 400);
     for (int i = 0; i < 3; i++) {
         if (player[i]->state==1) {
             draw_sprite(game->buffer, player[i]->skin, 1400, i*200);

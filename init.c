@@ -30,28 +30,36 @@ void init_map(game_t *game) {
         }
     }
 }
-void init(player_t *player[],game_t *game, spell_t *spell[]) {
-    spell[0]->PAcost=3;
-    spell[0]->damage=30;
-    spell[1]->PAcost=5;
-    spell[1]->damage=50;
-    spell[2]->PAcost=7;
-    spell[2]->damage=70;
-    spell[0]->skin=load_bitmap("eau_visu.bmp",NULL);
-    spell[0]->frame[0]=load_bitmap("eau1.bmp",NULL);
-    spell[0]->frame[1]=load_bitmap("eau2.bmp",NULL);
-    spell[0]->frame[2]=load_bitmap("eau3.bmp",NULL);
-    spell[0]->frame[3]=load_bitmap("eau4.bmp",NULL);
-    spell[1]->skin=load_bitmap("feu_visu.bmp",NULL);
-    spell[1]->frame[0]=load_bitmap("feu1.bmp",NULL);
-    spell[1]->frame[1]=load_bitmap("feu2.bmp",NULL);
-    spell[1]->frame[2]=load_bitmap("feu3.bmp",NULL);
-    spell[1]->frame[3]=load_bitmap("feu4.bmp",NULL);
-    spell[2]->skin=load_bitmap("foudre_visu.bmp",NULL);
-    spell[2]->frame[0]=load_bitmap("foudre1.bmp",NULL);
-    spell[2]->frame[1]=load_bitmap("foudre2.bmp",NULL);
-    spell[2]->frame[2]=load_bitmap("foudre3.bmp",NULL);
-    spell[2]->frame[3]=load_bitmap("foudre4.bmp",NULL);
+void init(player_t *player[],game_t *game, spell_t **spell) {
+    spell[0][0].PAcost=3;
+    spell[0][0].damage=30;
+    spell[0][1].PAcost=5;
+    spell[0][1].damage=50;
+    spell[0][2].PAcost=7;
+    spell[0][2].damage=70;
+    spell[0][0].type=0;
+    spell[0][1].type=0;
+    spell[0][2].type=0;
+    spell[0][0].skin=load_bitmap("spell_0_0.bmp",NULL);
+    spell[0][0].frame[0]=load_bitmap("eau1.bmp",NULL);
+    spell[0][0].frame[1]=load_bitmap("eau2.bmp",NULL);
+    spell[0][0].frame[2]=load_bitmap("eau3.bmp",NULL);
+    spell[0][0].frame[3]=load_bitmap("eau4.bmp",NULL);
+    spell[0][1].skin=load_bitmap("spell_0_1.bmp",NULL);
+    spell[0][1].frame[0]=load_bitmap("feu1.bmp",NULL);
+    spell[0][1].frame[1]=load_bitmap("feu2.bmp",NULL);
+    spell[0][1].frame[2]=load_bitmap("feu3.bmp",NULL);
+    spell[0][1].frame[3]=load_bitmap("feu4.bmp",NULL);
+    spell[0][2].skin=load_bitmap("spell_0_2.bmp",NULL);
+    spell[0][2].frame[0]=load_bitmap("foudre1.bmp",NULL);
+    spell[0][2].frame[1]=load_bitmap("foudre2.bmp",NULL);
+    spell[0][2].frame[2]=load_bitmap("foudre3.bmp",NULL);
+    spell[0][2].frame[3]=load_bitmap("foudre4.bmp",NULL);
+    spell[1][0].skin=load_bitmap("spell1.0.bmp",NULL);
+    spell[1][1].skin=load_bitmap("spell1.1.bmp",NULL);
+    spell[1][2].skin=load_bitmap("spell1.2.bmp",NULL);
+
+
     game->cases[0]=load_bitmap("carre0.bmp",NULL);
     game->cases[1]=load_bitmap("carre1.bmp",NULL);
     game->cases[2]=load_bitmap("carre2.bmp",NULL);
@@ -99,11 +107,19 @@ void init(player_t *player[],game_t *game, spell_t *spell[]) {
         player[i]->damage=classe[player[i]->classe].damage;
         for (int j=0;j<3;j++) {player[i]->spelltab[j]=j;}
     }
+    for (int j = 0; j < 4; j++) {
+        free(&classe[j]);
+    }
 }
 
-void destroy(player_t *player[],game_t *game,spell_t *spell[]) {
+void destroy(player_t *player[],game_t *game,spell_t **spell) {
     for (int i = 0; i < game->nbplayers; i++) {
         free(player[i]);
+    }
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            free(&spell[i][j]);
+        }
     }
     destroy_bitmap(player[0]->skin);
 }

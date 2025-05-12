@@ -75,7 +75,7 @@ void select_spell(player_t *player[],game_t *game,spell_t *spell[]) {
              if (player[game->tourjoueur]->PA>=spell[player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]]->PAcost) {
                  place_spell(player,game,spell);
              }
-             else {
+             else  {
                  player[game->tourjoueur]->spellselect=-1;
              }
          }

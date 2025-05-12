@@ -57,3 +57,4 @@ void moove(player_t *player[],game_t *game,spell_t *spell[]);
 void skip(player_t *player[], game_t *game,spell_t *spell[]);
 void next(player_t *player[], game_t *game, spell_t *spell[]);
 #endif //GAME_H
+

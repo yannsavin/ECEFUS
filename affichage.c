@@ -42,16 +42,53 @@ int affichage(player_t *player[], game_t *game, spell_t **spell) {
     textout_ex(game->buffer, font, buffer_text, 120, 150, makecol(0, 0, 255), makecol(0, 0, 0));
     sprintf(buffer_text, "%d", player[game->tourjoueur]->health);
     textout_ex(game->buffer, font, buffer_text, 115, 170, makecol(0, 255, 0), makecol(0, 0, 0));
-    draw_sprite(game->buffer, spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[0]].skin, 85, 200);
-    draw_sprite(game->buffer, spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[1]].skin, 85, 300);
-    draw_sprite(game->buffer, spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[2]].skin, 85, 400);
+    for (int i = 0; i < 3; i++) {
+        draw_sprite(game->buffer, spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[i]].skin, 85, 200+100*i);
+        sprintf(buffer_text, "%d", spell[player[game->tourjoueur]->classe][i].PAcost);
+        textout_ex(game->buffer, font, buffer_text, 200, 245+100*i, makecol(0, 0, 255), makecol(0, 0, 0));
+    }
     for (int i = 0; i < 3; i++) {
         if (player[i]->state==1) {
             draw_sprite(game->buffer, player[i]->skin, 1400, i*200);
             sprintf(buffer_text, "%d", player[i]->health);
-            textout_ex(game->buffer, font, buffer_text, 1300, i*200+35, makecol(0, 255, 0), makecol(0, 0, 0));
+            textout_ex(game->buffer, font, buffer_text, 1250, i*200+35, makecol(0, 255, 0), makecol(0, 0, 0));
+            sprintf(buffer_text, "%d", player[i]->PM);
+            textout_ex(game->buffer, font, buffer_text, 1300, i*200+35, makecol(255, 0,0 ), makecol(0, 0, 0));
+            sprintf(buffer_text, "%d", player[i]->PA);
+            textout_ex(game->buffer, font, buffer_text, 1350, i*200+35, makecol(0, 0, 255), makecol(0, 0, 0));
         }
     }
+
+    if (player[game->tourjoueur]->stackdamage>0) {
+        sprintf(buffer_text, "%d", player[game->tourjoueur]->stackdamage);
+        textout_ex(game->buffer, font, buffer_text, 230, 345, makecol(255, 0, 0), makecol(0, 0, 0));
+    }
+    if (player[game->tourjoueur]->bonus>0) {
+        sprintf(buffer_text, "%d", player[game->tourjoueur]->bonus);
+        textout_ex(game->buffer, font, buffer_text, 230, 445, makecol(255, 0, 0), makecol(0, 0, 0));
+    }
+    if (player[game->tourjoueur]->classe==0) {
+        switch (game->conseille) {
+            case 0:
+                textout_ex(game->buffer, font, "Sort de degats d'eau ",75, 650, makecol(255, 255, 255), makecol(0, 0, 0));
+            break;
+            case 1:
+                textout_ex(game->buffer, font, "Sort de degats de feu", 75, 650, makecol(255, 255, 255), makecol(0, 0, 0));
+            break;
+            case 2:
+                textout_ex(game->buffer, font, "Sort de degats de foudre degats de zone", 25, 650, makecol(255, 255, 255), makecol(0, 0, 0));
+                textout_ex(game->buffer, font, "(1 case autour) et 2 tour pour incanter", 25, 670, makecol(255, 255, 255), makecol(0, 0, 0));
+            break;
+        }
+    }
+    if (game->conseille>=0) {
+        sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille].damage);
+        textout_ex(game->buffer, font, buffer_text, 100, 690, makecol(255, 0, 0), makecol(0, 0, 0));
+        textout_ex(game->buffer, font, "damage", 120, 690, makecol(255, 255, 255), makecol(0, 0, 0));
+        sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille].PAcost);
+        textout_ex(game->buffer, font, buffer_text, 200, 690, makecol(0, 0, 255), makecol(0, 0, 0));
+        textout_ex(game->buffer, font, "PA", 220, 690, makecol(255, 255, 255), makecol(0, 0, 0));
+    }
     blit(game->buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-    rectfill(screen, 150, SCREEN_HEIGHT - 90, 230, SCREEN_HEIGHT - 10, makecol(0, 255, 0));
+    rectfill(screen, 265, SCREEN_HEIGHT - 85, 345, SCREEN_HEIGHT - 5, makecol(0, 255, 0));
 }

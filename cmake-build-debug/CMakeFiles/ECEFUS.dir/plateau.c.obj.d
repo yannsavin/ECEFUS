@@ -1,9 +1,8 @@
-CMakeFiles/ECEFUS.dir/plateau.c.obj: \
- C:\Users\yanns\CLionProjects\ECEFUS\plateau.c c:\mingw\include\allegro.h \
- c:\mingw\include\allegro/base.h c:\mingw\include\errno.h \
- c:\mingw\include\_mingw.h c:\mingw\include\msvcrtver.h \
- c:\mingw\include\w32api.h c:\mingw\include\sdkddkver.h \
- c:\mingw\include\limits.h \
+CMakeFiles/ECEFUS.dir/plateau.c.obj: E:\Cours\info\ECEFUS\plateau.c \
+ c:\mingw\include\allegro.h c:\mingw\include\allegro/base.h \
+ c:\mingw\include\errno.h c:\mingw\include\_mingw.h \
+ c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
+ c:\mingw\include\sdkddkver.h c:\mingw\include\limits.h \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\stdarg.h \
  c:\mingw\lib\gcc\mingw32\6.3.0\include\stddef.h \
  c:\mingw\include\stdlib.h c:\mingw\include\time.h \
@@ -50,5 +49,5 @@ CMakeFiles/ECEFUS.dir/plateau.c.obj: \
  c:\mingw\include\allegro/inline/3dmaths.inl \
  c:\mingw\include\allegro/alcompat.h \
  c:\mingw\include\allegro/platform/alwin.h c:\mingw\include\stdio.h \
- c:\mingw\include\sys/types.h C:\Users\yanns\CLionProjects\ECEFUS\game.h \
+ c:\mingw\include\sys/types.h E:\Cours\info\ECEFUS\game.h \
  c:\mingw\include\allegro\gfx.h

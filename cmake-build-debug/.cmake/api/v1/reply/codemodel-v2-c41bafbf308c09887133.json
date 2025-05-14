@@ -49,8 +49,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Users/yanns/CLionProjects/ECEFUS/cmake-build-debug",
-		"source" : "C:/Users/yanns/CLionProjects/ECEFUS"
+		"build" : "E:/Cours/info/ECEFUS/cmake-build-debug",
+		"source" : "E:/Cours/info/ECEFUS"
 	},
 	"version" : 
 	{

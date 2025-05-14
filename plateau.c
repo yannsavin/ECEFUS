@@ -8,6 +8,10 @@
 void skip(player_t *player[], game_t *game,spell_t **spell) {
     player[game->tourjoueur]->PA=player[game->tourjoueur]->basePA;
     player[game->tourjoueur]->PM=player[game->tourjoueur]->basePM;
+    player[game->tourjoueur]->damage=player[game->tourjoueur]->basedamage;
+    player[game->tourjoueur]->stackdamage=0;
+    player[game->tourjoueur]->bonus=0;
+    game->conseille=-1;
     game->tourjoueur++;
     if (game->tourjoueur>=3) {
         game->tourjoueur=0;}
@@ -21,7 +25,7 @@ void skip(player_t *player[], game_t *game,spell_t **spell) {
     affichage(player,game,spell);
 }
 void next(player_t *player[], game_t *game, spell_t **spell) {
-    if (150<=mouse_x && 230>=mouse_x && (SCREEN_HEIGHT - 90)<=mouse_y && mouse_y<=SCREEN_HEIGHT-10){
+    if (265<=mouse_x && 345>=mouse_x && (SCREEN_HEIGHT - 85)<=mouse_y && mouse_y<=SCREEN_HEIGHT-5){
         if (mouse_b & 1) {
             skip(player,game,spell);
         }
@@ -58,6 +62,7 @@ void moove(player_t *player[],game_t *game,spell_t **spell) {
                 if (src_x==player[i]->casex && src_y==player[i]->casey && player[game->tourjoueur]->PA>=2) {
                     player[i]->health-=player[game->tourjoueur]->damage;
                     player[game->tourjoueur]->PA-=player[game->tourjoueur]->attaquecost;
+                    player[game->tourjoueur]->stackdamage+=player[game->tourjoueur]->damage;
                     affichage(player,game,spell);
                 }
             }

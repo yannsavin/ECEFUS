@@ -8,11 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/yanns/CLionProjects/ECEFUS/affichage.c" "CMakeFiles/ECEFUS.dir/affichage.c.obj" "gcc" "CMakeFiles/ECEFUS.dir/affichage.c.obj.d"
-  "C:/Users/yanns/CLionProjects/ECEFUS/init.c" "CMakeFiles/ECEFUS.dir/init.c.obj" "gcc" "CMakeFiles/ECEFUS.dir/init.c.obj.d"
-  "C:/Users/yanns/CLionProjects/ECEFUS/main.c" "CMakeFiles/ECEFUS.dir/main.c.obj" "gcc" "CMakeFiles/ECEFUS.dir/main.c.obj.d"
-  "C:/Users/yanns/CLionProjects/ECEFUS/plateau.c" "CMakeFiles/ECEFUS.dir/plateau.c.obj" "gcc" "CMakeFiles/ECEFUS.dir/plateau.c.obj.d"
-  "C:/Users/yanns/CLionProjects/ECEFUS/spell.c" "CMakeFiles/ECEFUS.dir/spell.c.obj" "gcc" "CMakeFiles/ECEFUS.dir/spell.c.obj.d"
+  "E:/Cours/info/ECEFUS/affichage.c" "CMakeFiles/ECEFUS.dir/affichage.c.obj" "gcc" "CMakeFiles/ECEFUS.dir/affichage.c.obj.d"
+  "E:/Cours/info/ECEFUS/init.c" "CMakeFiles/ECEFUS.dir/init.c.obj" "gcc" "CMakeFiles/ECEFUS.dir/init.c.obj.d"
+  "E:/Cours/info/ECEFUS/main.c" "CMakeFiles/ECEFUS.dir/main.c.obj" "gcc" "CMakeFiles/ECEFUS.dir/main.c.obj.d"
+  "E:/Cours/info/ECEFUS/plateau.c" "CMakeFiles/ECEFUS.dir/plateau.c.obj" "gcc" "CMakeFiles/ECEFUS.dir/plateau.c.obj.d"
+  "E:/Cours/info/ECEFUS/spell.c" "CMakeFiles/ECEFUS.dir/spell.c.obj" "gcc" "CMakeFiles/ECEFUS.dir/spell.c.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

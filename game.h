@@ -15,6 +15,7 @@
 #define nbcases 8
 
 typedef struct game {
+    int conseille;
     int nbplayers;
     int tourjoueur,action;
     BITMAP *cases[5];
@@ -28,16 +29,16 @@ typedef struct player {
     char name[50];
     int number,PA,basePA,PM,basePM,attaquecost;
     int spelltab[4];
-    int casex,casey;
+    int casex,casey,bonus;
     int x,y;
-    int health,damage,armor;
+    int health,basehealth,damage,basedamage,armor;
     int stackdamage;
     BITMAP *skin;
 }player_t;
 typedef struct spell {
     char name[50];
     int damage,PAcost,count;
-    int type;
+    int type,min,max;
     BITMAP *skin;
     BITMAP *frame[4];
 }spell_t;

@@ -12,8 +12,27 @@ int damagetaken(player_t *player[],game_t *game, spell_t **spell,int src_y,int s
     for(int i=0;i<3;i++) {
         if(player[i]->casex==src_x && player[i]->casey==src_y) {
             player[i]->health-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]].damage;
+            if(player[game->tourjoueur]->classe==1) {
+                player[i]->PM-=2;
+            }
             life(player);
         }
+    }
+}
+
+void berserk_heal(player_t *player[],game_t *game,spell_t **spell) {
+    player[game->tourjoueur]->health+=player[game->tourjoueur]->stackdamage;
+    player[game->tourjoueur]->stackdamage=0;
+    player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]].PAcost;
+    affichage(player,game,spell);
+}
+void berserk_damage(player_t *player[],game_t *game,spell_t **spell) {
+    player[game->tourjoueur]->bonus=0;
+    if (player[game->tourjoueur]->health<player[game->tourjoueur]->basehealth) {
+        player[game->tourjoueur]->bonus=(10*(player[game->tourjoueur]->basehealth-player[game->tourjoueur]->health))/100;
+        player[game->tourjoueur]->damage+=player[game->tourjoueur]->bonus;
+        player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]].PAcost;
+        affichage(player,game,spell);
     }
 }
 int sendspell(player_t *player[],game_t *game,spell_t **spell,int src_y,int src_x) {
@@ -22,20 +41,12 @@ int sendspell(player_t *player[],game_t *game,spell_t **spell,int src_y,int src_
             rest(100);
             affichage(player,game,spell);
         }
-        switch (spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]].type) {
-            case 0:damagetaken(player,game,spell,src_y,src_x);
-        }
-
-
+        damagetaken(player,game,spell,src_y,src_x);
         player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]].PAcost;
         affichage(player,game,spell);
         return 1;
 }
 
-void healberserk(player_t *player[],game_t *game,spell_t **spell) {
-    player[game->tourjoueur]->health+=player[game->tourjoueur]->stackdamage;
-    player[game->tourjoueur]->stackdamage=0;
-}
 
 void place_spell(player_t *player[],game_t *game,spell_t **spell) {
     int a=0;
@@ -46,7 +57,12 @@ void place_spell(player_t *player[],game_t *game,spell_t **spell) {
         if(mouse_x > decalageX && mouse_y > decalageY && mouse_x < (nbcases * caseX) + decalageX && mouse_y < (nbcases * caseY) + decalageY){
             set_trans_blender(255, 0, 0, 128);
             draw_trans_sprite(screen, create_bitmap(caseX, caseY), (src_x*caseX)+decalageX, (src_y*caseY)+decalageY);
-            if (mouse_b & 1) {
+            if (mouse_b & 1 &&
+                (abs(player[game->tourjoueur]->casex-src_x)>spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]].min
+                || abs(player[game->tourjoueur]->casey-src_y)>spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]].min)
+                && (abs(player[game->tourjoueur]->casex-src_x)<=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]].max
+                || abs(player[game->tourjoueur]->casey-src_y)<=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]].max)
+                ){
                 a=sendspell(player,game,spell,src_y,src_x);
             }
         }
@@ -55,8 +71,24 @@ void place_spell(player_t *player[],game_t *game,spell_t **spell) {
 }
 
 void repartitiontype(player_t *player[],game_t *game,spell_t **spell) {
-    if (spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]].type==0) {
-        place_spell(player,game,spell);
+    if (player[game->tourjoueur]->classe==1) {
+        switch (player[game->tourjoueur]->spellselect) {
+            case 0:
+                place_spell(player,game,spell);
+                break;
+            case 1:
+                berserk_heal(player,game,spell);
+                break;
+            case 2:
+                berserk_damage(player,game,spell);
+            break;
+
+        }
+    }
+    if (player[game->tourjoueur]->classe==0) {
+        if (spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[player[game->tourjoueur]->spellselect]].type==0) {
+            place_spell(player,game,spell);
+        }
     }
 }
 
@@ -90,5 +122,20 @@ void select_spell(player_t *player[],game_t *game,spell_t **spell) {
                  player[game->tourjoueur]->spellselect=-1;
              }
          }
+    }
+    if (mouse_b & 2) {
+        if (85<=mouse_x && 165>=mouse_x && 200<=mouse_y && mouse_y<=280){
+            game->conseille=0;
+            affichage(player,game,spell);
+        }
+        if (85<=mouse_x && 165>=mouse_x && 300<=mouse_y && mouse_y<=380){
+            game->conseille=1;
+            affichage(player,game,spell);
+        }
+        if (85<=mouse_x && 165>=mouse_x && 400<=mouse_y && mouse_y<=480){
+            game->conseille=2;
+            affichage(player,game,spell);
+        }
+        else game->conseille=-1;
     }
 }

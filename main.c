@@ -13,6 +13,7 @@ int main() {
     game.nbplayers=3;
     game.tourjoueur=0;
     game.action=1;
+    game.n_map = 3;
     player_t *player[game.nbplayers];
     for (int i = 0; i < game.nbplayers; i++) {
         player[i] = (player_t *)malloc(sizeof(player_t));

@@ -46,7 +46,7 @@ void moove(player_t *player[],game_t *game,spell_t ***spell) {
         (src_x != player[(game->tourjoueur+2)%3]->casex ||
         src_y != player[(game->tourjoueur+2)%3]->casey) &&
         !(src_x - player[game->tourjoueur]->casex == 0 && src_y - player[game->tourjoueur]->casey == 0)
-        && game->data[src_x][src_y]!=3 && game->data[src_x][src_y]!=4) {
+        && game->data[src_x][src_y]!=3 && game->data[src_x][src_y]!=4 ) {
             int old_x = player[game->tourjoueur]->casex;
             int old_y = player[game->tourjoueur]->casey;
             player[game->tourjoueur]->casex = src_x;

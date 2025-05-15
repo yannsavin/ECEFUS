@@ -17,12 +17,11 @@
 #define decalageX 350
 #define decalageY 0
 #define nbcases 8
-#define n_map 3
 
 typedef struct game {
     int conseille;
     int nbplayers;
-    int tourjoueur,action;
+    int tourjoueur,action, n_map;
     int data[8][8];
     BITMAP *cases[4][5];
     BITMAP *map;

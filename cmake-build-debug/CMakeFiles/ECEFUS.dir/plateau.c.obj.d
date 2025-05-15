@@ -49,5 +49,5 @@ CMakeFiles/ECEFUS.dir/plateau.c.obj: E:\Cours\info\ECEFUS\plateau.c \
  c:\mingw\include\allegro/inline/3dmaths.inl \
  c:\mingw\include\allegro/alcompat.h \
  c:\mingw\include\allegro/platform/alwin.h c:\mingw\include\stdio.h \
- c:\mingw\include\sys/types.h E:\Cours\info\ECEFUS\game.h \
- c:\mingw\include\allegro\gfx.h
+ c:\mingw\include\sys/types.h c:\mingw\include\math.h \
+ E:\Cours\info\ECEFUS\game.h c:\mingw\include\allegro\gfx.h

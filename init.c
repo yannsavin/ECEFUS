@@ -40,6 +40,7 @@ void init_map(game_t *game) {
     }
 }
 void init(player_t *player[],game_t *game, spell_t ***spell) {
+    int a,b;
     game->conseille=-1;
     player_t classe[4];
     game->cases[0][0]=load_bitmap("foret1.bmp",NULL);
@@ -239,8 +240,16 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     for(int i=0;i<3;i++) {
         player[i]->stackdamage=0;
         player[i]->skin=classe[player[i]->classe].skinclass[player[i]->skinnum];
-        player[i]->casex=rand()%nbcases;
-        player[i]->casey=rand()%nbcases;
+        player[i]->casex=-1;
+        player[i]->casey=-1;
+        while (player[i]->casex==-1 || player[i]->casey==-1) {
+            a=rand()%nbcases;
+            b=rand()%nbcases;
+            if (game->data[a][b]!=3 && game->data[a][b]!=4) {
+                player[i]->casex=a;
+                player[i]->casey=b;
+            }
+        }
         player[i]->basePA=classe[player[i]->classe].basePA;
         player[i]->PA=player[i]->basePA;
         player[i]->basePM=classe[player[i]->classe].basePM;

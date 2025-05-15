@@ -297,6 +297,7 @@ CMakeFiles/ECEFUS.dir/plateau.c.obj: E:/Cours/info/ECEFUS/plateau.c \
   C:/MinGW/include/io.h \
   C:/MinGW/include/limits.h \
   C:/MinGW/include/malloc.h \
+  C:/MinGW/include/math.h \
   C:/MinGW/include/msvcrtver.h \
   C:/MinGW/include/sdkddkver.h \
   C:/MinGW/include/stdint.h \
@@ -543,6 +544,6 @@ E:/Cours/info/ECEFUS/main.c:
 
 E:/Cours/info/ECEFUS/plateau.c:
 
-E:/Cours/info/ECEFUS/spell.c:
-
 C:/MinGW/include/math.h:
+
+E:/Cours/info/ECEFUS/spell.c:

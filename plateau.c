@@ -12,16 +12,18 @@ void skip(player_t *player[], game_t *game,spell_t ***spell) {
     player[game->tourjoueur]->damage=player[game->tourjoueur]->basedamage;
     player[game->tourjoueur]->stackdamage=0;
     player[game->tourjoueur]->bonus=0;
+    player[game->tourjoueur]->action==0;
     game->conseille=-1;
     game->tourjoueur++;
     if (game->tourjoueur>=3) {
-        game->tourjoueur=0;}
+        game->tourjoueur=0;
+        testpoison(player,game,spell);
+    }
     while (player[game->tourjoueur]->state==0) {
         game->tourjoueur++;
         if (game->tourjoueur>=3) {
             game->tourjoueur=0;
         }
-
     }
     affichage(player,game,spell);
 }
@@ -33,9 +35,32 @@ void next(player_t *player[], game_t *game, spell_t ***spell) {
     }
 }
 
+void attaque(player_t *player[], game_t *game, spell_t ***spell,int src_y,int src_x) {
+    for (int i=0; i<3; i++) {
+        if (src_x==player[i]->casex && src_y==player[i]->casey && player[game->tourjoueur]->PA>=2) {
+            if(player[game->tourjoueur]->classe==2 && player[game->tourjoueur]->poisondag==1) {
+                player[i]->poison=1;
+                player[game->tourjoueur]->poisondag=0;
+                testpoison(player,game,spell);
+            }
+            if(player[game->tourjoueur]->classe==2 && player[game->tourjoueur]->buff==1) {
+                player[i]->health-=player[game->tourjoueur]->damage*2;
+                printf("%d\n",player[game->tourjoueur]->damage*2);
+                player[game->tourjoueur]->buff=0;
+            }
+            else {
+                player[i]->health-=player[game->tourjoueur]->damage;
+                printf("%d\n",player[game->tourjoueur]->damage);
+            }
+            player[game->tourjoueur]->PA-=player[game->tourjoueur]->attaquecost;
+            player[game->tourjoueur]->stackdamage+=player[game->tourjoueur]->damage;
+            affichage(player,game,spell);
+        }
+    }
+}
 
 void moove(player_t *player[],game_t *game,spell_t ***spell) {
-    if (mouse_b & 1 && player[game->tourjoueur]->PM >0){
+    if (mouse_b & 1 && player[game->tourjoueur]->PM >0 && player[game->tourjoueur]->action==0) {
         int a=0,b=0;
         int src_x = (mouse_x -decalageX)/caseX;
         int src_y = (mouse_y -decalageY)/caseY;
@@ -45,7 +70,9 @@ void moove(player_t *player[],game_t *game,spell_t ***spell) {
         int nextx=0;
         int nexty=0;
         if (mouse_x > decalageX && mouse_y > decalageY &&
-        mouse_x < (nbcases * caseX) + decalageX && mouse_y < (nbcases * caseY) + decalageY && deplacement<=player[game->tourjoueur]->PM) {
+        mouse_x < (nbcases * caseX) + decalageX && mouse_y < (nbcases * caseY) + decalageY && deplacement<=player[game->tourjoueur]->PM &&
+            (src_x != player[(game->tourjoueur+1)%3]->casex  || src_y != player[(game->tourjoueur+1)%3]->casey)&&
+            (src_x != player[(game->tourjoueur+2)%3]->casex ||  src_y != player[(game->tourjoueur+2)%3]->casey)) {
             for (int i=0 ; i<deplacement ; i++) {
                 printf("\n\ncoord :   %d  %d\nvecteur : %d  %d\nnext :    %d  %d",player[game->tourjoueur]->casex,player[game->tourjoueur]->casey,vecteurx,vecteury,nextx,nexty);
                 if (vecteurx==0) {
@@ -94,14 +121,7 @@ void moove(player_t *player[],game_t *game,spell_t ***spell) {
             src_x - player[game->tourjoueur]->casex <= 1 &&
             src_y - player[game->tourjoueur]->casey >= -1 &&
             src_y - player[game->tourjoueur]->casey <= 1) {
-            for (int i=0; i<3; i++) {
-                if (src_x==player[i]->casex && src_y==player[i]->casey && player[game->tourjoueur]->PA>=2) {
-                    player[i]->health-=player[game->tourjoueur]->damage;
-                    player[game->tourjoueur]->PA-=player[game->tourjoueur]->attaquecost;
-                    player[game->tourjoueur]->stackdamage+=player[game->tourjoueur]->damage;
-                    affichage(player,game,spell);
-                }
-            }
+            attaque(player, game, spell,src_y,src_x);
         }
     }
 }

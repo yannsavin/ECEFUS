@@ -29,12 +29,13 @@ typedef struct game {
 }game_t;
 
 typedef struct player {
-    int state;
+    int state,action;
     int spellselect,classe;
-    char name[50];
+    char name[20];
     int number,PA,basePA,PM,basePM,attaquecost;
     int spelltab[4];
     int casex,casey,bonus;
+    int poison,stack,poisondag,buff;
     int x,y;
     int health,basehealth,damage,basedamage,armor;
     int stackdamage,skinnum;
@@ -63,5 +64,7 @@ void life(player_t *player[]);
 void moove(player_t *player[],game_t *game,spell_t ***spell);
 void skip(player_t *player[], game_t *game,spell_t ***spell);
 void next(player_t *player[], game_t *game, spell_t ***spell);
+void testpoison(player_t *player[],game_t *game, spell_t ***spell);
+void attaque(player_t *player[], game_t *game, spell_t ***spell,int src_y,int src_x);
 #endif //GAME_H
 

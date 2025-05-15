@@ -160,7 +160,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     classe[2].skinclass[0]=load_bitmap("perso_assasin.bmp",NULL);
     classe[2].skinclass[1]=load_bitmap("perso_assasin1.bmp",NULL);
     classe[2].skinclass[2]=load_bitmap("perso_assasin2.bmp",NULL);
-    classe[2].basePA=10;
+    classe[2].basePA=30;
     classe[2].basePM=6;
     classe[2].health=110;
     classe[2].damage=20;
@@ -170,7 +170,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[2][0]->PAcost=4;
     spell[2][0]->damageMIN=10;
     spell[2][0]->damageMAX=20;
-    spell[2][0]->miss=10;
+    spell[2][0]->miss=1;
     spell[2][0]->type=0;
     spell[2][0]->min=1;
     spell[2][0]->max=4;
@@ -231,7 +231,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[3][2]->max=4;
 
 
-    player[0]->classe=0;
+    player[0]->classe=2;
     player[0]->skinnum=0;
     player[1]->classe=0;
     player[1]->skinnum=1;
@@ -250,6 +250,8 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
                 player[i]->casey=b;
             }
         }
+        player[i]->stack=0;
+        player[i]->action=0;
         player[i]->basePA=classe[player[i]->classe].basePA;
         player[i]->PA=player[i]->basePA;
         player[i]->basePM=classe[player[i]->classe].basePM;

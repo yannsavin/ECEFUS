@@ -20,18 +20,20 @@ int affichage(player_t *player[], game_t *game, spell_t ***spell) {
     set_trans_blender(0, 0, 255, 40);
     int cx = player[game->tourjoueur]->casex;
     int cy = player[game->tourjoueur]->casey;
-    for (int dx = -player[game->tourjoueur]->PM; dx <= player[game->tourjoueur]->PM; dx++) {
-        for (int dy = -player[game->tourjoueur]->PM; dy <= player[game->tourjoueur]->PM; dy++) {
-            if (abs(dx) + abs(dy) <= player[game->tourjoueur]->PM && !(dx == 0 && dy == 0)) {
-                int nx = cx + dx;
-                int ny = cy + dy;
-                if (nx >= 0 && nx < nbcases && ny >= 0 && ny < nbcases && game->data[nx][ny]!=3 && game->data[nx][ny]!=4 &&
-                (nx != player[(game->tourjoueur+1)%3]->casex || ny != player[(game->tourjoueur+1)%3]->casey) &&
-                (nx != player[(game->tourjoueur+2)%3]->casex || ny != player[(game->tourjoueur+2)%3]->casey)) {
-                    set_trans_blender(0, 0, 255, 100);
-                    drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
-                    rectfill(game->buffer,(nx * caseX) + decalageX , (ny * caseY) + decalageY, (nx * caseX) + decalageX + caseX, (ny * caseY) + decalageY + caseY, makecol(0, 0, 255));
-                    drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
+    if (player[game->tourjoueur]->action==0) {
+        for (int dx = -player[game->tourjoueur]->PM; dx <= player[game->tourjoueur]->PM; dx++) {
+            for (int dy = -player[game->tourjoueur]->PM; dy <= player[game->tourjoueur]->PM; dy++) {
+                if (abs(dx) + abs(dy) <= player[game->tourjoueur]->PM && !(dx == 0 && dy == 0)) {
+                    int nx = cx + dx;
+                    int ny = cy + dy;
+                    if (nx >= 0 && nx < nbcases && ny >= 0 && ny < nbcases && game->data[nx][ny]!=3 && game->data[nx][ny]!=4 &&
+                    (nx != player[(game->tourjoueur+1)%3]->casex || ny != player[(game->tourjoueur+1)%3]->casey) &&
+                    (nx != player[(game->tourjoueur+2)%3]->casex || ny != player[(game->tourjoueur+2)%3]->casey)) {
+                        set_trans_blender(0, 0, 255, 100);
+                        drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
+                        rectfill(game->buffer,(nx * caseX) + decalageX , (ny * caseY) + decalageY, (nx * caseX) + decalageX + caseX, (ny * caseY) + decalageY + caseY, makecol(0, 0, 255));
+                        drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
+                    }
                 }
             }
         }

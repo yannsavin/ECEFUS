@@ -25,7 +25,7 @@ int affichage(player_t *player[], game_t *game, spell_t ***spell) {
             if (abs(dx) + abs(dy) <= player[game->tourjoueur]->PM && !(dx == 0 && dy == 0)) {
                 int nx = cx + dx;
                 int ny = cy + dy;
-                if (nx >= 0 && nx < nbcases && ny >= 0 && ny < nbcases) {
+                if (nx >= 0 && nx < nbcases && ny >= 0 && ny < nbcases && game->data[nx][ny]!=3 && game->data[nx][ny]!=4) {
                     set_trans_blender(0, 0, 255, 100);
                     drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
                     rectfill(game->buffer,(nx * caseX) + decalageX , (ny * caseY) + decalageY, (nx * caseX) + decalageX + caseX, (ny * caseY) + decalageY + caseY, makecol(0, 0, 255));

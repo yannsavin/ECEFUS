@@ -30,6 +30,11 @@ void init_map(game_t *game) {
     }
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
+            game->data[i][j]=map_data[i][j];
+        }
+    }
+    for (int i = 0; i < 8; i++) {
+        for (int j = 0; j < 8; j++) {
             draw_sprite(game->map, game->cases[n_map][map_data[i][j]], i * caseX, j * caseY);
         }
     }

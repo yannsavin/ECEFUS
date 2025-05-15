@@ -1,4 +1,5 @@
-CMakeFiles/ECEFUS.dir/spell.c.obj: E:\Cours\info\ECEFUS\spell.c \
+CMakeFiles/ECEFUS.dir/spell.c.obj: \
+ C:\Users\ewenn\Desktop\Informatique\ 2\CLionProjects\ECEFUS\spell.c \
  c:\mingw\include\allegro.h c:\mingw\include\allegro/base.h \
  c:\mingw\include\errno.h c:\mingw\include\_mingw.h \
  c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
@@ -50,4 +51,5 @@ CMakeFiles/ECEFUS.dir/spell.c.obj: E:\Cours\info\ECEFUS\spell.c \
  c:\mingw\include\allegro/alcompat.h \
  c:\mingw\include\allegro/platform/alwin.h c:\mingw\include\stdio.h \
  c:\mingw\include\sys/types.h c:\mingw\include\math.h \
- E:\Cours\info\ECEFUS\game.h c:\mingw\include\allegro\gfx.h
+ C:\Users\ewenn\Desktop\Informatique\ 2\CLionProjects\ECEFUS\game.h \
+ c:\mingw\include\allegro\gfx.h

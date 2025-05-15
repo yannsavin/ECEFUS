@@ -16,6 +16,10 @@ int main() {
     player_t *player[game.nbplayers];
     for (int i = 0; i < game.nbplayers; i++) {
         player[i] = (player_t *)malloc(sizeof(player_t));
+        if (!player[i]) {
+            printf("Erreur d'allocation mémoire pour player[%d]\n", i);
+            exit(EXIT_FAILURE);
+        }
     }
     spell_t ***spell = (spell_t ***)malloc(4 * sizeof(spell_t **));
     for (int i = 0; i < 4; i++) {

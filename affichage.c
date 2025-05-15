@@ -3,30 +3,33 @@
 #include <stdlib.h>
 #include <time.h>
 #include "game.h"
-#include "game.h"
 
 
-int affichage(player_t *player[], game_t *game, spell_t **spell) {
+int affichage(player_t *player[], game_t *game, spell_t ***spell) {
     rest(50);
     clear_bitmap(game->buffer);
     blit(game->map, game->buffer, 0, 0, decalageX, 0, 800, 800);
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < game->nbplayers; i++) {
         if (player[i]->state==1) {
             player[i]->x = (player[i]->casex * caseX) + decalageX;
             player[i]->y = (player[i]->casey * caseY) + decalageY;
             draw_sprite(game->buffer, player[i]->skin, player[i]->x+10, player[i]->y+10);
+
         }
     }
     set_trans_blender(0, 0, 255, 40);
     int cx = player[game->tourjoueur]->casex;
     int cy = player[game->tourjoueur]->casey;
-    for (int dx = -1; dx <= 1; dx++) {
-        for (int dy = -1; dy <= 1; dy++) {
-            if (!(dx == 0 && dy == 0)) {
+    for (int dx = -player[game->tourjoueur]->PM; dx <= player[game->tourjoueur]->PM; dx++) {
+        for (int dy = -player[game->tourjoueur]->PM; dy <= player[game->tourjoueur]->PM; dy++) {
+            if (abs(dx) + abs(dy) <= player[game->tourjoueur]->PM && !(dx == 0 && dy == 0)) {
                 int nx = cx + dx;
                 int ny = cy + dy;
                 if (nx >= 0 && nx < nbcases && ny >= 0 && ny < nbcases) {
-                    draw_trans_sprite(game->buffer, create_bitmap(caseX, caseY), (nx * caseX) + decalageX, (ny * caseY) + decalageY);
+                    set_trans_blender(0, 0, 255, 100);
+                    drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
+                    rectfill(game->buffer,(nx * caseX) + decalageX , (ny * caseY) + decalageY, (nx * caseX) + decalageX + caseX, (ny * caseY) + decalageY + caseY, makecol(0, 0, 255));
+                    drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
                 }
             }
         }
@@ -35,19 +38,26 @@ int affichage(player_t *player[], game_t *game, spell_t **spell) {
     draw_sprite(game->buffer, player[game->tourjoueur]->skin, 100, 0);
 
     textout_ex(game->buffer, font, "Tours de :", 10, 35, makecol(255, 255, 255), makecol(0, 0, 0));
-    char buffer_text[10];
+    char buffer_text[64];
     sprintf(buffer_text, "%d", player[game->tourjoueur]->PM);
     textout_ex(game->buffer, font, buffer_text, 125, 130, makecol(255, 0, 0), makecol(0, 0, 0));
     sprintf(buffer_text, "%d", player[game->tourjoueur]->PA);
     textout_ex(game->buffer, font, buffer_text, 120, 150, makecol(0, 0, 255), makecol(0, 0, 0));
     sprintf(buffer_text, "%d", player[game->tourjoueur]->health);
     textout_ex(game->buffer, font, buffer_text, 115, 170, makecol(0, 255, 0), makecol(0, 0, 0));
-    for (int i = 0; i < 3; i++) {
-        draw_sprite(game->buffer, spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spelltab[i]].skin, 85, 200+100*i);
-        sprintf(buffer_text, "%d", spell[player[game->tourjoueur]->classe][i].PAcost);
-        textout_ex(game->buffer, font, buffer_text, 200, 245+100*i, makecol(0, 0, 255), makecol(0, 0, 0));
+    if (player[game->tourjoueur]) {
+        int classe = player[game->tourjoueur]->classe;
+        for (int i = 0; i < 3; i++) {
+            int idx = i;
+            if (idx >= 0) {
+                draw_sprite(game->buffer, spell[classe][idx]->skin, 85, 200 + 100*i);
+                sprintf(buffer_text, "%d", spell[classe][idx]->PAcost);
+                textout_ex(game->buffer, font, buffer_text, 200, 245 + 100*i, makecol(0, 0, 255), makecol(0, 0, 0));
+            }
+        }
     }
-    for (int i = 0; i < 3; i++) {
+
+    for (int i = 0; i < game->nbplayers; i++) {
         if (player[i]->state==1) {
             draw_sprite(game->buffer, player[i]->skin, 1400, i*200);
             sprintf(buffer_text, "%d", player[i]->health);
@@ -59,7 +69,7 @@ int affichage(player_t *player[], game_t *game, spell_t **spell) {
         }
     }
 
-    if (player[game->tourjoueur]->stackdamage>0) {
+    if (player[game->tourjoueur]->stackdamage>0 && player[game->tourjoueur]->classe==1) {
         sprintf(buffer_text, "%d", player[game->tourjoueur]->stackdamage);
         textout_ex(game->buffer, font, buffer_text, 230, 345, makecol(255, 0, 0), makecol(0, 0, 0));
     }
@@ -82,13 +92,14 @@ int affichage(player_t *player[], game_t *game, spell_t **spell) {
         }
     }
     if (game->conseille>=0) {
-        sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille].damage);
+        sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille]->damage);
         textout_ex(game->buffer, font, buffer_text, 100, 690, makecol(255, 0, 0), makecol(0, 0, 0));
         textout_ex(game->buffer, font, "damage", 120, 690, makecol(255, 255, 255), makecol(0, 0, 0));
-        sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille].PAcost);
+        sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille]->PAcost);
         textout_ex(game->buffer, font, buffer_text, 200, 690, makecol(0, 0, 255), makecol(0, 0, 0));
         textout_ex(game->buffer, font, "PA", 220, 690, makecol(255, 255, 255), makecol(0, 0, 0));
     }
     blit(game->buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     rectfill(screen, 265, SCREEN_HEIGHT - 85, 345, SCREEN_HEIGHT - 5, makecol(0, 255, 0));
+    return 0;
 }

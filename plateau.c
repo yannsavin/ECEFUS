@@ -26,6 +26,7 @@ void skip(player_t *player[], game_t *game,spell_t ***spell) {
         }
     }
     affichage(player,game,spell);
+    rest(50);
 }
 void next(player_t *player[], game_t *game, spell_t ***spell) {
     if (265<=mouse_x && 345>=mouse_x && (SCREEN_HEIGHT - 85)<=mouse_y && mouse_y<=SCREEN_HEIGHT-5){
@@ -74,7 +75,6 @@ void moove(player_t *player[],game_t *game,spell_t ***spell) {
             (src_x != player[(game->tourjoueur+1)%3]->casex  || src_y != player[(game->tourjoueur+1)%3]->casey)&&
             (src_x != player[(game->tourjoueur+2)%3]->casex ||  src_y != player[(game->tourjoueur+2)%3]->casey)) {
             for (int i=0 ; i<deplacement ; i++) {
-                printf("\n\ncoord :   %d  %d\nvecteur : %d  %d\nnext :    %d  %d",player[game->tourjoueur]->casex,player[game->tourjoueur]->casey,vecteurx,vecteury,nextx,nexty);
                 if (vecteurx==0) {
                     a=1;
                 }
@@ -85,7 +85,6 @@ void moove(player_t *player[],game_t *game,spell_t ***spell) {
                     deplacement=i;
                 }
                 if (vecteurx!=0 && a==0) {
-                    printf("essai x");
                     nextx=player[game->tourjoueur]->casex+(vecteurx/abs(vecteurx));
                     if ((nextx != player[(game->tourjoueur+1)%3]->casex  || player[game->tourjoueur]->casey != player[(game->tourjoueur+1)%3]->casey)&&
                     (nextx != player[(game->tourjoueur+2)%3]->casex ||  player[game->tourjoueur]->casey != player[(game->tourjoueur+2)%3]->casey)&&
@@ -99,7 +98,6 @@ void moove(player_t *player[],game_t *game,spell_t ***spell) {
                     else {a=1;deplacement+=1;b+=1;}
                 }
                 else if (vecteury!=0 && a==1) {
-                    printf("essai y");
                     nexty=player[game->tourjoueur]->casey+(vecteury/abs(vecteury));
                     if ((nexty != player[(game->tourjoueur+1)%3]->casey || player[game->tourjoueur]->casex != player[(game->tourjoueur+1)%3]->casex) &&
                     (nexty != player[(game->tourjoueur+2)%3]->casey || player[game->tourjoueur]->casex != player[(game->tourjoueur+2)%3]->casex) &&

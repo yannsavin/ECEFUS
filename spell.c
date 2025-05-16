@@ -18,7 +18,7 @@ void assasin_tp(player_t *player[],game_t *game,spell_t ***spell,int src_y,int s
                     casey=src_y;
                 if ((casex != player[(game->tourjoueur+1)%3]->casex  || casey != player[(game->tourjoueur+1)%3]->casey)&&
                 (casex != player[(game->tourjoueur+2)%3]->casex || casey != player[(game->tourjoueur+2)%3]->casey)&&
-                game->data[casex][casey]!=3 && game->data[casex][casey] && casex<=8 && casey<=8 && casex>=0 && casey>=0) {
+                game->data[casex][casey]!=3 && game->data[casex][casey]!=4 && casex<8 && casey<8 && casex>=0 && casey>=0) {
                     player[game->tourjoueur]->casex=casex;
                     player[game->tourjoueur]->casey=casey;
                     a=1;
@@ -29,7 +29,7 @@ void assasin_tp(player_t *player[],game_t *game,spell_t ***spell,int src_y,int s
                 casey=src_y;
                 if ((casex != player[(game->tourjoueur+1)%3]->casex  || casey != player[(game->tourjoueur+1)%3]->casey)&&
                 (casex != player[(game->tourjoueur+2)%3]->casex || casey != player[(game->tourjoueur+2)%3]->casey)&&
-                game->data[casex][casey]!=3 && game->data[casex][casey] && casex<=8 && casey<=8 && casex>=0 && casey>=0) {
+                game->data[casex][casey]!=3 && game->data[casex][casey]!=4 && casex<8 && casey<8 && casex>=0 && casey>=0) {
                     player[game->tourjoueur]->casex=casex;
                     player[game->tourjoueur]->casey=casey;
                     a=1;
@@ -40,7 +40,7 @@ void assasin_tp(player_t *player[],game_t *game,spell_t ***spell,int src_y,int s
                 casey=src_y+1;
                 if ((casex != player[(game->tourjoueur+1)%3]->casex  || casey != player[(game->tourjoueur+1)%3]->casey)&&
                 (casex != player[(game->tourjoueur+2)%3]->casex || casey != player[(game->tourjoueur+2)%3]->casey)&&
-                game->data[casex][casey]!=3 && game->data[casex][casey] && casex<=8 && casey<=8 && casex>=0 && casey>=0) {
+                game->data[casex][casey]!=3 && game->data[casex][casey]!=4 && casex<8 && casey<8 && casex>=0 && casey>=0) {
                     player[game->tourjoueur]->casex=casex;
                     player[game->tourjoueur]->casey=casey;
                     a=1;
@@ -51,7 +51,7 @@ void assasin_tp(player_t *player[],game_t *game,spell_t ***spell,int src_y,int s
                 casey=src_y-1;
                 if ((casex != player[(game->tourjoueur+1)%3]->casex  || casey != player[(game->tourjoueur+1)%3]->casey)&&
                 (casex != player[(game->tourjoueur+2)%3]->casex || casey != player[(game->tourjoueur+2)%3]->casey)&&
-                game->data[casex][casey]!=3 && game->data[casex][casey] && casex<=8 && casey<=8 && casex>=0 && casey>=0) {
+                game->data[casex][casey]!=3 && game->data[casex][casey]!=4 && casex<8 && casey<8 && casex>=0 && casey>=0) {
                     player[game->tourjoueur]->casex=casex;
                     player[game->tourjoueur]->casey=casey;
                     a=1;
@@ -115,7 +115,6 @@ void damagetaken(player_t *player[],game_t *game, spell_t ***spell,int src_y,int
                 if(player[game->tourjoueur]->classe==1) {
                     player[i]->PM-=2;
                 }
-                life(player);
             }
         }
     }
@@ -164,17 +163,29 @@ void place_spell(player_t *player[],game_t *game,spell_t ***spell) {
             if (mouse_b & 1 && player[game->tourjoueur]->classe!=2 &&
                 abs(player[game->tourjoueur]->casex - src_x) <= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->max &&
                 abs(player[game->tourjoueur]->casey - src_y) <= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->max &&
-                (abs(player[game->tourjoueur]->casex - src_x) > spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->min ||
-                 abs(player[game->tourjoueur]->casey - src_y) > spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->min)
+                (abs(player[game->tourjoueur]->casex - src_x) >= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->min ||
+                 abs(player[game->tourjoueur]->casey - src_y) >= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->min)
                 ){
                 a=sendspell(player,game,spell,src_y,src_x);
             }
             if (mouse_b & 1 && player[game->tourjoueur]->classe==2 &&
                 ((src_x == player[(game->tourjoueur+1)%3]->casex  && src_y == player[(game->tourjoueur+1)%3]->casey)||
-                (src_x == player[(game->tourjoueur+2)%3]->casex && src_y == player[(game->tourjoueur+2)%3]->casey))){
+                (src_x == player[(game->tourjoueur+2)%3]->casex && src_y == player[(game->tourjoueur+2)%3]->casey)) &&
+                abs(player[game->tourjoueur]->casex - src_x) <= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->max &&
+                abs(player[game->tourjoueur]->casey - src_y) <= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->max &&
+                (abs(player[game->tourjoueur]->casex - src_x) >= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->min ||
+                abs(player[game->tourjoueur]->casey - src_y) >= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->min)){
                 assasin_tp(player,game,spell,src_y,src_x);
                 affichage(player,game,spell);
                 a=1;
+            }
+        }
+        if (5<=mouse_x && 85>=mouse_x && (SCREEN_HEIGHT - 85)<=mouse_y && mouse_y<=SCREEN_HEIGHT-5) {
+            if (mouse_b & 1) {
+                player[game->tourjoueur]->action = 0;
+                affichage(player,game,spell);
+                a=1;
+
             }
         }
         rest(100);
@@ -183,6 +194,7 @@ void place_spell(player_t *player[],game_t *game,spell_t ***spell) {
 
 void repartitiontype(player_t *player[],game_t *game,spell_t ***spell) {
     if (player[game->tourjoueur]->spellselect!=-1) {
+        rest(50);
         if (player[game->tourjoueur]->classe==0) {
             if (spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->type==0) {
                 place_spell(player,game,spell);

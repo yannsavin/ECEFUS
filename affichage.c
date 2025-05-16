@@ -38,6 +38,29 @@ int affichage(player_t *player[], game_t *game, spell_t ***spell) {
             }
         }
     }
+    if (player[game->tourjoueur]->action == 1) {
+        int nx = player[game->tourjoueur]->casex;
+        int ny = player[game->tourjoueur]->casey;
+        int min = spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->min;
+        int max = spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->max;
+        for (int i = 0; i < nbcases; i++) {
+            for (int j = 0; j < nbcases; j++) {
+                int dx = abs(nx - j);
+                int dy = abs(ny - i);
+                if (dx <= max && dy <= max && (dx >= min || dy >= min)) {
+                    set_trans_blender(255, 0, 0, 100);
+                    drawing_mode(DRAW_MODE_TRANS, NULL, 0, 0);
+                    rectfill(game->buffer,
+                             (j * caseX) + decalageX,
+                             (i * caseY) + decalageY,
+                             (j * caseX) + decalageX + caseX,
+                             (i * caseY) + decalageY + caseY,
+                             makecol(255, 0, 0));
+                    drawing_mode(DRAW_MODE_SOLID, NULL, 0, 0);
+                }
+            }
+        }
+    }
     rectfill(game->buffer, 0, 0, 250, 800, makecol(0, 0, 0));
     draw_sprite(game->buffer, player[game->tourjoueur]->skin, 100, 0);
 
@@ -102,6 +125,12 @@ int affichage(player_t *player[], game_t *game, spell_t ***spell) {
         sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille]->PAcost);
         textout_ex(game->buffer, font, buffer_text, 200, 690, makecol(0, 0, 255), makecol(0, 0, 0));
         textout_ex(game->buffer, font, "PA", 220, 690, makecol(255, 255, 255), makecol(0, 0, 0));
+    }
+    if (player[game->tourjoueur]->action == 1) {
+        rectfill(game->buffer, 5, SCREEN_HEIGHT - 85, 85, SCREEN_HEIGHT - 5, makecol(255, 0, 0));
+    }
+    if (player[game->tourjoueur]->action == 0) {
+        rectfill(game->buffer, 5, SCREEN_HEIGHT - 85, 85, SCREEN_HEIGHT - 5, makecol(0, 0, 0));
     }
     blit(game->buffer, screen, 0, 0, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
     rectfill(screen, 265, SCREEN_HEIGHT - 85, 345, SCREEN_HEIGHT - 5, makecol(0, 255, 0));

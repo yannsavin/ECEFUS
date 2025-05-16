@@ -13,7 +13,7 @@ int main() {
     game.nbplayers=3;
     game.tourjoueur=0;
     game.action=1;
-    game.n_map = 3;
+    game.n_map = rand()%4;
     player_t *player[game.nbplayers];
     for (int i = 0; i < game.nbplayers; i++) {
         player[i] = (player_t *)malloc(sizeof(player_t));
@@ -43,6 +43,8 @@ int main() {
     while (!key[KEY_ESC]) {
         moove(player,&game,spell);
         select_spell(player,&game,spell);
+        life(player);
+        affichage(player,&game,spell);
         rest(100);
         next(player,&game,spell);
     }

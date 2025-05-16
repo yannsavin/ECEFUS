@@ -79,7 +79,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[0][0]->damageMAX=35;
     spell[0][0]->miss=15;
     spell[0][0]->type=0;
-    spell[0][0]->min=1;
+    spell[0][0]->min=2;
     spell[0][0]->max=4;
     spell[0][0]->skin=load_bitmap("spell_0_0.bmp",NULL);
     spell[0][0]->frame[0]=load_bitmap("eau1.bmp",NULL);
@@ -92,7 +92,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[0][1]->damageMAX=55;
     spell[0][1]->miss=15;
     spell[0][1]->type=0;
-    spell[0][1]->min=1;
+    spell[0][1]->min=2;
     spell[0][1]->max=4;
     spell[0][1]->skin=load_bitmap("spell_0_1.bmp",NULL);
     spell[0][1]->frame[0]=load_bitmap("feu1.bmp",NULL);
@@ -105,7 +105,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[0][2]->damageMAX=80;
     spell[0][2]->miss=20;
     spell[0][2]->type=0;
-    spell[0][2]->min=1;
+    spell[0][2]->min=2;
     spell[0][2]->max=4;
     spell[0][2]->skin=load_bitmap("spell_0_2.bmp",NULL);
     spell[0][2]->frame[0]=load_bitmap("foudre1.bmp",NULL);
@@ -135,7 +135,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[1][0]->damageMAX=25;
     spell[1][0]->miss=10;
     spell[1][0]->type=0;
-    spell[1][0]->min=1;
+    spell[1][0]->min=2;
     spell[1][0]->max=4;
 
     spell[1][1]->skin=load_bitmap("spell1.1.bmp",NULL);
@@ -144,7 +144,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[1][1]->damageMIN=0;
     spell[1][1]->damageMAX=0;
     spell[1][1]->miss=0;
-    spell[1][1]->min=1;
+    spell[1][1]->min=2;
     spell[1][1]->max=4;
 
     spell[1][2]->skin=load_bitmap("spell1.2.bmp",NULL);
@@ -153,7 +153,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[1][2]->damageMIN=0;
     spell[1][2]->damageMAX=0;
     spell[1][2]->miss=0;
-    spell[1][2]->min=1;
+    spell[1][2]->min=2;
     spell[1][2]->max=4;
 
     //assasin
@@ -172,7 +172,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[2][0]->damageMAX=20;
     spell[2][0]->miss=1;
     spell[2][0]->type=0;
-    spell[2][0]->min=1;
+    spell[2][0]->min=2;
     spell[2][0]->max=4;
 
     spell[2][1]->skin=load_bitmap("spell2.1.bmp",NULL);
@@ -181,7 +181,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[2][1]->damageMIN=0;
     spell[2][1]->damageMAX=0;
     spell[2][1]->miss=0;
-    spell[2][1]->min=1;
+    spell[2][1]->min=2;
     spell[2][1]->max=4;
 
     spell[2][2]->skin=load_bitmap("spell2.2.bmp",NULL);
@@ -190,7 +190,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[2][2]->damageMIN=0;
     spell[2][2]->damageMAX=0;
     spell[2][2]->miss=0;
-    spell[2][2]->min=1;
+    spell[2][2]->min=2;
     spell[2][2]->max=4;
 
     //paladin
@@ -209,7 +209,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[3][0]->damageMAX=20;
     spell[3][0]->miss=10;
     spell[3][0]->type=1;
-    spell[3][0]->min=1;
+    spell[3][0]->min=2;
     spell[3][0]->max=4;
 
     spell[3][1]->skin=load_bitmap("spell3.1.bmp",NULL);
@@ -218,7 +218,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[3][1]->damageMIN=0;
     spell[3][1]->damageMAX=0;
     spell[3][1]->miss=0;
-    spell[3][1]->min=1;
+    spell[3][1]->min=2;
     spell[3][1]->max=4;
 
     spell[3][2]->skin=load_bitmap("spell3.1.bmp",NULL);
@@ -227,14 +227,14 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[3][2]->damageMIN=0;
     spell[3][2]->damageMAX=0;
     spell[3][2]->miss=0;
-    spell[3][2]->min=1;
+    spell[3][2]->min=2;
     spell[3][2]->max=4;
 
 
     player[0]->classe=2;
     player[0]->skinnum=0;
-    player[1]->classe=0;
-    player[1]->skinnum=1;
+    player[1]->classe=1;
+    player[1]->skinnum=3;
     player[2]->classe=0;
     player[2]->skinnum=2;
     for(int i=0;i<3;i++) {

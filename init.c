@@ -81,7 +81,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[0][0]->type=0;
     spell[0][0]->min=2;
     spell[0][0]->max=4;
-    spell[0][0]->skin=load_bitmap("spell_0_0.bmp",NULL);
+    spell[0][0]->skin=load_bitmap("spell0.0.bmp",NULL);
     spell[0][0]->frame[0]=load_bitmap("eau1.bmp",NULL);
     spell[0][0]->frame[1]=load_bitmap("eau2.bmp",NULL);
     spell[0][0]->frame[2]=load_bitmap("eau3.bmp",NULL);
@@ -94,7 +94,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[0][1]->type=0;
     spell[0][1]->min=2;
     spell[0][1]->max=4;
-    spell[0][1]->skin=load_bitmap("spell_0_1.bmp",NULL);
+    spell[0][1]->skin=load_bitmap("spell0.1.bmp",NULL);
     spell[0][1]->frame[0]=load_bitmap("feu1.bmp",NULL);
     spell[0][1]->frame[1]=load_bitmap("feu2.bmp",NULL);
     spell[0][1]->frame[2]=load_bitmap("feu3.bmp",NULL);
@@ -107,11 +107,24 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[0][2]->type=0;
     spell[0][2]->min=2;
     spell[0][2]->max=4;
-    spell[0][2]->skin=load_bitmap("spell_0_2.bmp",NULL);
+    spell[0][2]->skin=load_bitmap("spell0.2.bmp",NULL);
     spell[0][2]->frame[0]=load_bitmap("foudre1.bmp",NULL);
     spell[0][2]->frame[1]=load_bitmap("foudre2.bmp",NULL);
     spell[0][2]->frame[2]=load_bitmap("foudre3.bmp",NULL);
     spell[0][2]->frame[3]=load_bitmap("foudre4.bmp",NULL);
+
+    spell[0][3]->PAcost=7;
+    spell[0][3]->damageMIN=60;
+    spell[0][3]->damageMAX=80;
+    spell[0][3]->miss=20;
+    spell[0][3]->type=0;
+    spell[0][3]->min=2;
+    spell[0][3]->max=4;
+    spell[0][3]->skin=load_bitmap("spell0.3.bmp",NULL);
+    spell[0][3]->frame[0]=load_bitmap("foudre1.bmp",NULL);
+    spell[0][3]->frame[1]=load_bitmap("foudre2.bmp",NULL);
+    spell[0][3]->frame[2]=load_bitmap("foudre3.bmp",NULL);
+    spell[0][3]->frame[3]=load_bitmap("foudre4.bmp",NULL);
 
     //guerrier
     classe[1].skinclass[0]=load_bitmap("perso_guerrier.bmp",NULL);
@@ -156,6 +169,15 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[1][2]->min=2;
     spell[1][2]->max=4;
 
+    spell[1][3]->skin=load_bitmap("spell1.3.bmp",NULL);
+    spell[1][3]->PAcost=3;
+    spell[1][3]->type=1;
+    spell[1][3]->damageMIN=0;
+    spell[1][3]->damageMAX=0;
+    spell[1][3]->miss=0;
+    spell[1][3]->min=2;
+    spell[1][3]->max=4;
+
     //assasin
     classe[2].skinclass[0]=load_bitmap("perso_assasin.bmp",NULL);
     classe[2].skinclass[1]=load_bitmap("perso_assasin1.bmp",NULL);
@@ -193,6 +215,15 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[2][2]->min=2;
     spell[2][2]->max=4;
 
+    spell[2][3]->skin=load_bitmap("spell2.3.bmp",NULL);
+    spell[2][3]->PAcost=3;
+    spell[2][3]->type=1;
+    spell[2][3]->damageMIN=0;
+    spell[2][3]->damageMAX=0;
+    spell[2][3]->miss=0;
+    spell[2][3]->min=2;
+    spell[2][3]->max=4;
+
     //paladin
     classe[3].skinclass[0]=load_bitmap("perso_paladin.bmp",NULL);
     classe[3].skinclass[1]=load_bitmap("perso_paladin1.bmp",NULL);
@@ -221,7 +252,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[3][1]->min=2;
     spell[3][1]->max=4;
 
-    spell[3][2]->skin=load_bitmap("spell3.1.bmp",NULL);
+    spell[3][2]->skin=load_bitmap("spell3.2.bmp",NULL);
     spell[3][2]->PAcost=3;
     spell[3][2]->type=1;
     spell[3][2]->damageMIN=0;
@@ -230,11 +261,20 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[3][2]->min=2;
     spell[3][2]->max=4;
 
+    spell[3][3]->skin=load_bitmap("spell3.3.bmp",NULL);
+    spell[3][3]->PAcost=3;
+    spell[3][3]->type=1;
+    spell[3][3]->damageMIN=0;
+    spell[3][3]->damageMAX=0;
+    spell[3][3]->miss=0;
+    spell[3][3]->min=2;
+    spell[3][3]->max=4;
+
 
     player[0]->classe=2;
     player[0]->skinnum=0;
     player[1]->classe=1;
-    player[1]->skinnum=3;
+    player[1]->skinnum=0;
     player[2]->classe=0;
     player[2]->skinnum=2;
     for(int i=0;i<3;i++) {

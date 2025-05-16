@@ -234,7 +234,7 @@ void repartitiontype(player_t *player[],game_t *game,spell_t ***spell) {
 
 void select_spell(player_t *player[],game_t *game,spell_t ***spell) {
      if (mouse_b & 1) {
-         if (85<=mouse_x && 165>=mouse_x && 200<=mouse_y && mouse_y<=280){
+         if (85<=mouse_x && 165>=mouse_x && 200<=mouse_y && mouse_y<=299){
             player[game->tourjoueur]->spellselect=0;
              if (player[game->tourjoueur]->PA>=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost) {
                  player[game->tourjoueur]->action=1;
@@ -244,7 +244,7 @@ void select_spell(player_t *player[],game_t *game,spell_t ***spell) {
                  player[game->tourjoueur]->spellselect=-1;
              }
         }
-         if (85<=mouse_x && 165>=mouse_x && 300<=mouse_y && mouse_y<=380){
+         if (85<=mouse_x && 165>=mouse_x && 300<=mouse_y && mouse_y<=399){
              player[game->tourjoueur]->spellselect=1;
              if (player[game->tourjoueur]->PA>=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost) {
                  player[game->tourjoueur]->action=1;
@@ -254,8 +254,18 @@ void select_spell(player_t *player[],game_t *game,spell_t ***spell) {
                  player[game->tourjoueur]->spellselect=-1;
              }
          }
-         if (85<=mouse_x && 165>=mouse_x && 400<=mouse_y && mouse_y<=480){
+         if (85<=mouse_x && 165>=mouse_x && 400<=mouse_y && mouse_y<=499){
              player[game->tourjoueur]->spellselect=2;
+             if (player[game->tourjoueur]->PA>=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost) {
+                 player[game->tourjoueur]->action=1;
+                 repartitiontype(player,game,spell);
+             }
+             else  {
+                 player[game->tourjoueur]->spellselect=-1;
+             }
+         }
+         if (85<=mouse_x && 165>=mouse_x && 500<=mouse_y && mouse_y<=600){
+             player[game->tourjoueur]->spellselect=3;
              if (player[game->tourjoueur]->PA>=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost) {
                  player[game->tourjoueur]->action=1;
                  repartitiontype(player,game,spell);
@@ -266,15 +276,19 @@ void select_spell(player_t *player[],game_t *game,spell_t ***spell) {
          }
     }
     if (mouse_b & 2) {
-        if (85<=mouse_x && 165>=mouse_x && 200<=mouse_y && mouse_y<=280){
+        if (85<=mouse_x && 165>=mouse_x && 200<=mouse_y && mouse_y<=299){
             game->conseille=0;
             affichage(player,game,spell);
         }
-        if (85<=mouse_x && 165>=mouse_x && 300<=mouse_y && mouse_y<=380){
+        else if (85<=mouse_x && 165>=mouse_x && 300<=mouse_y && mouse_y<=399){
             game->conseille=1;
             affichage(player,game,spell);
         }
-        if (85<=mouse_x && 165>=mouse_x && 400<=mouse_y && mouse_y<=480){
+        else if (85<=mouse_x && 165>=mouse_x && 400<=mouse_y && mouse_y<=499){
+            game->conseille=2;
+            affichage(player,game,spell);
+        }
+        else if (85<=mouse_x && 165>=mouse_x && 500<=mouse_y && mouse_y<=599){
             game->conseille=2;
             affichage(player,game,spell);
         }

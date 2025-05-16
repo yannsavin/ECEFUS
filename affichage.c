@@ -7,6 +7,8 @@
 
 int affichage(player_t *player[], game_t *game, spell_t ***spell) {
     rest(50);
+    int src_x = (mouse_x -decalageX)/caseX;
+    int src_y = (mouse_y -decalageY)/caseY;
     clear_bitmap(game->buffer);
     blit(game->map, game->buffer, 0, 0, decalageX, 0, 800, 800);
     for (int i = 0; i < game->nbplayers; i++) {
@@ -20,7 +22,7 @@ int affichage(player_t *player[], game_t *game, spell_t ***spell) {
     set_trans_blender(0, 0, 255, 40);
     int cx = player[game->tourjoueur]->casex;
     int cy = player[game->tourjoueur]->casey;
-    if (player[game->tourjoueur]->action==0) {
+    if (player[game->tourjoueur]->action==0 && mouse_x > decalageX && mouse_y > decalageY && mouse_x < (nbcases * caseX) + decalageX && mouse_y < (nbcases * caseY) + decalageY) {
         for (int dx = -player[game->tourjoueur]->PM; dx <= player[game->tourjoueur]->PM; dx++) {
             for (int dy = -player[game->tourjoueur]->PM; dy <= player[game->tourjoueur]->PM; dy++) {
                 if (abs(dx) + abs(dy) <= player[game->tourjoueur]->PM && !(dx == 0 && dy == 0)) {
@@ -74,7 +76,7 @@ int affichage(player_t *player[], game_t *game, spell_t ***spell) {
     textout_ex(game->buffer, font, buffer_text, 115, 170, makecol(0, 255, 0), makecol(0, 0, 0));
     if (player[game->tourjoueur]) {
         int classe = player[game->tourjoueur]->classe;
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 4; i++) {
             int idx = i;
             if (idx >= 0) {
                 draw_sprite(game->buffer, spell[classe][idx]->skin, 85, 200 + 100*i);
@@ -119,12 +121,25 @@ int affichage(player_t *player[], game_t *game, spell_t ***spell) {
         }
     }
     if (game->conseille>=0) {
-        sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille]->damage);
-        textout_ex(game->buffer, font, buffer_text, 100, 690, makecol(255, 0, 0), makecol(0, 0, 0));
-        textout_ex(game->buffer, font, "damage", 120, 690, makecol(255, 255, 255), makecol(0, 0, 0));
+        if (spell[player[game->tourjoueur]->classe][game->conseille]->damageMIN>0) {
+            sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille]->damageMIN);
+            textout_ex(game->buffer, font, buffer_text, 73+35, 690, makecol(255, 0, 0), makecol(0, 0, 0));
+            textout_ex(game->buffer, font, "-", 90+35, 690, makecol(255, 255, 255), makecol(0, 0, 0));
+            sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille]->damageMAX);
+            textout_ex(game->buffer, font, buffer_text, 100+35, 690, makecol(255, 0, 0), makecol(0, 0, 0));
+            textout_ex(game->buffer, font, "damage", 120+35, 690, makecol(255, 255, 255), makecol(0, 0, 0));
+        }
+        sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille]->min);
+        textout_ex(game->buffer, font, buffer_text, 93+55, 710, makecol(255, 255, 0), makecol(0, 0, 0));
+        textout_ex(game->buffer, font, "-", 100+55, 710, makecol(255, 255, 255), makecol(0, 0, 0));
+        sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille]->max);
+        textout_ex(game->buffer, font, buffer_text, 110+55, 710, makecol(255, 255, 0), makecol(0, 0, 0));
+        textout_ex(game->buffer, font, "range", 120+55, 710, makecol(255, 255, 255), makecol(0, 0, 0));
+
         sprintf(buffer_text, "%d",spell[player[game->tourjoueur]->classe][game->conseille]->PAcost);
-        textout_ex(game->buffer, font, buffer_text, 200, 690, makecol(0, 0, 255), makecol(0, 0, 0));
-        textout_ex(game->buffer, font, "PA", 220, 690, makecol(255, 255, 255), makecol(0, 0, 0));
+        textout_ex(game->buffer, font, buffer_text, 200+25, 690, makecol(0, 0, 255), makecol(0, 0, 0));
+        textout_ex(game->buffer, font, "PA", 210+25, 690, makecol(255, 255, 255), makecol(0, 0, 0));
+
     }
     if (player[game->tourjoueur]->action == 1) {
         rectfill(game->buffer, 5, SCREEN_HEIGHT - 85, 85, SCREEN_HEIGHT - 5, makecol(255, 0, 0));

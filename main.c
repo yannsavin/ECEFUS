@@ -10,7 +10,6 @@ int main() {
     game_t game;
     initialisation_allegro(&game);
     srand(time(NULL));
-    game.nbplayers=4;
     game.tourjoueur=0;
     game.action=1;
     game.n_map = rand()%4;
@@ -22,6 +21,10 @@ int main() {
             exit(EXIT_FAILURE);
         }
     }
+    player_t *classe[4];
+    for (int i = 0; i < 4; i++) {
+        classe[i] = (player_t *)malloc(sizeof(player_t));
+    }
     spell_t ***spell = (spell_t ***)malloc(4 * sizeof(spell_t **));
     for (int i = 0; i < 4; i++) {
         spell[i] = (spell_t **)malloc(4 * sizeof(spell_t *));
@@ -30,7 +33,7 @@ int main() {
         }
     }
     printf("Avant init\n");
-    init(player, &game, spell);
+    init(player, &game, spell,classe);
     printf("Après init\n");
 
     printf("Avant init_map\n");
@@ -38,7 +41,7 @@ int main() {
     printf("Après init_map\n");
 
     printf("Avant affichage\n");
-    affichage(player, &game, spell);
+    menu_jeu(player, &game, spell,classe);
     printf("Après affichage\n");
     while (!key[KEY_ESC]) {
         moove(player,&game,spell);

@@ -7,9 +7,9 @@ add_executable(ECEFUS main.c
         game.h
         init.c
         affichage.c
-        affichage.c
         spell.c
         plateau.c
+        menu.c
 )
 
 target_link_libraries(ECEFUS -lmingw32 -lalleg44)

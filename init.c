@@ -39,10 +39,9 @@ void init_map(game_t *game) {
         }
     }
 }
-void init(player_t *player[],game_t *game, spell_t ***spell) {
-    int a,b;
+void init(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]) {
     game->conseille=-1;
-    player_t classe[4];
+
     game->cases[0][0]=load_bitmap("foret1.bmp",NULL);
     game->cases[0][1]=load_bitmap("foret2.bmp",NULL);
     game->cases[0][2]=load_bitmap("foret3.bmp",NULL);
@@ -65,14 +64,14 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     game->cases[3][4]=load_bitmap("neige5.bmp",NULL);
 
     //mage
-    classe[0].skinclass[0]=load_bitmap("perso_mage.bmp",NULL);
-    classe[0].skinclass[1]=load_bitmap("perso_mage1.bmp",NULL);
-    classe[0].skinclass[2]=load_bitmap("perso_mage2.bmp",NULL);
-    classe[0].basePA=14;
-    classe[0].basePM=4;
-    classe[0].health=100;
-    classe[0].damage=5;
-    classe[0].attaquecost=3;
+    classe[0]->skinclass[0]=load_bitmap("perso_mage.bmp",NULL);
+    classe[0]->skinclass[1]=load_bitmap("perso_mage1.bmp",NULL);
+    classe[0]->skinclass[2]=load_bitmap("perso_mage2.bmp",NULL);
+    classe[0]->basePA=14;
+    classe[0]->basePM=4;
+    classe[0]->health=100;
+    classe[0]->damage=5;
+    classe[0]->attaquecost=3;
 
     spell[0][0]->PAcost=3;
     spell[0][0]->damageMIN=10;
@@ -127,16 +126,16 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[0][3]->frame[3]=load_bitmap("foudre4.bmp",NULL);
 
     //guerrier
-    classe[1].skinclass[0]=load_bitmap("perso_guerrier.bmp",NULL);
-    classe[1].skinclass[1]=load_bitmap("perso_guerrier1.bmp",NULL);
-    classe[1].skinclass[2]=load_bitmap("perso_guerrier2.bmp",NULL);
-    classe[1].skinclass[3]=load_bitmap("perso_guerrier3.bmp",NULL);
-    classe[1].skinclass[4]=load_bitmap("perso_guerrier4.bmp",NULL);
-    classe[1].basePA=10;
-    classe[1].basePM=6;
-    classe[1].health=130;
-    classe[1].damage=15;
-    classe[1].attaquecost=2;
+    classe[1]->skinclass[0]=load_bitmap("perso_guerrier.bmp",NULL);
+    classe[1]->skinclass[1]=load_bitmap("perso_guerrier1.bmp",NULL);
+    classe[1]->skinclass[2]=load_bitmap("perso_guerrier2.bmp",NULL);
+    classe[1]->skinclass[3]=load_bitmap("perso_guerrier3.bmp",NULL);
+    classe[1]->skinclass[4]=load_bitmap("perso_guerrier4.bmp",NULL);
+    classe[1]->basePA=10;
+    classe[1]->basePM=6;
+    classe[1]->health=130;
+    classe[1]->damage=15;
+    classe[1]->attaquecost=2;
 
     spell[1][0]->skin=load_bitmap("spell1.0.bmp",NULL);
     spell[1][0]->frame[0]=load_bitmap("foudre1.bmp",NULL);
@@ -179,14 +178,14 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[1][3]->max=4;
 
     //assasin
-    classe[2].skinclass[0]=load_bitmap("perso_assasin.bmp",NULL);
-    classe[2].skinclass[1]=load_bitmap("perso_assasin1.bmp",NULL);
-    classe[2].skinclass[2]=load_bitmap("perso_assasin2.bmp",NULL);
-    classe[2].basePA=30;
-    classe[2].basePM=6;
-    classe[2].health=110;
-    classe[2].damage=20;
-    classe[2].attaquecost=2;
+    classe[2]->skinclass[0]=load_bitmap("perso_assasin.bmp",NULL);
+    classe[2]->skinclass[1]=load_bitmap("perso_assasin1.bmp",NULL);
+    classe[2]->skinclass[2]=load_bitmap("perso_assasin2.bmp",NULL);
+    classe[2]->basePA=30;
+    classe[2]->basePM=6;
+    classe[2]->health=110;
+    classe[2]->damage=20;
+    classe[2]->attaquecost=2;
 
     spell[2][0]->skin=load_bitmap("spell2.0.bmp",NULL);
     spell[2][0]->PAcost=4;
@@ -225,14 +224,14 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     spell[2][3]->max=4;
 
     //paladin
-    classe[3].skinclass[0]=load_bitmap("perso_paladin.bmp",NULL);
-    classe[3].skinclass[1]=load_bitmap("perso_paladin1.bmp",NULL);
-    classe[3].skinclass[2]=load_bitmap("perso_paladin2.bmp",NULL);
-    classe[3].basePA=10;
-    classe[3].basePM=6;
-    classe[3].health=110;
-    classe[3].damage=20;
-    classe[3].attaquecost=2;
+    classe[3]->skinclass[0]=load_bitmap("perso_paladin.bmp",NULL);
+    classe[3]->skinclass[1]=load_bitmap("perso_paladin1.bmp",NULL);
+    classe[3]->skinclass[2]=load_bitmap("perso_paladin2.bmp",NULL);
+    classe[3]->basePA=10;
+    classe[3]->basePM=6;
+    classe[3]->health=110;
+    classe[3]->damage=20;
+    classe[3]->attaquecost=2;
 
     spell[3][0]->skin=load_bitmap("spell3.0.bmp",NULL);
     spell[3][0]->PAcost=2;
@@ -279,9 +278,13 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     player[2]->skinnum=2;
     player[3]->classe=3;
     player[3]->skinnum=1;
+}
+
+void initplayer(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]) {
+    int a,b;
     for(int i=0;i<game->nbplayers;i++) {
         player[i]->stackdamage=0;
-        player[i]->skin=classe[player[i]->classe].skinclass[player[i]->skinnum];
+        player[i]->skin=classe[player[i]->classe]->skinclass[player[i]->skinnum];
         player[i]->casex=-1;
         player[i]->casey=-1;
         while (player[i]->casex==-1 || player[i]->casey==-1) {
@@ -294,15 +297,15 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
         }
         player[i]->stack=0;
         player[i]->action=0;
-        player[i]->basePA=classe[player[i]->classe].basePA;
+        player[i]->basePA=classe[player[i]->classe]->basePA;
         player[i]->PA=player[i]->basePA;
-        player[i]->basePM=classe[player[i]->classe].basePM;
+        player[i]->basePM=classe[player[i]->classe]->basePM;
         player[i]->PM=player[i]->basePM;
-        player[i]->basehealth=classe[player[i]->classe].health;
+        player[i]->basehealth=classe[player[i]->classe]->health;
         player[i]->health=player[i]->basehealth;
-        player[i]->basedamage=classe[player[i]->classe].damage;
+        player[i]->basedamage=classe[player[i]->classe]->damage;
         player[i]->damage=player[i]->basedamage;
-        player[i]->attaquecost=classe[player[i]->classe].attaquecost;
+        player[i]->attaquecost=classe[player[i]->classe]->attaquecost;
         player[i]->state=1;
         player[i]->spellselect=-1;
         player[i]->bonus=0;

@@ -53,7 +53,7 @@ typedef struct spell {
 
 void initialisation_allegro(game_t *game);
 void init_map(game_t *game);
-void init(player_t *player[],game_t *game, spell_t ***spell);
+void init(player_t *player[],game_t *game, spell_t ***spell,player_t *class[]);
 int affichage(player_t *player[], game_t *game, spell_t ***spell);
 void destroy(player_t *player[],game_t *game,spell_t ***spell);
 void damagetaken(player_t *player[],game_t *game, spell_t ***spell,int src_y,int src_x);
@@ -66,5 +66,9 @@ void skip(player_t *player[], game_t *game,spell_t ***spell);
 void next(player_t *player[], game_t *game, spell_t ***spell);
 void testpoison(player_t *player[],game_t *game, spell_t ***spell);
 void attaque(player_t *player[], game_t *game, spell_t ***spell,int src_y,int src_x);
+void initplayer(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]);
+void play(player_t *player[], game_t *game, spell_t ***spell);
+void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *classe[]);
+void configurerpartie(game_t *game);
 #endif //GAME_H
 

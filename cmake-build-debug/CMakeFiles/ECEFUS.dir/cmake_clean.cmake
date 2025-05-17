@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/ECEFUS.dir/init.c.obj.d"
   "CMakeFiles/ECEFUS.dir/main.c.obj"
   "CMakeFiles/ECEFUS.dir/main.c.obj.d"
+  "CMakeFiles/ECEFUS.dir/menu.c.obj"
+  "CMakeFiles/ECEFUS.dir/menu.c.obj.d"
   "CMakeFiles/ECEFUS.dir/plateau.c.obj"
   "CMakeFiles/ECEFUS.dir/plateau.c.obj.d"
   "CMakeFiles/ECEFUS.dir/spell.c.obj"

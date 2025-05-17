@@ -277,7 +277,9 @@ void init(player_t *player[],game_t *game, spell_t ***spell) {
     player[1]->skinnum=0;
     player[2]->classe=0;
     player[2]->skinnum=2;
-    for(int i=0;i<3;i++) {
+    player[3]->classe=3;
+    player[3]->skinnum=1;
+    for(int i=0;i<game->nbplayers;i++) {
         player[i]->stackdamage=0;
         player[i]->skin=classe[player[i]->classe].skinclass[player[i]->skinnum];
         player[i]->casex=-1;

@@ -10,7 +10,7 @@ int main() {
     game_t game;
     initialisation_allegro(&game);
     srand(time(NULL));
-    game.nbplayers=3;
+    game.nbplayers=4;
     game.tourjoueur=0;
     game.action=1;
     game.n_map = rand()%4;
@@ -43,7 +43,7 @@ int main() {
     while (!key[KEY_ESC]) {
         moove(player,&game,spell);
         select_spell(player,&game,spell);
-        life(player);
+        life(player,&game);
         affichage(player,&game,spell);
         rest(100);
         next(player,&game,spell);

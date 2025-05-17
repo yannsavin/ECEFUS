@@ -60,7 +60,7 @@ void damagetaken(player_t *player[],game_t *game, spell_t ***spell,int src_y,int
 int sendspell(player_t *player[],game_t *game,spell_t ***spell,int src_y,int src_x);
 void place_spell(player_t *player[],game_t *game,spell_t ***spell);
 void select_spell(player_t *player[],game_t *game,spell_t ***spell);
-void life(player_t *player[]);
+void life(player_t *player[],game_t *game);
 void moove(player_t *player[],game_t *game,spell_t ***spell);
 void skip(player_t *player[], game_t *game,spell_t ***spell);
 void next(player_t *player[], game_t *game, spell_t ***spell);

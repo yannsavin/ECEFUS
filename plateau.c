@@ -15,13 +15,13 @@ void skip(player_t *player[], game_t *game,spell_t ***spell) {
     player[game->tourjoueur]->action==0;
     game->conseille=-1;
     game->tourjoueur++;
-    if (game->tourjoueur>=3) {
+    if (game->tourjoueur>=game->nbplayers) {
         game->tourjoueur=0;
         testpoison(player,game,spell);
     }
     while (player[game->tourjoueur]->state==0) {
         game->tourjoueur++;
-        if (game->tourjoueur>=3) {
+        if (game->tourjoueur>=game->nbplayers) {
             game->tourjoueur=0;
         }
     }
@@ -70,10 +70,18 @@ void moove(player_t *player[],game_t *game,spell_t ***spell) {
         int deplacement=abs(vecteurx)+abs(vecteury);
         int nextx=0;
         int nexty=0;
+        int collision = 0;
+        for (int i = 0; i < game->nbplayers; i++) {
+            if (i != game->tourjoueur &&
+                player[i]->casex == src_x &&
+                player[i]->casey == src_y) {
+                collision = 1;
+                break;
+                }
+        }
         if (mouse_x > decalageX && mouse_y > decalageY &&
         mouse_x < (nbcases * caseX) + decalageX && mouse_y < (nbcases * caseY) + decalageY && deplacement<=player[game->tourjoueur]->PM &&
-            (src_x != player[(game->tourjoueur+1)%3]->casex  || src_y != player[(game->tourjoueur+1)%3]->casey)&&
-            (src_x != player[(game->tourjoueur+2)%3]->casex ||  src_y != player[(game->tourjoueur+2)%3]->casey)) {
+            collision!=1){
             for (int i=0 ; i<deplacement ; i++) {
                 if (vecteurx==0) {
                     a=1;
@@ -86,9 +94,16 @@ void moove(player_t *player[],game_t *game,spell_t ***spell) {
                 }
                 if (vecteurx!=0 && a==0) {
                     nextx=player[game->tourjoueur]->casex+(vecteurx/abs(vecteurx));
-                    if ((nextx != player[(game->tourjoueur+1)%3]->casex  || player[game->tourjoueur]->casey != player[(game->tourjoueur+1)%3]->casey)&&
-                    (nextx != player[(game->tourjoueur+2)%3]->casex ||  player[game->tourjoueur]->casey != player[(game->tourjoueur+2)%3]->casey)&&
-                    game->data[nextx][player[game->tourjoueur]->casey]!=3 && game->data[nextx][player[game->tourjoueur]->casey]!=4) {
+                    int collisionx = 0;
+                    for (int i = 0; i < game->nbplayers; i++) {
+                        if (i != game->tourjoueur &&
+                            player[i]->casex == nextx &&
+                            player[i]->casey == player[game->tourjoueur]->casey) {
+                            collisionx = 1;
+                            break;
+                            }
+                    }
+                    if (collisionx!=1 && game->data[nextx][player[game->tourjoueur]->casey]!=3 && game->data[nextx][player[game->tourjoueur]->casey]!=4) {
                         b=0;
                         player[game->tourjoueur]->casex+=vecteurx/abs(vecteurx);
                         player[game->tourjoueur]->PM-=1;
@@ -99,9 +114,16 @@ void moove(player_t *player[],game_t *game,spell_t ***spell) {
                 }
                 else if (vecteury!=0 && a==1) {
                     nexty=player[game->tourjoueur]->casey+(vecteury/abs(vecteury));
-                    if ((nexty != player[(game->tourjoueur+1)%3]->casey || player[game->tourjoueur]->casex != player[(game->tourjoueur+1)%3]->casex) &&
-                    (nexty != player[(game->tourjoueur+2)%3]->casey || player[game->tourjoueur]->casex != player[(game->tourjoueur+2)%3]->casex) &&
-                    game->data[player[game->tourjoueur]->casex][nexty]!=3 && game->data[player[game->tourjoueur]->casex][nexty]!=4) {
+                    int collisiony = 0;
+                    for (int i = 0; i < game->nbplayers; i++) {
+                        if (i != game->tourjoueur &&
+                            player[i]->casex == player[game->tourjoueur]->casex &&
+                            player[i]->casey == nexty) {
+                            collisiony = 1;
+                            break;
+                            }
+                    }
+                    if (collisiony!=1 && game->data[player[game->tourjoueur]->casex][nexty]!=3 && game->data[player[game->tourjoueur]->casex][nexty]!=4) {
                         b=0;
                         player[game->tourjoueur]->casey+=vecteury/abs(vecteury);
                         player[game->tourjoueur]->PM-=1;
@@ -123,8 +145,8 @@ void moove(player_t *player[],game_t *game,spell_t ***spell) {
         }
     }
 }
-void life(player_t *player[]) {
-    for (int i = 0; i < 3; i++) {
+void life(player_t *player[], game_t *game) {
+    for (int i = 0; i < game->nbplayers; i++) {
         if(player[i]->health<=0) {
         player[i]->state=0;
         }

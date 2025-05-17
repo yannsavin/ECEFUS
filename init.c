@@ -116,7 +116,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]) 
     spell[0][3]->damageMIN=60;
     spell[0][3]->damageMAX=80;
     spell[0][3]->miss=20;
-    spell[0][3]->type=0;
+    spell[0][3]->type=1;
     spell[0][3]->min=2;
     spell[0][3]->max=4;
     spell[0][3]->skin=load_bitmap("spell0.3.bmp",NULL);
@@ -243,11 +243,15 @@ void init(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]) 
     spell[3][0]->max=4;
 
     spell[3][1]->skin=load_bitmap("spell3.1.bmp",NULL);
+    spell[3][1]->frame[0]=load_bitmap("foudre1.bmp",NULL);
+    spell[3][1]->frame[1]=load_bitmap("foudre2.bmp",NULL);
+    spell[3][1]->frame[2]=load_bitmap("foudre3.bmp",NULL);
+    spell[3][1]->frame[3]=load_bitmap("foudre4.bmp",NULL);
     spell[3][1]->PAcost=2;
-    spell[3][1]->type=1;
-    spell[3][1]->damageMIN=0;
-    spell[3][1]->damageMAX=0;
-    spell[3][1]->miss=0;
+    spell[3][1]->type=0;
+    spell[3][1]->damageMIN=10;
+    spell[3][1]->damageMAX=20;
+    spell[3][1]->miss=10;
     spell[3][1]->min=2;
     spell[3][1]->max=4;
 
@@ -263,27 +267,24 @@ void init(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]) 
     spell[3][3]->skin=load_bitmap("spell3.3.bmp",NULL);
     spell[3][3]->PAcost=3;
     spell[3][3]->type=1;
-    spell[3][3]->damageMIN=0;
-    spell[3][3]->damageMAX=0;
-    spell[3][3]->miss=0;
+    spell[3][3]->damageMIN=20;
+    spell[3][3]->damageMAX=50;
+    spell[3][3]->miss=40;
     spell[3][3]->min=2;
     spell[3][3]->max=4;
 
 
-    player[0]->classe=2;
     player[0]->skinnum=0;
-    player[1]->classe=1;
     player[1]->skinnum=0;
-    player[2]->classe=0;
-    player[2]->skinnum=2;
-    player[3]->classe=3;
-    player[3]->skinnum=1;
+    player[2]->skinnum=0;
+    player[3]->skinnum=0;
 }
 
 void initplayer(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]) {
     int a,b;
     for(int i=0;i<game->nbplayers;i++) {
         player[i]->stackdamage=0;
+        player[i]->incantation=0;
         player[i]->skin=classe[player[i]->classe]->skinclass[player[i]->skinnum];
         player[i]->casex=-1;
         player[i]->casey=-1;
@@ -295,8 +296,13 @@ void initplayer(player_t *player[],game_t *game, spell_t ***spell,player_t *clas
                 player[i]->casey=b;
             }
         }
+        player[i]->stund=0;
+        player[i]->ccimune=0;
         player[i]->stack=0;
+        player[i]->dodge=0;
         player[i]->action=0;
+        player[i]->healcd=0;
+        player[i]->cleanscd=0;
         player[i]->basePA=classe[player[i]->classe]->basePA;
         player[i]->PA=player[i]->basePA;
         player[i]->basePM=classe[player[i]->classe]->basePM;
@@ -309,7 +315,7 @@ void initplayer(player_t *player[],game_t *game, spell_t ***spell,player_t *clas
         player[i]->state=1;
         player[i]->spellselect=-1;
         player[i]->bonus=0;
-        for (int j=0;j<3;j++) {player[i]->spelltab[j]=j;}
+        player[i]->stackDEMACIA=0;
     }
 }
 

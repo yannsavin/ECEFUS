@@ -6,8 +6,6 @@
 #include "game.h"
 
 
-
-
 void play(player_t *player[], game_t *game, spell_t ***spell){
     affichage(player, game, spell);
     while (!key[KEY_ESC]) {
@@ -15,15 +13,13 @@ void play(player_t *player[], game_t *game, spell_t ***spell){
         select_spell(player,game,spell);
         life(player,game);
         affichage(player,game,spell);
-        rest(100);
+        rest(50);
         next(player,game,spell);
     }
 }
 
 void configurerpartie(game_t *game){
     BITMAP *nbjoueurs = load_bitmap("nbjoueurs.bmp", NULL);
-    BITMAP *pseudo = load_bitmap("pseudo.bmp", NULL);
-    BITMAP *choixclasse = load_bitmap("choixclasse.bmp", NULL);
     stretch_blit(nbjoueurs, screen,0, 0, nbjoueurs->w, nbjoueurs->h, 0, 0, SCREEN_W, SCREEN_H);
     game->nbplayers=0;
     printf("%d\n",game->nbplayers);
@@ -50,47 +46,64 @@ void configurerpartie(game_t *game){
         }
         rest(50);
     }
-        /*stretch_blit(pseudo, screen, 0, 0, pseudo->w, pseudo->h, 0, 0, SCREEN_W, SCREEN_H);
 
-        if (game.nbplayers=2){
-            do {
-                scanf("%s", &j2->name);
-            } while (strlen(j2.name) <= 0 && strlen(j2->name) > 10);
-        }
-        if (game.nbplayers=3){
-            do {
-                scanf("%s", &j3->nom);
-            } while (strlen(j3->name) <= 0 && strlen(j3->nom) > 10);
-
-        }
-        if (game.nbplayers=4) {
-            do {
-                scanf("%s", &j4->nom);
-            } while (strlen(j4->nom) <= 0 && strlen(j4->nom) > 10);
-        }
-
-
-    for(int i=0; i<game.nbplayers; i++){
-        stretch_blit(choixclasse, screen,0, 0, choixclasse->w, choixclasse->h, 0, 0, SCREEN_W, SCREEN_H);
-        if(mouse_b &1) {
-            int x = mouse_x;
-            int y = mouse_y;
-            if (x >= 100 && x <= 200 && y >= 300 && y <= 400) {
-                player.classe = 1;
-            } else if (x >= 400 && x <= 500 && y >= 300 && y <= 400) {
-                player.classe = 2;
-            } else if (x >= 700 && x <= 800 && y >= 300 && y <= 400) {
-                player.classe = 3;
-            } else if (x >= 1000 && x <= 1100 && y >= 300 && y <= 400) {
-                player.classe = 4;
-            }
-
-        }
-    }
     destroy_bitmap(nbjoueurs);
-    destroy_bitmap(pseudo);
-    destroy_bitmap(choixclasse);    */
 
+}
+
+void classe_pseudos(game_t *game, player_t *player[]){
+    BITMAP *pseudo = load_bitmap("pseudo.bmp", NULL);
+    BITMAP *choixclasse = load_bitmap("choixclasse.bmp", NULL);
+    stretch_blit(pseudo, screen, 0, 0, pseudo->w, pseudo->h, 0, 0, SCREEN_W, SCREEN_H);
+    for(int i=0; i<game->nbplayers; i++) {
+        char saisie[10] = "";
+        int pos=0;
+        while (1) {
+            stretch_blit(pseudo, screen, 0, 0, pseudo->w, pseudo->h, 0, 0, SCREEN_W, SCREEN_H);
+            textprintf_centre_ex(screen, font, SCREEN_W / 2, 500, makecol(255, 255, 255), -1, "%s", saisie);
+            if (keypressed()) {
+                int key = readkey() & 0xff;
+                if (key==13 && pos>0) {
+                    break;
+                }
+                else if (key == 8 && pos > 0) {
+                    pos--;
+                    saisie[pos] = '\0';
+                }
+                else if (pos < 10 && key >= 32 && key <= 126) {
+                    saisie[pos++] = key;
+                    saisie[pos] = '\0';
+                }
+            }
+            rest(10);
+        }
+        strcpy(player[i]->name, saisie);
+        stretch_blit(choixclasse, screen, 0, 0, choixclasse->w, choixclasse->h, 0, 0, SCREEN_W, SCREEN_H);
+        int choisi = 0;
+        while (!choisi) {
+            if (mouse_b & 1) {
+                int x = mouse_x;
+                int y = mouse_y;
+                if (x >= 60 && x <= 190 && y >= 355 && y <= 455) {
+                    player[i]->classe = assasin;
+                    choisi = 1;
+                } else if (x >= 475 && x <= 605 && y >= 355 && y <= 455) {
+                    player[i]->classe = guerrier;
+                    choisi = 1;
+                } else if (x >= 905 && x <= 1035 && y >= 355 && y <= 455) {
+                    player[i]->classe = mage;
+                    choisi = 1;
+                } else if (x >= 1260 && x <= 1390 && y >= 355 && y <= 455) {
+                    player[i]->classe = paladin;
+                    choisi = 1;
+                }
+            }
+        }
+        printf("%s\n",player[i]->name);
+        printf("%d\n",player[i]->classe);
+    }
+    destroy_bitmap(pseudo);
+    destroy_bitmap(choixclasse);
 }
 
 
@@ -99,6 +112,7 @@ void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *class
     BITMAP *menu = load_bitmap("menu.bmp", NULL);
     BITMAP *ecranapres = load_bitmap("ecranapres.bmp", NULL);
     stretch_blit(ecrantitre, screen,0, 0, ecrantitre->w, ecrantitre->h, 0, 0, SCREEN_W, SCREEN_H);
+    rest(50);
     while (!mouse_b & 1) {
         rest(10);
     }
@@ -116,8 +130,9 @@ void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *class
             }
             if (x >= 500 && x <= 1200 && y >= 100 && y <= 300) {
                 configurerpartie(game);
-                initplayer(player, game, spell,classe);
                 if (mouse_b & 1) {
+                    classe_pseudos(game, player);
+                    initplayer(player, game, spell,classe);
                     play(player, game, spell);
                 }
             }

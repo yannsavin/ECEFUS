@@ -6,9 +6,10 @@
 #include "game.h"
 #include "game.h"
 
+
 void assasin_tp(player_t *player[],game_t *game,spell_t ***spell,int src_y,int src_x) {
     int a=0,b=0;
-    int casex=0,casey=0;
+    int casex=0,casey=0,collisions;
     if (player[game->tourjoueur]->PA>=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost) {
         while(a==0) {
             b=rand()%4;
@@ -16,47 +17,43 @@ void assasin_tp(player_t *player[],game_t *game,spell_t ***spell,int src_y,int s
                 case 0:
                     casex=src_x+1;
                     casey=src_y;
-                if ((casex != player[(game->tourjoueur+1)%3]->casex  || casey != player[(game->tourjoueur+1)%3]->casey)&&
-                (casex != player[(game->tourjoueur+2)%3]->casex || casey != player[(game->tourjoueur+2)%3]->casey)&&
-                game->data[casex][casey]!=3 && game->data[casex][casey]!=4 && casex<8 && casey<8 && casex>=0 && casey>=0) {
-                    player[game->tourjoueur]->casex=casex;
-                    player[game->tourjoueur]->casey=casey;
-                    a=1;
-                }
-                break;
+                    collisions=collision(player,game,casex,casey);
+                    if (collisions!=1 && game->data[casex][casey]!=3 && game->data[casex][casey]!=4 && casex<8 && casey<8 && casex>=0 && casey>=0) {
+                        player[game->tourjoueur]->casex=casex;
+                        player[game->tourjoueur]->casey=casey;
+                        a=1;
+                    }
+                    break;
                 case 1:
                     casex=src_x-1;
-                casey=src_y;
-                if ((casex != player[(game->tourjoueur+1)%3]->casex  || casey != player[(game->tourjoueur+1)%3]->casey)&&
-                (casex != player[(game->tourjoueur+2)%3]->casex || casey != player[(game->tourjoueur+2)%3]->casey)&&
-                game->data[casex][casey]!=3 && game->data[casex][casey]!=4 && casex<8 && casey<8 && casex>=0 && casey>=0) {
-                    player[game->tourjoueur]->casex=casex;
-                    player[game->tourjoueur]->casey=casey;
-                    a=1;
-                }
-                break;
+                    casey=src_y;
+                    collisions=collision(player,game,casex,casey);
+                    if (collisions!=1 && game->data[casex][casey]!=3 && game->data[casex][casey]!=4 && casex<8 && casey<8 && casex>=0 && casey>=0) {
+                        player[game->tourjoueur]->casex=casex;
+                        player[game->tourjoueur]->casey=casey;
+                        a=1;
+                    }
+                    break;
                 case 2:
                     casex=src_x;
-                casey=src_y+1;
-                if ((casex != player[(game->tourjoueur+1)%3]->casex  || casey != player[(game->tourjoueur+1)%3]->casey)&&
-                (casex != player[(game->tourjoueur+2)%3]->casex || casey != player[(game->tourjoueur+2)%3]->casey)&&
-                game->data[casex][casey]!=3 && game->data[casex][casey]!=4 && casex<8 && casey<8 && casex>=0 && casey>=0) {
-                    player[game->tourjoueur]->casex=casex;
-                    player[game->tourjoueur]->casey=casey;
-                    a=1;
-                }
-                break;
+                    casey=src_y+1;
+                    collisions=collision(player,game,casex,casey);
+                    if (collisions!=1 && game->data[casex][casey]!=3 && game->data[casex][casey]!=4 && casex<8 && casey<8 && casex>=0 && casey>=0) {
+                        player[game->tourjoueur]->casex=casex;
+                        player[game->tourjoueur]->casey=casey;
+                        a=1;
+                    }
+                    break;
                 case 3:
                     casex=src_x;
-                casey=src_y-1;
-                if ((casex != player[(game->tourjoueur+1)%3]->casex  || casey != player[(game->tourjoueur+1)%3]->casey)&&
-                (casex != player[(game->tourjoueur+2)%3]->casex || casey != player[(game->tourjoueur+2)%3]->casey)&&
-                game->data[casex][casey]!=3 && game->data[casex][casey]!=4 && casex<8 && casey<8 && casex>=0 && casey>=0) {
-                    player[game->tourjoueur]->casex=casex;
-                    player[game->tourjoueur]->casey=casey;
-                    a=1;
-                }
-                break;
+                    casey=src_y-1;
+                    collisions=collision(player,game,casex,casey);
+                    if (collisions!=1 && game->data[casex][casey]!=3 && game->data[casex][casey]!=4 && casex<8 && casey<8 && casex>=0 && casey>=0) {
+                        player[game->tourjoueur]->casex=casex;
+                        player[game->tourjoueur]->casey=casey;
+                        a=1;
+                    }
+                    break;
             }
         }
         player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost;
@@ -79,9 +76,12 @@ void testpoison(player_t *player[],game_t *game, spell_t ***spell) {
             printf("%f\n",round(damage));
             player[i]->stack+=1;
         }
-        if (player[i]->stack>=3) {
+        if (player[i]->stack>3) {
             player[i]->stack=0;
             player[i]->poison=0;
+        }
+        if (player[i]->stack==3) {
+            player[i]->stack+=1;
         }
     }
 }
@@ -101,7 +101,7 @@ void assasin_poison(player_t *player[],game_t *game, spell_t ***spell) {
 }
 
 void damagetaken(player_t *player[],game_t *game, spell_t ***spell,int src_y,int src_x) {
-    int a=0;
+    int a=0,b=0;
     float damage=0;
     a=rand() % 101;
     if (a>spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->miss) {
@@ -111,12 +111,40 @@ void damagetaken(player_t *player[],game_t *game, spell_t ***spell,int src_y,int
                 float max=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->damageMAX;
                 float miss=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->miss;
                 damage=min+((a-miss)/(100-miss))*(max-min);
-                player[i]->health-=round(damage);
+                if (player[i]->dodge==1) {
+                    b=rand() % 101;
+                    if (b>50) {
+                        player[i]->health-=round(damage);
+                        player[i]->dodge=0;
+                    }
+                }
+                else {
+                    player[i]->health-=round(damage);
+                }
                 if(player[game->tourjoueur]->classe==1) {
                     player[i]->PM-=2;
                 }
             }
         }
+    }
+}
+int damagetakenAOE(player_t *player[], game_t *game, spell_t ***spell, int src_y, int src_x) {
+    int a = rand() % 101;
+    if (a> spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->miss) {
+        float min = spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->damageMIN;
+        float max = spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->damageMAX;
+        float miss = spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->miss;
+        float damage = min + ((a - miss) / (100 - miss)) * (max - min);
+        for (int i = 0; i < game->nbplayers; i++) {
+            int px = player[i]->casex;
+            int py = player[i]->casey;
+            if (abs(px - src_x) <= 1 && abs(py - src_y) <= 1) {
+                player[i]->health -= round(damage);
+            }
+        }
+        player[game->tourjoueur]->healcd==1;
+        player[game->tourjoueur]->incantation==1;
+        return 1;
     }
 }
 
@@ -150,9 +178,86 @@ int sendspell(player_t *player[],game_t *game,spell_t ***spell,int src_y,int src
         return 1;
 }
 
+int paladin_stund(player_t *player[],game_t *game,spell_t ***spell,int src_y,int src_x) {
+    for (int i=0;i<game->nbplayers;i++) {
+        if (player[i]->casex==src_x && player[i]->casey==src_y) {
+            player[i]->stund=1;
+        }
+    }
+    player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost;
+    player[game->tourjoueur]->action=0;
+    affichage(player,game,spell);
+    return 1;
+}
+
+int paladin_heal(player_t *player[],game_t *game,spell_t ***spell) {
+    if (player[game->tourjoueur]->healcd==0) {
+        player[game->tourjoueur]->health+=50;
+        player[game->tourjoueur]->healcd=1;
+        player[game->tourjoueur]->bonusPM=1;
+        player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost;
+        player[game->tourjoueur]->stackDEMACIA+=1;
+    }
+    player[game->tourjoueur]->action=0;
+    return 1;
+}
+
+void mage_cleans(player_t *player[],game_t *game,spell_t ***spell) {
+    if (player[game->tourjoueur]->cleanscd==0) {
+        player[game->tourjoueur]->cleanscd=1;
+        if (player[game->tourjoueur]->stund==2) {
+            player[game->tourjoueur]->PM=player[game->tourjoueur]->basePM;
+        }
+        if (player[game->tourjoueur]->poison==1) {
+            player[game->tourjoueur]->poison=0;
+            player[game->tourjoueur]->stack=0;
+        }
+        player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost;
+    }
+    player[game->tourjoueur]->stund=0;
+    player[game->tourjoueur]->action=0;
+}
+
+int paladin_DEMACIA(player_t *player[],game_t *game,spell_t ***spell) {
+    int a;
+    float damage=0;
+    a = rand()%101;
+    if (a>spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->miss) {
+        float min=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->damageMIN;
+        float max=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->damageMAX+(player[game->tourjoueur]->stackDEMACIA)*2;
+        float miss=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->miss;
+        damage=min+((a-miss)/(100-miss))*(max-min);
+        for (int i=0;i<game->nbplayers;i++) {
+            if (i!=game->tourjoueur) {
+                player[i]->health-=round(damage);
+            }
+        }
+    }
+    player[game->tourjoueur]->stackDEMACIA=0;
+    player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost;
+    player[game->tourjoueur]->action=0;
+    affichage(player,game,spell);
+}
+
+int mage_incnatation(player_t *player[],game_t *game,spell_t ***spell) {
+    player[game->tourjoueur]->incantation=1;
+    player[game->tourjoueur]->healcd=1;
+    player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost;
+    player[game->tourjoueur]->action=0;
+    affichage(player,game,spell);
+    return 1;
+}
+
+int assasin_dodge(player_t *player[],game_t *game,spell_t ***spell) {
+    player[game->tourjoueur]->dodge=1;
+    player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost;
+    player[game->tourjoueur]->action=0;
+    player[game->tourjoueur]->cleanscd=1;
+    affichage(player,game,spell);
+}
 
 void place_spell(player_t *player[],game_t *game,spell_t ***spell) {
-    int a=0;
+    int a=0,collisions=0;
     while(a==0) {
         int src_x = (mouse_x -decalageX)/caseX;
         int src_y = (mouse_y -decalageY)/caseY;
@@ -166,11 +271,23 @@ void place_spell(player_t *player[],game_t *game,spell_t ***spell) {
                 (abs(player[game->tourjoueur]->casex - src_x) >= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->min ||
                  abs(player[game->tourjoueur]->casey - src_y) >= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->min)
                 ){
-                a=sendspell(player,game,spell,src_y,src_x);
+                if (player[game->tourjoueur]->classe==3 && player[game->tourjoueur]->spellselect==1) {
+                    player[game->tourjoueur]->stackDEMACIA+=1;
+                }
+                if (player[game->tourjoueur]->classe==3 && player[game->tourjoueur]->spellselect==0) {
+                    a=paladin_stund(player,game,spell,src_y,src_x);
+                    player[game->tourjoueur]->stackDEMACIA+=1;
+                }
+                else if(player[game->tourjoueur]->classe==0 && player[game->tourjoueur]->incantation==1 && player[game->tourjoueur]->spellselect==2 && player[game->tourjoueur]->healcd!=1) {
+                    a=damagetakenAOE(player,game,spell,src_y,src_x);
+                }
+                else {
+                    a=sendspell(player,game,spell,src_y,src_x);
+                }
             }
+            collisions=collision(player,game,src_x,src_y);
             if (mouse_b & 1 && player[game->tourjoueur]->classe==2 &&
-                ((src_x == player[(game->tourjoueur+1)%3]->casex  && src_y == player[(game->tourjoueur+1)%3]->casey)||
-                (src_x == player[(game->tourjoueur+2)%3]->casex && src_y == player[(game->tourjoueur+2)%3]->casey)) &&
+                collisions==1 &&
                 abs(player[game->tourjoueur]->casex - src_x) <= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->max &&
                 abs(player[game->tourjoueur]->casey - src_y) <= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->max &&
                 (abs(player[game->tourjoueur]->casex - src_x) >= spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->min ||
@@ -196,8 +313,28 @@ void repartitiontype(player_t *player[],game_t *game,spell_t ***spell) {
     if (player[game->tourjoueur]->spellselect!=-1) {
         rest(50);
         if (player[game->tourjoueur]->classe==0) {
-            if (spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->type==0) {
-                place_spell(player,game,spell);
+            printf("%d %d\n",player[game->tourjoueur]->incantation,player[game->tourjoueur]->healcd);
+            switch (player[game->tourjoueur]->spellselect) {
+                case 0:
+                    place_spell(player,game,spell);
+                break;
+                case 1:
+                    place_spell(player,game,spell);
+                break;
+                case 2:
+                if(player[game->tourjoueur]->incantation==0 && player[game->tourjoueur]->healcd==0) {
+                    mage_incnatation(player,game,spell);
+                }
+                else if(player[game->tourjoueur]->incantation==1 && player[game->tourjoueur]->healcd==0) {
+                    place_spell(player,game,spell);
+                }
+                else {
+                    player[game->tourjoueur]->action=0;
+                }
+                break;
+                case 3:
+                    mage_cleans(player,game,spell);
+                break;
             }
         }
         if (player[game->tourjoueur]->classe==1) {
@@ -225,9 +362,29 @@ void repartitiontype(player_t *player[],game_t *game,spell_t ***spell) {
                 case 2:
                     assasin_poison(player,game,spell);
                 break;
+                case 3:
+                    if(player[game->tourjoueur]->dodge==0 && player[game->tourjoueur]->cleanscd==0) {
+                        assasin_dodge(player,game,spell);
+                    } else {player[game->tourjoueur]->action=0;}
+                break;
             }
         }
-
+        if (player[game->tourjoueur]->classe==3) {
+            switch (player[game->tourjoueur]->spellselect) {
+                case 0:
+                    place_spell(player,game,spell);
+                break;
+                case 1:
+                    place_spell(player,game,spell);
+                break;
+                case 2:
+                    paladin_heal(player,game,spell);
+                break;
+                case 3:
+                    paladin_DEMACIA(player,game,spell);
+                break;
+            }
+        }
     }
 }
 

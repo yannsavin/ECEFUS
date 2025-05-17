@@ -29,8 +29,8 @@ typedef struct game {
 }game_t;
 
 typedef struct player {
-    int state,action;
-    int spellselect,classe;
+    int state,action,stund,ccimune,healcd,cleanscd,bonusPM,stackDEMACIA;
+    int spellselect,classe,incantation,dodge;
     char name[20];
     int number,PA,basePA,PM,basePM,attaquecost;
     int spelltab[4];
@@ -70,5 +70,7 @@ void initplayer(player_t *player[],game_t *game, spell_t ***spell,player_t *clas
 void play(player_t *player[], game_t *game, spell_t ***spell);
 void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *classe[]);
 void configurerpartie(game_t *game);
+void classe_pseudos(game_t *game, player_t *player[]);
+int collision(player_t *player[],game_t *game,int x, int y);
 #endif //GAME_H
 

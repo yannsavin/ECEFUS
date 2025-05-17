@@ -35,22 +35,12 @@ int main() {
     printf("Avant init\n");
     init(player, &game, spell,classe);
     printf("Après init\n");
-
     printf("Avant init_map\n");
     init_map(&game);
     printf("Après init_map\n");
-
     printf("Avant affichage\n");
     menu_jeu(player, &game, spell,classe);
     printf("Après affichage\n");
-    while (!key[KEY_ESC]) {
-        moove(player,&game,spell);
-        select_spell(player,&game,spell);
-        life(player,&game);
-        affichage(player,&game,spell);
-        rest(100);
-        next(player,&game,spell);
-    }
     destroy(player,&game,spell);
     allegro_exit();
     return 0;

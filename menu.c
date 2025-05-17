@@ -13,6 +13,8 @@ void play(player_t *player[], game_t *game, spell_t ***spell){
     while (!key[KEY_ESC]) {
         moove(player,game,spell);
         select_spell(player,game,spell);
+        life(player,game);
+        affichage(player,game,spell);
         rest(100);
         next(player,game,spell);
     }
@@ -129,6 +131,5 @@ void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *class
     }
     destroy_bitmap(ecrantitre);
     destroy_bitmap(menu);
-    allegro_exit();
 }
 

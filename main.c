@@ -13,8 +13,8 @@ int main() {
     game.tourjoueur=0;
     game.action=1;
     game.n_map = rand()%4;
-    player_t *player[game.nbplayers];
-    for (int i = 0; i < game.nbplayers; i++) {
+    player_t *player[4];
+    for (int i = 0; i < 4; i++) {
         player[i] = (player_t *)malloc(sizeof(player_t));
         if (!player[i]) {
             printf("Erreur d'allocation mémoire pour player[%d]\n", i);

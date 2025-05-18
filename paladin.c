@@ -33,9 +33,18 @@ int paladin_DEMACIA(player_t *player[],game_t *game,spell_t ***spell) {
     int a;
     float damage=0;
     a = rand()%101;
+    BITMAP *temp = create_bitmap(SCREEN_W, SCREEN_H);
     if (a>spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->miss) {
-        float min=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->damageMIN;
-        float max=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->damageMAX+(player[game->tourjoueur]->stackDEMACIA)*2;
+        for (int i=0;i<=700;i+=20) {
+            clear_bitmap(temp);
+            blit(game->buffer, temp, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
+            draw_sprite(temp, spell[paladin][3]->frame[0], 700, -500+i);
+            blit(temp, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
+            rest(15);
+        }
+        rest(1000);
+        float min=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->damageMIN+(player[game->tourjoueur]->stackDEMACIA)*5;
+        float max=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->damageMAX+(player[game->tourjoueur]->stackDEMACIA)*5;
         float miss=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->miss;
         damage=min+((a-miss)/(100-miss))*(max-min);
         for (int i=0;i<game->nbplayers;i++) {

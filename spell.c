@@ -5,6 +5,49 @@
 #include <time.h>
 #include "game.h"
 
+void lancer_hache(player_t *player[], game_t *game, spell_t ***spell, BITMAP *buffer, BITMAP *axe_sprite, int x1, int y1, int x2, int y2) {
+    BITMAP *temp = create_bitmap(SCREEN_W, SCREEN_H);
+    BITMAP *rotated = create_bitmap(axe_sprite->w, axe_sprite->h);
+
+    float dx = (x2 - x1) / 10.0;
+    float dy = (y2 - y1) / 10.0;
+    float angle = 0;
+
+    for (int i = 0; i < 10; i++) {
+        float current_x = x1 + dx * i;
+        float current_y = y1 + dy * i;
+
+        clear_bitmap(temp);
+        blit(buffer, temp, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
+
+        clear_to_color(rotated, makecol(255, 0, 255));
+        rotate_sprite(rotated, axe_sprite, 0, 0, ftofix(angle));
+
+        draw_sprite(temp, rotated, current_x - axe_sprite->w / 2+20, current_y - axe_sprite->h / 2+20);
+        blit(temp, screen, 0, 0, 0, 0, SCREEN_W, SCREEN_H);
+
+        angle += 16;
+        rest(100);
+    }
+
+    destroy_bitmap(temp);
+    destroy_bitmap(rotated);
+}
+
+
+int send_axe(player_t *player[],game_t *game,spell_t ***spell,int src_y,int src_x) {
+    int x1=player[game->tourjoueur]->casex * caseX + decalageX;
+    int y1= player[game->tourjoueur]->casey * caseY + decalageY;
+    int x2=src_x * caseX + decalageX;
+    int y2= src_y * caseY + decalageY;
+    lancer_hache(player,game,spell,game->buffer,spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->frame[0],x1,y1,x2,y2);
+    damagetaken(player,game,spell,src_y,src_x);
+    player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost;
+    player[game->tourjoueur]->action=0;
+    affichage(player,game,spell);
+    return 1;
+}
+
 int sendspell(player_t *player[],game_t *game,spell_t ***spell,int src_y,int src_x) {
         for (int i=0;i<4;i++) {
             draw_sprite(screen, spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->frame[i], (src_x*caseX)+decalageX+(10*i), (src_y*caseY)+decalageY+(10*i));
@@ -35,6 +78,11 @@ void place_spell(player_t *player[],game_t *game,spell_t ***spell) {
                 ){
                 if (player[game->tourjoueur]->classe==3 && player[game->tourjoueur]->spellselect==1) {
                     player[game->tourjoueur]->stackDEMACIA+=1;
+                    damagetaken(player,game,spell,src_y,src_x);
+                    a=1;
+                }
+                if (player[game->tourjoueur]->classe==guerrier) {
+                    a=send_axe(player,game,spell,src_y,src_x);
                 }
                 if (player[game->tourjoueur]->classe==3 && player[game->tourjoueur]->spellselect==0) {
                     a=paladin_stund(player,game,spell,src_y,src_x);
@@ -43,7 +91,7 @@ void place_spell(player_t *player[],game_t *game,spell_t ***spell) {
                 else if(player[game->tourjoueur]->classe==0 && player[game->tourjoueur]->incantation==1 && player[game->tourjoueur]->spellselect==2 && player[game->tourjoueur]->healcd!=1) {
                     a=damagetakenAOE(player,game,spell,src_y,src_x);
                 }
-                else {
+                else if (player[game->tourjoueur]->classe!=guerrier && player[game->tourjoueur]->classe!=paladin){
                     a=sendspell(player,game,spell,src_y,src_x);
                 }
             }
@@ -70,6 +118,7 @@ void place_spell(player_t *player[],game_t *game,spell_t ***spell) {
         rest(100);
     }
 }
+
 
 void berserk_shild(player_t *player[],game_t *game,spell_t ***spell) {
     player[game->tourjoueur]->shild+=player[game->tourjoueur]->damage*2;
@@ -162,7 +211,7 @@ void repartitiontype(player_t *player[],game_t *game,spell_t ***spell) {
 
 void select_spell(player_t *player[],game_t *game,spell_t ***spell) {
      if (mouse_b & 1) {
-         if (85<=mouse_x && 165>=mouse_x && 200<=mouse_y && mouse_y<=299){     //////////////
+         if (85<=mouse_x && 165>=mouse_x && 200<=mouse_y && mouse_y<=299){
             player[game->tourjoueur]->spellselect=0;
              if (player[game->tourjoueur]->PA>=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost) {
                  player[game->tourjoueur]->action=1;

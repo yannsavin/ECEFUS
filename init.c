@@ -14,27 +14,51 @@ void initialisation_allegro(game_t *game) {
     show_mouse(screen);
 }
 
-void init_map(game_t *game) {
+void init_map(game_t *game, const char *nom_fichier) {
     game->map = create_bitmap(960, 960);
-    int map_data[nbcases][nbcases];
-    for (int i = 0; i < nbcases; i++) {
-        for (int j = 0; j < nbcases; j++) {
-            int pourcentage = rand() % 100;
-            if (pourcentage < 70) {
-                map_data[i][j] = rand()%3;
-            } else {
-                map_data[i][j] = rand()%3+2;
+
+    if (game->n_map >= 0 && game->n_map <= 4) {
+        FILE *f = fopen(nom_fichier, "r");
+        if (!f) {
+            perror("Erreur d'ouverture du fichier");
+            exit(EXIT_FAILURE);
+        }
+        for (int i = 0; i < nbcases; i++) {
+            if (fscanf(f, "%d %d %d %d %d %d %d %d %d %d %d %d",
+                       &game->data[i][0],
+                       &game->data[i][1],
+                       &game->data[i][2],
+                       &game->data[i][3],
+                       &game->data[i][4],
+                       &game->data[i][5],
+                       &game->data[i][6],
+                       &game->data[i][7],
+                       &game->data[i][8],
+                       &game->data[i][9],
+                       &game->data[i][10],
+                       &game->data[i][11]) != 12){
+                fprintf(stderr, "Erreur de lecture de la classe %d\n", i);
+                fclose(f);
+                exit(EXIT_FAILURE);
+                       }
+        }
+        fclose(f);
+    } else {
+        game->n_map = rand()%4;
+        for (int i = 0; i < nbcases; i++) {
+            for (int j = 0; j < nbcases; j++) {
+                int pourcentage = rand()%100;
+                if (pourcentage < 75) {
+                    game->data[i][j] = rand()%3;
+                } else {
+                    game->data[i][j] = rand()%3+2;
+                }
             }
         }
     }
     for (int i = 0; i < nbcases; i++) {
         for (int j = 0; j < nbcases; j++) {
-            game->data[i][j]=map_data[i][j];
-        }
-    }
-    for (int i = 0; i < nbcases; i++) {
-        for (int j = 0; j < nbcases; j++) {
-            draw_sprite(game->map, game->cases[game->n_map][map_data[i][j]], i * caseX, j * caseY);
+            draw_sprite(game->map, game->cases[game->n_map][game->data[i][j]], i * caseX, j * caseY);
         }
     }
 }
@@ -61,7 +85,15 @@ void charger_classes(const char *nom_fichier, player_t *classe[]) {
             char chemin[64];
             snprintf(chemin, sizeof(chemin), "image/perso%d.%d.bmp", i, j);
             classe[i]->skinclass[j] = load_bitmap(chemin, NULL);
+            set_transparence(classe[i]->skinclass[j],0,0,0);
             if (!classe[i]->skinclass[j]) {
+                fprintf(stderr, "Erreur chargement %s\n", chemin);
+                exit(EXIT_FAILURE);
+            }
+            snprintf(chemin, sizeof(chemin), "image/affichage%d.%d.bmp", i, j);
+            classe[i]->affichage[j] = load_bitmap(chemin, NULL);
+            set_transparence(classe[i]->affichage[j],0,0,0);
+            if (!classe[i]->affichage[j]) {
                 fprintf(stderr, "Erreur chargement %s\n", chemin);
                 exit(EXIT_FAILURE);
             }
@@ -75,7 +107,7 @@ void charger_map(game_t *game) {
     for (int i=0; i<4; i++) {
         for (int j = 0; j < 5; j++) {
             char chemin[64];
-            snprintf(chemin, sizeof(chemin), "image/case%d.%d.bmp", i, j+1);
+            sprintf(chemin, "image/case%d.%d.bmp", i, j+1);
             game->cases[i][j] = load_bitmap(chemin, NULL);
             if (!game->cases[i][j]) {
                 fprintf(stderr, "Erreur chargement %s\n", chemin);
@@ -84,7 +116,6 @@ void charger_map(game_t *game) {
         }
     }
 }
-
 void charger_spell(const char *nom_fichier,spell_t ***spell) {
     FILE *f = fopen(nom_fichier, "r");
     if (!f) {
@@ -108,6 +139,7 @@ void charger_spell(const char *nom_fichier,spell_t ***spell) {
             char skin[64];
             snprintf(skin, sizeof(skin), "image/spell%d.%d.bmp", i, j);
             spell[i][j]->skin = load_bitmap(skin, NULL);
+            set_transparence(spell[i][j]->skin,0,0,0);
             if (spell[i][j]->type==0) {
                 for (int k = 0; k < 4; k++) {
                     char chemin[64];
@@ -119,6 +151,16 @@ void charger_spell(const char *nom_fichier,spell_t ***spell) {
                     }
                 }
             }
+            if (spell[i][j]->type==2) {
+                char chemin[64];
+                snprintf(chemin, sizeof(chemin), "image/frame%d.%d.%d.bmp", i, j,1);
+                spell[i][j]->frame[0] = load_bitmap(chemin, NULL);
+                set_transparence(spell[i][j]->frame[0],0,0,0);
+                if (!spell[i][j]->frame[0]) {
+                    fprintf(stderr, "Erreur chargement %s\n", chemin);
+                    exit(EXIT_FAILURE);
+                }
+            }
         }
     }
     fclose(f);
@@ -126,6 +168,8 @@ void charger_spell(const char *nom_fichier,spell_t ***spell) {
 
 void init(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]) {
     game->conseille=-1;
+    game->rank=0;
+
     charger_map(game);
     charger_spell("donees/spells.txt",spell);
     charger_classes("donees/classes.txt", classe);
@@ -147,8 +191,8 @@ void initplayer(player_t *player[],game_t *game, spell_t ***spell,player_t *clas
             a=rand()%nbcases;
             b=rand()%nbcases;
             if (game->data[a][b]!=3 && game->data[a][b]!=4) {
-                player[i]->casex=a;
-                player[i]->casey=b;
+                player[i]->casex=b;
+                player[i]->casey=a;
             }
         }
         player[i]->pixel_x = player[i]->casex * caseX + decalageX;

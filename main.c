@@ -45,7 +45,6 @@ int main() {
         }
     }
     init(player, &game, spell,classe);
-    init_map(&game);
     menu_jeu(player, &game, spell,classe);
     destroy(player,&game,spell);
     allegro_exit();

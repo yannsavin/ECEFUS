@@ -192,7 +192,9 @@ void moove(player_t *player[], game_t *game, spell_t ***spell) {
 void life(player_t *player[], game_t *game) {
     for (int i = 0; i < game->nbplayers; i++) {
         if(player[i]->health<=0) {
-        player[i]->state=0;
+            player[i]->state=0;
+            player[i]->rang=game->rank;
+            game->rank+=1;
         }
     }
 }

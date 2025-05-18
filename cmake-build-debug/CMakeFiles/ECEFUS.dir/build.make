@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2024.2.2\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "E:\CLion 2024.2.2\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2024.2.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "E:\CLion 2024.2.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS"
+CMAKE_SOURCE_DIR = C:\ECEFUS
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug"
+CMAKE_BINARY_DIR = C:\ECEFUS\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/ECEFUS.dir/depend.make
@@ -69,158 +69,158 @@ include CMakeFiles/ECEFUS.dir/progress.make
 include CMakeFiles/ECEFUS.dir/flags.make
 
 CMakeFiles/ECEFUS.dir/main.c.obj: CMakeFiles/ECEFUS.dir/flags.make
-CMakeFiles/ECEFUS.dir/main.c.obj: C:/Users/ewenn/Desktop/Informatique\ 2/CLionProjects/ECEFUS/main.c
+CMakeFiles/ECEFUS.dir/main.c.obj: C:/ECEFUS/main.c
 CMakeFiles/ECEFUS.dir/main.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ECEFUS.dir/main.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/main.c.obj -MF CMakeFiles\ECEFUS.dir\main.c.obj.d -o CMakeFiles\ECEFUS.dir\main.c.obj -c "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\main.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/ECEFUS.dir/main.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/main.c.obj -MF CMakeFiles\ECEFUS.dir\main.c.obj.d -o CMakeFiles\ECEFUS.dir\main.c.obj -c C:\ECEFUS\main.c
 
 CMakeFiles/ECEFUS.dir/main.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/main.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\main.c" > CMakeFiles\ECEFUS.dir\main.c.i
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\main.c > CMakeFiles\ECEFUS.dir\main.c.i
 
 CMakeFiles/ECEFUS.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/main.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\main.c" -o CMakeFiles\ECEFUS.dir\main.c.s
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\main.c -o CMakeFiles\ECEFUS.dir\main.c.s
 
 CMakeFiles/ECEFUS.dir/init.c.obj: CMakeFiles/ECEFUS.dir/flags.make
-CMakeFiles/ECEFUS.dir/init.c.obj: C:/Users/ewenn/Desktop/Informatique\ 2/CLionProjects/ECEFUS/init.c
+CMakeFiles/ECEFUS.dir/init.c.obj: C:/ECEFUS/init.c
 CMakeFiles/ECEFUS.dir/init.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/ECEFUS.dir/init.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/init.c.obj -MF CMakeFiles\ECEFUS.dir\init.c.obj.d -o CMakeFiles\ECEFUS.dir\init.c.obj -c "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\init.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/ECEFUS.dir/init.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/init.c.obj -MF CMakeFiles\ECEFUS.dir\init.c.obj.d -o CMakeFiles\ECEFUS.dir\init.c.obj -c C:\ECEFUS\init.c
 
 CMakeFiles/ECEFUS.dir/init.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/init.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\init.c" > CMakeFiles\ECEFUS.dir\init.c.i
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\init.c > CMakeFiles\ECEFUS.dir\init.c.i
 
 CMakeFiles/ECEFUS.dir/init.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/init.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\init.c" -o CMakeFiles\ECEFUS.dir\init.c.s
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\init.c -o CMakeFiles\ECEFUS.dir\init.c.s
 
 CMakeFiles/ECEFUS.dir/affichage.c.obj: CMakeFiles/ECEFUS.dir/flags.make
-CMakeFiles/ECEFUS.dir/affichage.c.obj: C:/Users/ewenn/Desktop/Informatique\ 2/CLionProjects/ECEFUS/affichage.c
+CMakeFiles/ECEFUS.dir/affichage.c.obj: C:/ECEFUS/affichage.c
 CMakeFiles/ECEFUS.dir/affichage.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/ECEFUS.dir/affichage.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/affichage.c.obj -MF CMakeFiles\ECEFUS.dir\affichage.c.obj.d -o CMakeFiles\ECEFUS.dir\affichage.c.obj -c "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\affichage.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/ECEFUS.dir/affichage.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/affichage.c.obj -MF CMakeFiles\ECEFUS.dir\affichage.c.obj.d -o CMakeFiles\ECEFUS.dir\affichage.c.obj -c C:\ECEFUS\affichage.c
 
 CMakeFiles/ECEFUS.dir/affichage.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/affichage.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\affichage.c" > CMakeFiles\ECEFUS.dir\affichage.c.i
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\affichage.c > CMakeFiles\ECEFUS.dir\affichage.c.i
 
 CMakeFiles/ECEFUS.dir/affichage.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/affichage.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\affichage.c" -o CMakeFiles\ECEFUS.dir\affichage.c.s
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\affichage.c -o CMakeFiles\ECEFUS.dir\affichage.c.s
 
 CMakeFiles/ECEFUS.dir/spell.c.obj: CMakeFiles/ECEFUS.dir/flags.make
-CMakeFiles/ECEFUS.dir/spell.c.obj: C:/Users/ewenn/Desktop/Informatique\ 2/CLionProjects/ECEFUS/spell.c
+CMakeFiles/ECEFUS.dir/spell.c.obj: C:/ECEFUS/spell.c
 CMakeFiles/ECEFUS.dir/spell.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/ECEFUS.dir/spell.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/spell.c.obj -MF CMakeFiles\ECEFUS.dir\spell.c.obj.d -o CMakeFiles\ECEFUS.dir\spell.c.obj -c "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\spell.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/ECEFUS.dir/spell.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/spell.c.obj -MF CMakeFiles\ECEFUS.dir\spell.c.obj.d -o CMakeFiles\ECEFUS.dir\spell.c.obj -c C:\ECEFUS\spell.c
 
 CMakeFiles/ECEFUS.dir/spell.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/spell.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\spell.c" > CMakeFiles\ECEFUS.dir\spell.c.i
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\spell.c > CMakeFiles\ECEFUS.dir\spell.c.i
 
 CMakeFiles/ECEFUS.dir/spell.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/spell.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\spell.c" -o CMakeFiles\ECEFUS.dir\spell.c.s
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\spell.c -o CMakeFiles\ECEFUS.dir\spell.c.s
 
 CMakeFiles/ECEFUS.dir/plateau.c.obj: CMakeFiles/ECEFUS.dir/flags.make
-CMakeFiles/ECEFUS.dir/plateau.c.obj: C:/Users/ewenn/Desktop/Informatique\ 2/CLionProjects/ECEFUS/plateau.c
+CMakeFiles/ECEFUS.dir/plateau.c.obj: C:/ECEFUS/plateau.c
 CMakeFiles/ECEFUS.dir/plateau.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/ECEFUS.dir/plateau.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/plateau.c.obj -MF CMakeFiles\ECEFUS.dir\plateau.c.obj.d -o CMakeFiles\ECEFUS.dir\plateau.c.obj -c "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\plateau.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/ECEFUS.dir/plateau.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/plateau.c.obj -MF CMakeFiles\ECEFUS.dir\plateau.c.obj.d -o CMakeFiles\ECEFUS.dir\plateau.c.obj -c C:\ECEFUS\plateau.c
 
 CMakeFiles/ECEFUS.dir/plateau.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/plateau.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\plateau.c" > CMakeFiles\ECEFUS.dir\plateau.c.i
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\plateau.c > CMakeFiles\ECEFUS.dir\plateau.c.i
 
 CMakeFiles/ECEFUS.dir/plateau.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/plateau.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\plateau.c" -o CMakeFiles\ECEFUS.dir\plateau.c.s
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\plateau.c -o CMakeFiles\ECEFUS.dir\plateau.c.s
 
 CMakeFiles/ECEFUS.dir/menu.c.obj: CMakeFiles/ECEFUS.dir/flags.make
-CMakeFiles/ECEFUS.dir/menu.c.obj: C:/Users/ewenn/Desktop/Informatique\ 2/CLionProjects/ECEFUS/menu.c
+CMakeFiles/ECEFUS.dir/menu.c.obj: C:/ECEFUS/menu.c
 CMakeFiles/ECEFUS.dir/menu.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/ECEFUS.dir/menu.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/menu.c.obj -MF CMakeFiles\ECEFUS.dir\menu.c.obj.d -o CMakeFiles\ECEFUS.dir\menu.c.obj -c "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\menu.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/ECEFUS.dir/menu.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/menu.c.obj -MF CMakeFiles\ECEFUS.dir\menu.c.obj.d -o CMakeFiles\ECEFUS.dir\menu.c.obj -c C:\ECEFUS\menu.c
 
 CMakeFiles/ECEFUS.dir/menu.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/menu.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\menu.c" > CMakeFiles\ECEFUS.dir\menu.c.i
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\menu.c > CMakeFiles\ECEFUS.dir\menu.c.i
 
 CMakeFiles/ECEFUS.dir/menu.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/menu.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\menu.c" -o CMakeFiles\ECEFUS.dir\menu.c.s
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\menu.c -o CMakeFiles\ECEFUS.dir\menu.c.s
 
 CMakeFiles/ECEFUS.dir/mage.c.obj: CMakeFiles/ECEFUS.dir/flags.make
-CMakeFiles/ECEFUS.dir/mage.c.obj: C:/Users/ewenn/Desktop/Informatique\ 2/CLionProjects/ECEFUS/mage.c
+CMakeFiles/ECEFUS.dir/mage.c.obj: C:/ECEFUS/mage.c
 CMakeFiles/ECEFUS.dir/mage.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/ECEFUS.dir/mage.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/mage.c.obj -MF CMakeFiles\ECEFUS.dir\mage.c.obj.d -o CMakeFiles\ECEFUS.dir\mage.c.obj -c "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\mage.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/ECEFUS.dir/mage.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/mage.c.obj -MF CMakeFiles\ECEFUS.dir\mage.c.obj.d -o CMakeFiles\ECEFUS.dir\mage.c.obj -c C:\ECEFUS\mage.c
 
 CMakeFiles/ECEFUS.dir/mage.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/mage.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\mage.c" > CMakeFiles\ECEFUS.dir\mage.c.i
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\mage.c > CMakeFiles\ECEFUS.dir\mage.c.i
 
 CMakeFiles/ECEFUS.dir/mage.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/mage.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\mage.c" -o CMakeFiles\ECEFUS.dir\mage.c.s
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\mage.c -o CMakeFiles\ECEFUS.dir\mage.c.s
 
 CMakeFiles/ECEFUS.dir/guerrier.c.obj: CMakeFiles/ECEFUS.dir/flags.make
-CMakeFiles/ECEFUS.dir/guerrier.c.obj: C:/Users/ewenn/Desktop/Informatique\ 2/CLionProjects/ECEFUS/guerrier.c
+CMakeFiles/ECEFUS.dir/guerrier.c.obj: C:/ECEFUS/guerrier.c
 CMakeFiles/ECEFUS.dir/guerrier.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/ECEFUS.dir/guerrier.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/guerrier.c.obj -MF CMakeFiles\ECEFUS.dir\guerrier.c.obj.d -o CMakeFiles\ECEFUS.dir\guerrier.c.obj -c "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\guerrier.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/ECEFUS.dir/guerrier.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/guerrier.c.obj -MF CMakeFiles\ECEFUS.dir\guerrier.c.obj.d -o CMakeFiles\ECEFUS.dir\guerrier.c.obj -c C:\ECEFUS\guerrier.c
 
 CMakeFiles/ECEFUS.dir/guerrier.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/guerrier.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\guerrier.c" > CMakeFiles\ECEFUS.dir\guerrier.c.i
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\guerrier.c > CMakeFiles\ECEFUS.dir\guerrier.c.i
 
 CMakeFiles/ECEFUS.dir/guerrier.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/guerrier.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\guerrier.c" -o CMakeFiles\ECEFUS.dir\guerrier.c.s
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\guerrier.c -o CMakeFiles\ECEFUS.dir\guerrier.c.s
 
 CMakeFiles/ECEFUS.dir/assasin.c.obj: CMakeFiles/ECEFUS.dir/flags.make
-CMakeFiles/ECEFUS.dir/assasin.c.obj: C:/Users/ewenn/Desktop/Informatique\ 2/CLionProjects/ECEFUS/assasin.c
+CMakeFiles/ECEFUS.dir/assasin.c.obj: C:/ECEFUS/assasin.c
 CMakeFiles/ECEFUS.dir/assasin.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/ECEFUS.dir/assasin.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/assasin.c.obj -MF CMakeFiles\ECEFUS.dir\assasin.c.obj.d -o CMakeFiles\ECEFUS.dir\assasin.c.obj -c "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\assasin.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/ECEFUS.dir/assasin.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/assasin.c.obj -MF CMakeFiles\ECEFUS.dir\assasin.c.obj.d -o CMakeFiles\ECEFUS.dir\assasin.c.obj -c C:\ECEFUS\assasin.c
 
 CMakeFiles/ECEFUS.dir/assasin.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/assasin.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\assasin.c" > CMakeFiles\ECEFUS.dir\assasin.c.i
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\assasin.c > CMakeFiles\ECEFUS.dir\assasin.c.i
 
 CMakeFiles/ECEFUS.dir/assasin.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/assasin.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\assasin.c" -o CMakeFiles\ECEFUS.dir\assasin.c.s
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\assasin.c -o CMakeFiles\ECEFUS.dir\assasin.c.s
 
 CMakeFiles/ECEFUS.dir/paladin.c.obj: CMakeFiles/ECEFUS.dir/flags.make
-CMakeFiles/ECEFUS.dir/paladin.c.obj: C:/Users/ewenn/Desktop/Informatique\ 2/CLionProjects/ECEFUS/paladin.c
+CMakeFiles/ECEFUS.dir/paladin.c.obj: C:/ECEFUS/paladin.c
 CMakeFiles/ECEFUS.dir/paladin.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/ECEFUS.dir/paladin.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/paladin.c.obj -MF CMakeFiles\ECEFUS.dir\paladin.c.obj.d -o CMakeFiles\ECEFUS.dir\paladin.c.obj -c "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\paladin.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/ECEFUS.dir/paladin.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/paladin.c.obj -MF CMakeFiles\ECEFUS.dir\paladin.c.obj.d -o CMakeFiles\ECEFUS.dir\paladin.c.obj -c C:\ECEFUS\paladin.c
 
 CMakeFiles/ECEFUS.dir/paladin.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/paladin.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\paladin.c" > CMakeFiles\ECEFUS.dir\paladin.c.i
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\paladin.c > CMakeFiles\ECEFUS.dir\paladin.c.i
 
 CMakeFiles/ECEFUS.dir/paladin.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/paladin.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\paladin.c" -o CMakeFiles\ECEFUS.dir\paladin.c.s
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\paladin.c -o CMakeFiles\ECEFUS.dir\paladin.c.s
 
 CMakeFiles/ECEFUS.dir/damage.c.obj: CMakeFiles/ECEFUS.dir/flags.make
-CMakeFiles/ECEFUS.dir/damage.c.obj: C:/Users/ewenn/Desktop/Informatique\ 2/CLionProjects/ECEFUS/damage.c
+CMakeFiles/ECEFUS.dir/damage.c.obj: C:/ECEFUS/damage.c
 CMakeFiles/ECEFUS.dir/damage.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir="C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/ECEFUS.dir/damage.c.obj"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/damage.c.obj -MF CMakeFiles\ECEFUS.dir\damage.c.obj.d -o CMakeFiles\ECEFUS.dir\damage.c.obj -c "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\damage.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/ECEFUS.dir/damage.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/damage.c.obj -MF CMakeFiles\ECEFUS.dir\damage.c.obj.d -o CMakeFiles\ECEFUS.dir\damage.c.obj -c C:\ECEFUS\damage.c
 
 CMakeFiles/ECEFUS.dir/damage.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/damage.c.i"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\damage.c" > CMakeFiles\ECEFUS.dir\damage.c.i
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\damage.c > CMakeFiles\ECEFUS.dir\damage.c.i
 
 CMakeFiles/ECEFUS.dir/damage.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/damage.c.s"
-	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\damage.c" -o CMakeFiles\ECEFUS.dir\damage.c.s
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\damage.c -o CMakeFiles\ECEFUS.dir\damage.c.s
 
 # Object files for target ECEFUS
 ECEFUS_OBJECTS = \
@@ -254,7 +254,7 @@ ECEFUS.exe: CMakeFiles/ECEFUS.dir/build.make
 ECEFUS.exe: CMakeFiles/ECEFUS.dir/linkLibs.rsp
 ECEFUS.exe: CMakeFiles/ECEFUS.dir/objects1.rsp
 ECEFUS.exe: CMakeFiles/ECEFUS.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir="C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Linking C executable ECEFUS.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking C executable ECEFUS.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\ECEFUS.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -266,6 +266,6 @@ CMakeFiles/ECEFUS.dir/clean:
 .PHONY : CMakeFiles/ECEFUS.dir/clean
 
 CMakeFiles/ECEFUS.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS" "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS" "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug" "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug" "C:\Users\ewenn\Desktop\Informatique 2\CLionProjects\ECEFUS\cmake-build-debug\CMakeFiles\ECEFUS.dir\DependInfo.cmake" "--color=$(COLOR)"
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\ECEFUS C:\ECEFUS C:\ECEFUS\cmake-build-debug C:\ECEFUS\cmake-build-debug C:\ECEFUS\cmake-build-debug\CMakeFiles\ECEFUS.dir\DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/ECEFUS.dir/depend
 

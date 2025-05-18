@@ -4,51 +4,69 @@
 #include <time.h>
 #include "game.h"
 
+void set_transparence(BITMAP *bmp, int r, int g, int b) {
+    int color = makecol(r, g, b);
+    for (int y = 0; y < bmp->h; y++) {
+        for (int x = 0; x < bmp->w; x++) {
+            if (getpixel(bmp, x, y) == color) {
+                putpixel(bmp, x, y, bitmap_mask_color(bmp));
+            }
+        }
+    }
+}
+
 int affichage_peros_map(player_t *player[], game_t *game, spell_t ***spell) {
     char buffer_text[64];
     for (int i = 0; i < game->nbplayers; i++) {
         if (player[i]->state==1) {
+            set_transparence(player[i]->skin,0,0,0);
             draw_sprite(game->buffer, player[i]->skin, player[i]->pixel_x, player[i]->pixel_y);
+            if (player[i]->stund==1 || player[i]->stund==2) {
+                draw_sprite(game->buffer, spell[paladin][0]->frame[0], player[i]->pixel_x, player[i]->pixel_y);
+            }
         }
     }
     sprintf(buffer_text, "%s", player[game->tourjoueur]->name);
-    textout_ex(game->buffer, font, buffer_text, player[game->tourjoueur]->x + 40, player[game->tourjoueur]->y+5, makecol(255, 255, 0), -1);
+    if (game->n_map==1 && game->n_map==3) {
+        textout_ex(game->buffer, font, buffer_text, player[game->tourjoueur]->pixel_x+20, player[game->tourjoueur]->pixel_y, makecol(255, 0, 255), -1);
+    } else {textout_ex(game->buffer, font, buffer_text, player[game->tourjoueur]->pixel_x+20, player[game->tourjoueur]->pixel_y, makecol(255, 255, 0), -1);}
+
 }
 
 int scoreboard(player_t *player[], game_t *game, spell_t ***spell) {
     char buffer_text[64];
     for (int i = 0; i < game->nbplayers; i++) {
         if (player[i]->state==1) {
-            draw_sprite(game->buffer, player[i]->skin, 1400, i*200);
+            draw_sprite(game->buffer, player[i]->skin, SCREEN_W-100, i*200);
             sprintf(buffer_text, "%d", player[i]->health);
-            textout_ex(game->buffer, font, buffer_text, 1250, i*200+35, makecol(0, 255, 0), makecol(0, 0, 0));
+            textout_ex(game->buffer, font, buffer_text, SCREEN_W-250, i*200+35, makecol(0, 255, 0), makecol(0, 0, 0));
             sprintf(buffer_text, "%d", player[i]->PM);
-            textout_ex(game->buffer, font, buffer_text, 1320, i*200+35, makecol(255, 0,0 ), makecol(0, 0, 0));
+            textout_ex(game->buffer, font, buffer_text, SCREEN_W-180, i*200+35, makecol(255, 0,0 ), makecol(0, 0, 0));
             sprintf(buffer_text, "%d", player[i]->PA);
-            textout_ex(game->buffer, font, buffer_text, 1350, i*200+35, makecol(0, 0, 255), makecol(0, 0, 0));
+            textout_ex(game->buffer, font, buffer_text, SCREEN_W-150, i*200+35, makecol(0, 0, 255), makecol(0, 0, 0));
             sprintf(buffer_text, "%s", player[i]->name);
-            textout_ex(game->buffer, font, buffer_text, 1430, i*200+130, makecol(255, 255, 255), makecol(0, 0, 0));
+            textout_ex(game->buffer, font, buffer_text, SCREEN_W-70, i*200+130, makecol(255, 255, 255), makecol(0, 0, 0));
             if (player[i]->poison==1) {
-                textout_ex(game->buffer, font, "poison", 1250, i*200+95, makecol(255, 255, 255), makecol(0, 0, 0));
+                textout_ex(game->buffer, font, "poison", SCREEN_W-250, i*200+95, makecol(255, 255, 255), makecol(0, 0, 0));
                 sprintf(buffer_text, "%d", player[game->tourjoueur]->stack);
-                textout_ex(game->buffer, font, buffer_text, 1300, i*200+95, makecol(255, 255, 0), makecol(0, 0, 0));
+                textout_ex(game->buffer, font, buffer_text, SCREEN_W-200, i*200+95, makecol(255, 255, 0), makecol(0, 0, 0));
             }
             if (player[i]->stund==2 || player[i]->stund==1) {
-                textout_ex(game->buffer, font, "stund", 1350, i*200+95, makecol(255, 255,0), makecol(0, 0, 0));
+                textout_ex(game->buffer, font, "stund", SCREEN_W-150, i*200+95, makecol(255, 255,0), makecol(0, 0, 0));
             }
             if (player[i]->classe==assasin) {
-                textout_ex(game->buffer, font, "esquive :", 1250, i*200+65, makecol(255, 255, 255), makecol(0, 0, 0));
+                textout_ex(game->buffer, font, "esquive :", SCREEN_W-250, i*200+65, makecol(255, 255, 255), makecol(0, 0, 0));
                 if(player[i]->dodge==1) {
-                    textout_ex(game->buffer, font, "active", 1330, i*200+65, makecol(0, 255, 0), makecol(0, 0, 0));
+                    textout_ex(game->buffer, font, "active", SCREEN_W-170, i*200+65, makecol(0, 255, 0), makecol(0, 0, 0));
                 }
                 else {
-                    textout_ex(game->buffer, font, "inactive", 1330, i*200+65, makecol(255, 0, 0), makecol(0, 0, 0));
+                    textout_ex(game->buffer, font, "inactive", SCREEN_W-170, i*200+65, makecol(255, 0, 0), makecol(0, 0, 0));
                 }
             }
             if (player[i]->shild>0) {
-                textout_ex(game->buffer, font, "+", 1275, i*200+35, makecol(143, 143, 138 ), makecol(0, 0, 0));
+                textout_ex(game->buffer, font, "+", SCREEN_W-225, i*200+35, makecol(143, 143, 138 ), makecol(0, 0, 0));
                 sprintf(buffer_text, "%d", player[i]->shild);
-                textout_ex(game->buffer, font, buffer_text, 1285, i*200+35, makecol(143, 143, 138 ), makecol(0, 0, 0));
+                textout_ex(game->buffer, font, buffer_text, SCREEN_W-215, i*200+35, makecol(143, 143, 138 ), makecol(0, 0, 0));
             }
         }
     }

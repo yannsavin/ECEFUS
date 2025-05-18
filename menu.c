@@ -82,10 +82,10 @@ void classe_pseudos(game_t *game, player_t *player[]){
                 } else if (x >= 465 && x <= 775 && y >= 310 && y <= 925) {
                     player[i]->classe = mage;
                     choisi = 1;
-                } else if (x >= 820 && x <= 1140 && y >= 310 && y <= 925) {
+                } else if (x >= 820 && x <= 1130 && y >= 310 && y <= 925) {
                     player[i]->classe = assasin;
                     choisi = 1;
-                } else if (x >= 1245 && x <= 1490 && y >= 310 && y <= 925) {
+                } else if (x >= 1175 && x <= 1490 && y >= 310 && y <= 925) {
                     player[i]->classe = paladin;
                     choisi = 1;
                 }

@@ -126,7 +126,7 @@ void init(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]) 
     spell[0][3]->frame[3]=load_bitmap("foudre4.bmp",NULL);
 
     //guerrier
-    classe[1]->skinclass[0]=load_bitmap("perso_guerrier.bmp",NULL);
+    classe[1]->skinclass[0]=load_bitmap("perso_guerrierX.bmp",NULL);
     classe[1]->skinclass[1]=load_bitmap("perso_guerrier1.bmp",NULL);
     classe[1]->skinclass[2]=load_bitmap("perso_guerrier2.bmp",NULL);
     classe[1]->skinclass[3]=load_bitmap("perso_guerrier3.bmp",NULL);
@@ -296,9 +296,12 @@ void initplayer(player_t *player[],game_t *game, spell_t ***spell,player_t *clas
                 player[i]->casey=b;
             }
         }
+        player[i]->pixel_x = player[i]->casex * caseX + decalageX;
+        player[i]->pixel_y = player[i]->casey * caseY + decalageY;
         player[i]->stund=0;
         player[i]->ccimune=0;
         player[i]->stack=0;
+        player[i]->shild=0;
         player[i]->dodge=0;
         player[i]->action=0;
         player[i]->healcd=0;

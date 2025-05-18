@@ -4,11 +4,23 @@
 #include <time.h>
 #include "game.h"
 
+volatile int temps_restant = 30;
+
+void decrementer_timer() {
+    if (temps_restant > 0)
+        temps_restant--;
+}
+
+END_OF_FUNCTION(decrementer_timer);
+LOCK_VARIABLE(temps_restant);
+LOCK_FUNCTION(decrementer_timer);
 
 
 int main() {
     game_t game;
     initialisation_allegro(&game);
+    install_timer();
+    install_int(decrementer_timer,1000);
     srand(time(NULL));
     game.tourjoueur=0;
     game.action=1;

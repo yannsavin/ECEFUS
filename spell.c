@@ -118,6 +118,13 @@ void damagetaken(player_t *player[],game_t *game, spell_t ***spell,int src_y,int
                         player[i]->dodge=0;
                     }
                 }
+                else if (player[i]->classe==1 && player[i]->shild>0) {
+                    player[i]->shild-=(damage);
+                    if (player[i]->shild<0) {
+                        player[i]->health+=player[i]->shild;
+                        player[i]->shild=0;
+                    }
+                }
                 else {
                     player[i]->health-=round(damage);
                 }
@@ -129,7 +136,7 @@ void damagetaken(player_t *player[],game_t *game, spell_t ***spell,int src_y,int
     }
 }
 int damagetakenAOE(player_t *player[], game_t *game, spell_t ***spell, int src_y, int src_x) {
-    int a = rand() % 101;
+    int a = rand() % 101,b=0;
     if (a> spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->miss) {
         float min = spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->damageMIN;
         float max = spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->damageMAX;
@@ -139,7 +146,23 @@ int damagetakenAOE(player_t *player[], game_t *game, spell_t ***spell, int src_y
             int px = player[i]->casex;
             int py = player[i]->casey;
             if (abs(px - src_x) <= 1 && abs(py - src_y) <= 1) {
-                player[i]->health -= round(damage);
+                if (player[i]->dodge==1) {
+                    b=rand() % 101;
+                    if (b>50) {
+                        player[i]->health-=round(damage);
+                        player[i]->dodge=0;
+                    }
+                }
+                else if (player[i]->classe==1 && player[i]->shild>0) {
+                    player[i]->shild-=(damage);
+                    if (player[i]->shild<0) {
+                        player[i]->health+=player[i]->shild;
+                        player[i]->shild=0;
+                    }
+                }
+                else {
+                    player[i]->health-=round(damage);
+                }
             }
         }
         player[game->tourjoueur]->healcd==1;
@@ -309,6 +332,14 @@ void place_spell(player_t *player[],game_t *game,spell_t ***spell) {
     }
 }
 
+
+void berserk_shild(player_t *player[],game_t *game,spell_t ***spell) {
+    player[game->tourjoueur]->shild+=player[game->tourjoueur]->damage*2;
+    player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost;
+    player[game->tourjoueur]->action=0;
+    affichage(player,game,spell);
+}
+
 void repartitiontype(player_t *player[],game_t *game,spell_t ***spell) {
     if (player[game->tourjoueur]->spellselect!=-1) {
         rest(50);
@@ -347,6 +378,9 @@ void repartitiontype(player_t *player[],game_t *game,spell_t ***spell) {
                 break;
                 case 2:
                     berserk_damage(player,game,spell);
+                break;
+                case 3:
+                    berserk_shild(player,game,spell);
                 break;
 
             }

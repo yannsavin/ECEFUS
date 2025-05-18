@@ -8,18 +8,16 @@
 int affichage(player_t *player[], game_t *game, spell_t ***spell) {
     rest(50);
     char buffer_text[64];
-    int src_x = (mouse_x -decalageX)/caseX;
-    int src_y = (mouse_y -decalageY)/caseY;
+
     clear_bitmap(game->buffer);
     blit(game->map, game->buffer, 0, 0, decalageX, 0, 800, 800);
     for (int i = 0; i < game->nbplayers; i++) {
         if (player[i]->state==1) {
-            player[i]->x = (player[i]->casex * caseX) + decalageX;
-            player[i]->y = (player[i]->casey * caseY) + decalageY;
-            draw_sprite(game->buffer, player[i]->skin, player[i]->x, player[i]->y+5);
-
+            draw_sprite(game->buffer, player[i]->skin, player[i]->pixel_x, player[i]->pixel_y);
         }
     }
+    sprintf(buffer_text, "%d", temps_restant);
+    textout_ex(game->buffer, font, buffer_text, 250, 50, makecol(255, 255, 255),makecol(0, 0, 0) );
     sprintf(buffer_text, "%s", player[game->tourjoueur]->name);
     textout_ex(game->buffer, font, buffer_text, player[game->tourjoueur]->x + 40, player[game->tourjoueur]->y+5, makecol(255, 255, 0), -1);
     set_trans_blender(0, 0, 255, 40);
@@ -78,7 +76,12 @@ int affichage(player_t *player[], game_t *game, spell_t ***spell) {
     sprintf(buffer_text, "%d", player[game->tourjoueur]->health);
     textout_ex(game->buffer, font, buffer_text, 115, 170, makecol(0, 255, 0), makecol(0, 0, 0));
     sprintf(buffer_text, "%s", player[game->tourjoueur]->name);
-    textout_ex(game->buffer, font, buffer_text, 250, 50, makecol(255, 255, 255), makecol(0, 0, 0));
+    textout_ex(game->buffer, font, buffer_text, 250, 30, makecol(255, 255, 255), makecol(0, 0, 0));
+    if (player[game->tourjoueur]->shild>0) {
+        textout_ex(game->buffer, font, "+", 140, 170, makecol(143, 143, 138 ), makecol(0, 0, 0));
+        sprintf(buffer_text, "%d", player[game->tourjoueur]->shild);
+        textout_ex(game->buffer, font, buffer_text, 150, 170, makecol(143, 143, 138 ), makecol(0, 0, 0));
+    }
     if (player[game->tourjoueur]) {
         int classe = player[game->tourjoueur]->classe;
         for (int i = 0; i < 4; i++) {
@@ -97,7 +100,7 @@ int affichage(player_t *player[], game_t *game, spell_t ***spell) {
             sprintf(buffer_text, "%d", player[i]->health);
             textout_ex(game->buffer, font, buffer_text, 1250, i*200+35, makecol(0, 255, 0), makecol(0, 0, 0));
             sprintf(buffer_text, "%d", player[i]->PM);
-            textout_ex(game->buffer, font, buffer_text, 1300, i*200+35, makecol(255, 0,0 ), makecol(0, 0, 0));
+            textout_ex(game->buffer, font, buffer_text, 1320, i*200+35, makecol(255, 0,0 ), makecol(0, 0, 0));
             sprintf(buffer_text, "%d", player[i]->PA);
             textout_ex(game->buffer, font, buffer_text, 1350, i*200+35, makecol(0, 0, 255), makecol(0, 0, 0));
             sprintf(buffer_text, "%s", player[i]->name);
@@ -118,6 +121,11 @@ int affichage(player_t *player[], game_t *game, spell_t ***spell) {
                 else {
                     textout_ex(game->buffer, font, "inactive", 1320, i*200+65, makecol(255, 0, 0), makecol(0, 0, 0));
                 }
+            }
+            if (player[i]->shild>0) {
+                textout_ex(game->buffer, font, "+", 1275, i*200+35, makecol(143, 143, 138 ), makecol(0, 0, 0));
+                sprintf(buffer_text, "%d", player[i]->shild);
+                textout_ex(game->buffer, font, buffer_text, 1285, i*200+35, makecol(143, 143, 138 ), makecol(0, 0, 0));
             }
         }
     }

@@ -5,7 +5,7 @@
 #ifndef GAME_H
 #define GAME_H
 #include <allegro/gfx.h>
-
+extern volatile int temps_restant;
 #define mage 0
 #define guerrier 1
 #define assasin 2
@@ -36,8 +36,8 @@ typedef struct player {
     int spelltab[4];
     int casex,casey,bonus;
     int poison,stack,poisondag,buff;
-    int x,y;
-    int health,basehealth,damage,basedamage,armor;
+    int x,y,pixel_x,pixel_y;
+    int health,basehealth,damage,basedamage,shild;
     int stackdamage,skinnum;
     BITMAP *skin;
     BITMAP *skinclass[5];
@@ -72,5 +72,6 @@ void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *class
 void configurerpartie(game_t *game);
 void classe_pseudos(game_t *game, player_t *player[]);
 int collision(player_t *player[],game_t *game,int x, int y);
+void temps(player_t *player[], game_t *game,spell_t ***spell);
 #endif //GAME_H
 

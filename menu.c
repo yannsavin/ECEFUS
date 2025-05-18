@@ -28,11 +28,11 @@ void configurerpartie(game_t *game){
         if(mouse_b & 1){
             int x = mouse_x;
             int y = mouse_y;
-            if(x >= 445 && x <= 1182 && y >= 220 && y <= 375){
+            if(x >= 445 && x <= 1182 && y >= 265 && y <= 455){
                 game->nbplayers = 2;
-            } else if(x >= 445 && x <= 1182 && y >= 415 && y <= 575){
+            } else if(x >= 445 && x <= 1182 && y >= 495 && y <= 690){
                 game->nbplayers = 3;
-            } else if(x >= 445 && x <= 1182 && y >= 610 && y <= 765){
+            } else if(x >= 445 && x <= 1182 && y >= 730 && y <= 925){
                 game->nbplayers = 4;
             }
             while(mouse_b & 1) { rest(10); }

@@ -52,7 +52,7 @@ void classe_pseudos(game_t *game, player_t *player[]){
         int pos=0;
         while (1) {
             stretch_blit(pseudo, screen, 0, 0, pseudo->w, pseudo->h, 0, 0, SCREEN_W, SCREEN_H);
-            textprintf_centre_ex(screen, font, 600, 570, makecol(255, 255, 255), -1, "%s", saisie);
+            textprintf_centre_ex(screen, font, 750, 700, makecol(255, 255, 255), -1, "%s", saisie);
             if (keypressed()) {
                 int key = readkey() & 0xff;
                 if (key==13 && pos>0) {
@@ -76,16 +76,16 @@ void classe_pseudos(game_t *game, player_t *player[]){
             if (mouse_b & 1) {
                 int x = mouse_x;
                 int y = mouse_y;
-                if (x >= 95 && x <= 375 && y >= 255 && y <= 770) {
+                if (x >= 115 && x <= 420 && y >= 310 && y <= 925) {
                     player[i]->classe = guerrier;
                     choisi = 1;
-                } else if (x >= 410 && x <= 685 && y >= 255 && y <= 770) {
+                } else if (x >= 465 && x <= 775 && y >= 310 && y <= 925) {
                     player[i]->classe = mage;
                     choisi = 1;
-                } else if (x >= 725 && x <= 1000 && y >= 255 && y <= 770) {
+                } else if (x >= 820 && x <= 1140 && y >= 310 && y <= 925) {
                     player[i]->classe = assasin;
                     choisi = 1;
-                } else if (x >= 1035 && x <= 1315 && y >= 255 && y <= 770) {
+                } else if (x >= 1245 && x <= 1490 && y >= 310 && y <= 925) {
                     player[i]->classe = paladin;
                     choisi = 1;
                 }

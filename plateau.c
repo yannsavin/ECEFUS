@@ -5,7 +5,6 @@
 #include <math.h>
 #include "game.h"
 
-
 int collision(player_t *player[],game_t *game,int x, int y) {
     for (int i = 0; i < game->nbplayers; i++) {
         if (i != game->tourjoueur && player[i]->casex ==x && player[i]->casey == y) {
@@ -69,6 +68,7 @@ void skip(player_t *player[], game_t *game,spell_t ***spell) {
     affichage(player,game,spell);
     rest(50);
 }
+
 void next(player_t *player[], game_t *game, spell_t ***spell) {
     if (265<=mouse_x && 345>=mouse_x && (SCREEN_HEIGHT - 85)<=mouse_y && mouse_y<=SCREEN_HEIGHT-5){
         if (mouse_b & 1) {
@@ -114,6 +114,7 @@ void attaque(player_t *player[], game_t *game, spell_t ***spell,int src_y,int sr
         }
     }
 }
+
 void deplacement_fluide(player_t *p, int dest_case_x, int dest_case_y, game_t *game, player_t *player[], spell_t ***spell) {
     int start_x = p->pixel_x;
     int start_y = p->pixel_y;

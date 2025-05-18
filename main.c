@@ -15,7 +15,6 @@ END_OF_FUNCTION(decrementer_timer);
 LOCK_VARIABLE(temps_restant);
 LOCK_FUNCTION(decrementer_timer);
 
-
 int main() {
     game_t game;
     initialisation_allegro(&game);
@@ -51,5 +50,4 @@ int main() {
     destroy(player,&game,spell);
     allegro_exit();
     return 0;
-}
-END_OF_MAIN()
+} END_OF_MAIN()

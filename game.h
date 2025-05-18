@@ -1,28 +1,27 @@
-//
-// Created by yann on 29/03/2025.
-//
-
 #ifndef GAME_H
 #define GAME_H
+
 #include <allegro/gfx.h>
-extern volatile int temps_restant;
+
 #define mage 0
 #define guerrier 1
 #define assasin 2
 #define paladin 3
-#define SCREEN_WIDTH 1500
-#define SCREEN_HEIGHT 800
-#define caseX 100
-#define caseY 100
+#define SCREEN_WIDTH 1700
+#define SCREEN_HEIGHT 960
+#define caseX 80
+#define caseY 80
 #define decalageX 350
 #define decalageY 0
-#define nbcases 8
+#define nbcases 12
+
+extern volatile int temps_restant;
 
 typedef struct game {
     int conseille;
     int nbplayers;
     int tourjoueur,action, n_map;
-    int data[8][8];
+    int data[nbcases][nbcases];
     BITMAP *cases[4][5];
     BITMAP *map;
     BITMAP *buffer;
@@ -42,6 +41,7 @@ typedef struct player {
     BITMAP *skin;
     BITMAP *skinclass[6];
 }player_t;
+
 typedef struct spell {
     char name[50];
     int damage,PAcost,count;
@@ -88,5 +88,5 @@ void berserk_shild(player_t *player[],game_t *game,spell_t ***spell);
 void testpoison(player_t *player[],game_t *game, spell_t ***spell);
 void damagetaken(player_t *player[],game_t *game, spell_t ***spell,int src_y,int src_x);
 int damagetakenAOE(player_t *player[], game_t *game, spell_t ***spell, int src_y, int src_x);
-#endif //GAME_H
 
+#endif //GAME_H

@@ -12,6 +12,7 @@ void berserk_heal(player_t *player[],game_t *game,spell_t ***spell) {
     player[game->tourjoueur]->action=0;
     affichage(player,game,spell);
 }
+
 void berserk_damage(player_t *player[],game_t *game,spell_t ***spell) {
     player[game->tourjoueur]->bonus=0;
     if (player[game->tourjoueur]->health<player[game->tourjoueur]->basehealth) {

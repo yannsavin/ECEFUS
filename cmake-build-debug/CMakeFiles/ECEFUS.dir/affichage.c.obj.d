@@ -1,4 +1,5 @@
-CMakeFiles/ECEFUS.dir/affichage.c.obj: C:\ECEFUS\affichage.c \
+CMakeFiles/ECEFUS.dir/affichage.c.obj: \
+ C:\Users\ewenn\Desktop\Informatique\ 2\CLionProjects\ECEFUS\affichage.c \
  c:\mingw\include\allegro.h c:\mingw\include\allegro/base.h \
  c:\mingw\include\errno.h c:\mingw\include\_mingw.h \
  c:\mingw\include\msvcrtver.h c:\mingw\include\w32api.h \
@@ -49,5 +50,6 @@ CMakeFiles/ECEFUS.dir/affichage.c.obj: C:\ECEFUS\affichage.c \
  c:\mingw\include\allegro/inline/3dmaths.inl \
  c:\mingw\include\allegro/alcompat.h \
  c:\mingw\include\allegro/platform/alwin.h c:\mingw\include\stdio.h \
- c:\mingw\include\sys/types.h C:\ECEFUS\game.h \
+ c:\mingw\include\sys/types.h \
+ C:\Users\ewenn\Desktop\Informatique\ 2\CLionProjects\ECEFUS\game.h \
  c:\mingw\include\allegro\gfx.h

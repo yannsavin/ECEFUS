@@ -5,8 +5,6 @@
 #include <time.h>
 #include "game.h"
 
-
-
 int sendspell(player_t *player[],game_t *game,spell_t ***spell,int src_y,int src_x) {
         for (int i=0;i<4;i++) {
             draw_sprite(screen, spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->frame[i], (src_x*caseX)+decalageX+(10*i), (src_y*caseY)+decalageY+(10*i));
@@ -72,7 +70,6 @@ void place_spell(player_t *player[],game_t *game,spell_t ***spell) {
         rest(100);
     }
 }
-
 
 void berserk_shild(player_t *player[],game_t *game,spell_t ***spell) {
     player[game->tourjoueur]->shild+=player[game->tourjoueur]->damage*2;
@@ -165,7 +162,7 @@ void repartitiontype(player_t *player[],game_t *game,spell_t ***spell) {
 
 void select_spell(player_t *player[],game_t *game,spell_t ***spell) {
      if (mouse_b & 1) {
-         if (85<=mouse_x && 165>=mouse_x && 200<=mouse_y && mouse_y<=299){
+         if (85<=mouse_x && 165>=mouse_x && 200<=mouse_y && mouse_y<=299){     //////////////
             player[game->tourjoueur]->spellselect=0;
              if (player[game->tourjoueur]->PA>=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost) {
                  player[game->tourjoueur]->action=1;

@@ -4,7 +4,6 @@
 #include <time.h>
 #include "game.h"
 
-
 void initialisation_allegro(game_t *game) {
     allegro_init();
     install_keyboard();
@@ -16,10 +15,10 @@ void initialisation_allegro(game_t *game) {
 }
 
 void init_map(game_t *game) {
-    game->map = create_bitmap(800, 800);
-    int map_data[8][8];
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
+    game->map = create_bitmap(960, 960);
+    int map_data[nbcases][nbcases];
+    for (int i = 0; i < nbcases; i++) {
+        for (int j = 0; j < nbcases; j++) {
             int pourcentage = rand() % 100;
             if (pourcentage < 70) {
                 map_data[i][j] = rand()%3;
@@ -28,13 +27,13 @@ void init_map(game_t *game) {
             }
         }
     }
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
+    for (int i = 0; i < nbcases; i++) {
+        for (int j = 0; j < nbcases; j++) {
             game->data[i][j]=map_data[i][j];
         }
     }
-    for (int i = 0; i < 8; i++) {
-        for (int j = 0; j < 8; j++) {
+    for (int i = 0; i < nbcases; i++) {
+        for (int j = 0; j < nbcases; j++) {
             draw_sprite(game->map, game->cases[game->n_map][map_data[i][j]], i * caseX, j * caseY);
         }
     }
@@ -71,6 +70,7 @@ void charger_classes(const char *nom_fichier, player_t *classe[]) {
 
     fclose(f);
 }
+
 void charger_map(game_t *game) {
     for (int i=0; i<4; i++) {
         for (int j = 0; j < 5; j++) {
@@ -84,6 +84,7 @@ void charger_map(game_t *game) {
         }
     }
 }
+
 void charger_spell(const char *nom_fichier,spell_t ***spell) {
     FILE *f = fopen(nom_fichier, "r");
     if (!f) {

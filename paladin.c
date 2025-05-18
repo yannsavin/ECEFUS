@@ -5,7 +5,6 @@
 #include <time.h>
 #include "game.h"
 
-
 int paladin_stund(player_t *player[],game_t *game,spell_t ***spell,int src_y,int src_x) {
     for (int i=0;i<game->nbplayers;i++) {
         if (player[i]->casex==src_x && player[i]->casey==src_y) {
@@ -29,7 +28,6 @@ int paladin_heal(player_t *player[],game_t *game,spell_t ***spell) {
     player[game->tourjoueur]->action=0;
     return 1;
 }
-
 
 int paladin_DEMACIA(player_t *player[],game_t *game,spell_t ***spell) {
     int a;

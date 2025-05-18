@@ -70,6 +70,7 @@ int info_joueurs(player_t *player[], game_t *game, spell_t ***spell) {
     sprintf(buffer_text, "%s", player[game->tourjoueur]->name);
     textout_ex(game->buffer, font, buffer_text, 250, 30, makecol(255, 255, 255), makecol(0, 0, 0));
 }
+
 int affichage_spells(player_t *player[], game_t *game, spell_t ***spell) {
     char buffer_text[64];
     if (player[game->tourjoueur]->shild>0) {
@@ -137,6 +138,7 @@ int affichage_spells(player_t *player[], game_t *game, spell_t ***spell) {
     }
 
 }
+
 int affichage_range_spells(player_t *player[], game_t *game, spell_t ***spell) {
     if (player[game->tourjoueur]->action == 1) {
         int nx = player[game->tourjoueur]->casex;
@@ -162,6 +164,7 @@ int affichage_range_spells(player_t *player[], game_t *game, spell_t ***spell) {
         }
     }
 }
+
 int affichage_range_moovement(player_t *player[], game_t *game, spell_t ***spell) {
     set_trans_blender(0, 0, 255, 40);
     int cx = player[game->tourjoueur]->casex;
@@ -186,6 +189,7 @@ int affichage_range_moovement(player_t *player[], game_t *game, spell_t ***spell
         }
     }
 }
+
 int affichage_conseille(player_t *player[], game_t *game, spell_t ***spell) {
     char buffer_text[64];
     if (player[game->tourjoueur]->classe==0) {
@@ -230,7 +234,7 @@ int affichage(player_t *player[], game_t *game, spell_t ***spell) {
     rest(50);
 
     clear_bitmap(game->buffer);
-    blit(game->map, game->buffer, 0, 0, decalageX, 0, 800, 800);
+    blit(game->map, game->buffer, 0, 0, decalageX, 0, 960, 960);
     affichage_conseille(player, game, spell);
     affichage_peros_map(player, game, spell);
     scoreboard(player, game, spell);

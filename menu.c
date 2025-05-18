@@ -5,7 +5,6 @@
 #include <math.h>
 #include "game.h"
 
-
 void play(player_t *player[], game_t *game, spell_t ***spell){
     affichage(player, game, spell);
     while (!key[KEY_ESC]) {
@@ -29,11 +28,11 @@ void configurerpartie(game_t *game){
         if(mouse_b & 1){
             int x = mouse_x;
             int y = mouse_y;
-            if(x >= 395 && x <= 1050 && y >= 220 && y <= 375){
+            if(x >= 445 && x <= 1182 && y >= 220 && y <= 375){
                 game->nbplayers = 2;
-            } else if(x >= 395 && x <= 1050 && y >= 415 && y <= 575){
+            } else if(x >= 445 && x <= 1182 && y >= 415 && y <= 575){
                 game->nbplayers = 3;
-            } else if(x >= 395 && x <= 1050 && y >= 610 && y <= 765){
+            } else if(x >= 445 && x <= 1182 && y >= 610 && y <= 765){
                 game->nbplayers = 4;
             }
             while(mouse_b & 1) { rest(10); }
@@ -43,7 +42,6 @@ void configurerpartie(game_t *game){
 
     destroy_bitmap(nbjoueurs);
 }
-
 
 void classe_pseudos(game_t *game, player_t *player[]){
     BITMAP *pseudo = load_bitmap("image/saisi pseudo.bmp", NULL);
@@ -100,7 +98,6 @@ void classe_pseudos(game_t *game, player_t *player[]){
     destroy_bitmap(choixclasse);
 }
 
-
 void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *classe[]) {
     BITMAP *ecrantitre = load_bitmap("image/ecran start.bmp", NULL);
     BITMAP *menu = load_bitmap("image/menu2.bmp", NULL);
@@ -122,7 +119,7 @@ void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *class
             while (mouse_b & 1) {
                 rest(10);
             }
-            if (x >= 493 && x <= 915 && y >= 380 && y <= 510) {
+            if (x >= 560 && x <= 1033 && y >= 460 && y <= 615) {
                 configurerpartie(game);
                 rest(100);
                 classe_pseudos(game, player);
@@ -131,7 +128,7 @@ void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *class
                 play(player, game, spell);
             }
 
-            else if (x >= 493 && x <= 915 && y >= 580 && y <= 700) {
+            else if (x >= 560 && x <= 1033 && y >= 695 && y <= 845) {
                 quitter = 1;
                 allegro_exit();
             }
@@ -141,4 +138,3 @@ void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *class
     destroy_bitmap(ecrantitre);
     destroy_bitmap(menu);
 }
-

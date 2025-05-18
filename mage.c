@@ -5,8 +5,6 @@
 #include <time.h>
 #include "game.h"
 
-
-
 void mage_cleans(player_t *player[],game_t *game,spell_t ***spell) {
     if (player[game->tourjoueur]->cleanscd==0) {
         player[game->tourjoueur]->cleanscd=1;
@@ -22,6 +20,7 @@ void mage_cleans(player_t *player[],game_t *game,spell_t ***spell) {
     player[game->tourjoueur]->stund=0;
     player[game->tourjoueur]->action=0;
 }
+
 int mage_incnatation(player_t *player[],game_t *game,spell_t ***spell) {
     player[game->tourjoueur]->incantation=1;
     player[game->tourjoueur]->healcd=1;

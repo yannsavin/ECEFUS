@@ -28,8 +28,6 @@ void testpoison(player_t *player[],game_t *game, spell_t ***spell) {
     }
 }
 
-
-
 void damagetaken(player_t *player[],game_t *game, spell_t ***spell,int src_y,int src_x) {
     int a=0,b=0;
     float damage=0;
@@ -65,6 +63,7 @@ void damagetaken(player_t *player[],game_t *game, spell_t ***spell,int src_y,int
         }
     }
 }
+
 int damagetakenAOE(player_t *player[], game_t *game, spell_t ***spell, int src_y, int src_x) {
     int a = rand() % 101,b=0;
     if (a> spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->miss) {

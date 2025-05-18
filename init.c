@@ -39,241 +39,95 @@ void init_map(game_t *game) {
         }
     }
 }
+
+void charger_classes(const char *nom_fichier, player_t *classe[]) {
+    FILE *f = fopen(nom_fichier, "r");
+    if (!f) {
+        perror("Erreur d'ouverture du fichier");
+        exit(EXIT_FAILURE);
+    }
+    for (int i = 0; i < 4; i++) {
+        if (fscanf(f, "%d %d %d %d %d %d",
+                   &classe[i]->basePA,
+                   &classe[i]->basePM,
+                   &classe[i]->health,
+                   &classe[i]->damage,
+                   &classe[i]->attaquecost,
+                   &classe[i]->nb_skins) != 6){
+            fprintf(stderr, "Erreur de lecture de la classe %d\n", i);
+            fclose(f);
+            exit(EXIT_FAILURE);
+                   }
+        for (int j = 0; j < classe[i]->nb_skins; j++) {
+            char chemin[64];
+            snprintf(chemin, sizeof(chemin), "image/perso%d.%d.bmp", i, j);
+            classe[i]->skinclass[j] = load_bitmap(chemin, NULL);
+            if (!classe[i]->skinclass[j]) {
+                fprintf(stderr, "Erreur chargement %s\n", chemin);
+                exit(EXIT_FAILURE);
+            }
+        }
+    }
+
+    fclose(f);
+}
+void charger_map(game_t *game) {
+    for (int i=0; i<4; i++) {
+        for (int j = 0; j < 5; j++) {
+            char chemin[64];
+            snprintf(chemin, sizeof(chemin), "image/case%d.%d.bmp", i, j+1);
+            game->cases[i][j] = load_bitmap(chemin, NULL);
+            if (!game->cases[i][j]) {
+                fprintf(stderr, "Erreur chargement %s\n", chemin);
+                exit(EXIT_FAILURE);
+            }
+        }
+    }
+}
+void charger_spell(const char *nom_fichier,spell_t ***spell) {
+    FILE *f = fopen(nom_fichier, "r");
+    if (!f) {
+        perror("Erreur d'ouverture du fichier");
+        exit(EXIT_FAILURE);
+    }
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (fscanf(f, "%d %d %d %d %d %d %d",
+                   &spell[i][j]->PAcost,
+                   &spell[i][j]->damageMIN,
+                   &spell[i][j]->damageMAX,
+                   &spell[i][j]->miss,
+                   &spell[i][j]->type,
+                   &spell[i][j]->min,
+                   &spell[i][j]->max) != 7){
+                fprintf(stderr, "Erreur de lecture de la classe %d\n", i);
+                fclose(f);
+                exit(EXIT_FAILURE);
+                   }
+            char skin[64];
+            snprintf(skin, sizeof(skin), "image/spell%d.%d.bmp", i, j);
+            spell[i][j]->skin = load_bitmap(skin, NULL);
+            if (spell[i][j]->type==0) {
+                for (int k = 0; k < 4; k++) {
+                    char chemin[64];
+                    snprintf(chemin, sizeof(chemin), "image/frame%d.%d.%d.bmp", i, j,k+1);
+                    spell[i][j]->frame[k] = load_bitmap(chemin, NULL);
+                    if (!spell[i][j]->frame[k]) {
+                        fprintf(stderr, "Erreur chargement %s\n", chemin);
+                        exit(EXIT_FAILURE);
+                    }
+                }
+            }
+        }
+    }
+    fclose(f);
+}
+
 void init(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]) {
     game->conseille=-1;
-
-    game->cases[0][0]=load_bitmap("foret1.bmp",NULL);
-    game->cases[0][1]=load_bitmap("foret2.bmp",NULL);
-    game->cases[0][2]=load_bitmap("foret3.bmp",NULL);
-    game->cases[0][3]=load_bitmap("foret4.bmp",NULL);
-    game->cases[0][4]=load_bitmap("foret5.bmp",NULL);
-    game->cases[1][0]=load_bitmap("sable1.bmp",NULL);
-    game->cases[1][1]=load_bitmap("sable2.bmp",NULL);
-    game->cases[1][2]=load_bitmap("sable3.bmp",NULL);
-    game->cases[1][3]=load_bitmap("sable4.bmp",NULL);
-    game->cases[1][4]=load_bitmap("sable5.bmp",NULL);
-    game->cases[2][0]=load_bitmap("montagne1.bmp",NULL);
-    game->cases[2][1]=load_bitmap("montagne2.bmp",NULL);
-    game->cases[2][2]=load_bitmap("montagne3.bmp",NULL);
-    game->cases[2][3]=load_bitmap("montagne4.bmp",NULL);
-    game->cases[2][4]=load_bitmap("montagne5.bmp",NULL);
-    game->cases[3][0]=load_bitmap("neige1.bmp",NULL);
-    game->cases[3][1]=load_bitmap("neige2.bmp",NULL);
-    game->cases[3][2]=load_bitmap("neige3.bmp",NULL);
-    game->cases[3][3]=load_bitmap("neige4.bmp",NULL);
-    game->cases[3][4]=load_bitmap("neige5.bmp",NULL);
-
-    //mage
-    classe[0]->skinclass[0]=load_bitmap("perso_mage.bmp",NULL);
-    classe[0]->skinclass[1]=load_bitmap("perso_mage1.bmp",NULL);
-    classe[0]->skinclass[2]=load_bitmap("perso_mage2.bmp",NULL);
-    classe[0]->basePA=14;
-    classe[0]->basePM=4;
-    classe[0]->health=100;
-    classe[0]->damage=5;
-    classe[0]->attaquecost=3;
-
-    spell[0][0]->PAcost=3;
-    spell[0][0]->damageMIN=10;
-    spell[0][0]->damageMAX=35;
-    spell[0][0]->miss=15;
-    spell[0][0]->type=0;
-    spell[0][0]->min=2;
-    spell[0][0]->max=4;
-    spell[0][0]->skin=load_bitmap("spell0.0.bmp",NULL);
-    spell[0][0]->frame[0]=load_bitmap("eau1.bmp",NULL);
-    spell[0][0]->frame[1]=load_bitmap("eau2.bmp",NULL);
-    spell[0][0]->frame[2]=load_bitmap("eau3.bmp",NULL);
-    spell[0][0]->frame[3]=load_bitmap("eau4.bmp",NULL);
-
-    spell[0][1]->PAcost=5;
-    spell[0][1]->damageMIN=30;
-    spell[0][1]->damageMAX=55;
-    spell[0][1]->miss=15;
-    spell[0][1]->type=0;
-    spell[0][1]->min=2;
-    spell[0][1]->max=4;
-    spell[0][1]->skin=load_bitmap("spell0.1.bmp",NULL);
-    spell[0][1]->frame[0]=load_bitmap("feu1.bmp",NULL);
-    spell[0][1]->frame[1]=load_bitmap("feu2.bmp",NULL);
-    spell[0][1]->frame[2]=load_bitmap("feu3.bmp",NULL);
-    spell[0][1]->frame[3]=load_bitmap("feu4.bmp",NULL);
-
-    spell[0][2]->PAcost=7;
-    spell[0][2]->damageMIN=60;
-    spell[0][2]->damageMAX=80;
-    spell[0][2]->miss=20;
-    spell[0][2]->type=0;
-    spell[0][2]->min=2;
-    spell[0][2]->max=4;
-    spell[0][2]->skin=load_bitmap("spell0.2.bmp",NULL);
-    spell[0][2]->frame[0]=load_bitmap("foudre1.bmp",NULL);
-    spell[0][2]->frame[1]=load_bitmap("foudre2.bmp",NULL);
-    spell[0][2]->frame[2]=load_bitmap("foudre3.bmp",NULL);
-    spell[0][2]->frame[3]=load_bitmap("foudre4.bmp",NULL);
-
-    spell[0][3]->PAcost=7;
-    spell[0][3]->damageMIN=60;
-    spell[0][3]->damageMAX=80;
-    spell[0][3]->miss=20;
-    spell[0][3]->type=1;
-    spell[0][3]->min=2;
-    spell[0][3]->max=4;
-    spell[0][3]->skin=load_bitmap("spell0.3.bmp",NULL);
-    spell[0][3]->frame[0]=load_bitmap("foudre1.bmp",NULL);
-    spell[0][3]->frame[1]=load_bitmap("foudre2.bmp",NULL);
-    spell[0][3]->frame[2]=load_bitmap("foudre3.bmp",NULL);
-    spell[0][3]->frame[3]=load_bitmap("foudre4.bmp",NULL);
-
-    //guerrier
-    classe[1]->skinclass[0]=load_bitmap("perso_guerrierX.bmp",NULL);
-    classe[1]->skinclass[1]=load_bitmap("perso_guerrier1.bmp",NULL);
-    classe[1]->skinclass[2]=load_bitmap("perso_guerrier2.bmp",NULL);
-    classe[1]->skinclass[3]=load_bitmap("perso_guerrier3.bmp",NULL);
-    classe[1]->skinclass[4]=load_bitmap("perso_guerrier4.bmp",NULL);
-    classe[1]->basePA=10;
-    classe[1]->basePM=6;
-    classe[1]->health=130;
-    classe[1]->damage=15;
-    classe[1]->attaquecost=2;
-
-    spell[1][0]->skin=load_bitmap("spell1.0.bmp",NULL);
-    spell[1][0]->frame[0]=load_bitmap("foudre1.bmp",NULL);
-    spell[1][0]->frame[1]=load_bitmap("foudre2.bmp",NULL);
-    spell[1][0]->frame[2]=load_bitmap("foudre3.bmp",NULL);
-    spell[1][0]->frame[3]=load_bitmap("foudre4.bmp",NULL);
-    spell[1][0]->PAcost=2;
-    spell[1][0]->damageMIN=10;
-    spell[1][0]->damageMAX=25;
-    spell[1][0]->miss=10;
-    spell[1][0]->type=0;
-    spell[1][0]->min=2;
-    spell[1][0]->max=4;
-
-    spell[1][1]->skin=load_bitmap("spell1.1.bmp",NULL);
-    spell[1][1]->PAcost=2;
-    spell[1][1]->type=1;
-    spell[1][1]->damageMIN=0;
-    spell[1][1]->damageMAX=0;
-    spell[1][1]->miss=0;
-    spell[1][1]->min=2;
-    spell[1][1]->max=4;
-
-    spell[1][2]->skin=load_bitmap("spell1.2.bmp",NULL);
-    spell[1][2]->PAcost=3;
-    spell[1][2]->type=1;
-    spell[1][2]->damageMIN=0;
-    spell[1][2]->damageMAX=0;
-    spell[1][2]->miss=0;
-    spell[1][2]->min=2;
-    spell[1][2]->max=4;
-
-    spell[1][3]->skin=load_bitmap("spell1.3.bmp",NULL);
-    spell[1][3]->PAcost=3;
-    spell[1][3]->type=1;
-    spell[1][3]->damageMIN=0;
-    spell[1][3]->damageMAX=0;
-    spell[1][3]->miss=0;
-    spell[1][3]->min=2;
-    spell[1][3]->max=4;
-
-    //assasin
-    classe[2]->skinclass[0]=load_bitmap("perso_assasin.bmp",NULL);
-    classe[2]->skinclass[1]=load_bitmap("perso_assasin1.bmp",NULL);
-    classe[2]->skinclass[2]=load_bitmap("perso_assasin2.bmp",NULL);
-    classe[2]->basePA=30;
-    classe[2]->basePM=6;
-    classe[2]->health=110;
-    classe[2]->damage=20;
-    classe[2]->attaquecost=2;
-
-    spell[2][0]->skin=load_bitmap("spell2.0.bmp",NULL);
-    spell[2][0]->PAcost=4;
-    spell[2][0]->damageMIN=10;
-    spell[2][0]->damageMAX=20;
-    spell[2][0]->miss=1;
-    spell[2][0]->type=0;
-    spell[2][0]->min=2;
-    spell[2][0]->max=4;
-
-    spell[2][1]->skin=load_bitmap("spell2.1.bmp",NULL);
-    spell[2][1]->PAcost=2;
-    spell[2][1]->type=1;
-    spell[2][1]->damageMIN=0;
-    spell[2][1]->damageMAX=0;
-    spell[2][1]->miss=0;
-    spell[2][1]->min=2;
-    spell[2][1]->max=4;
-
-    spell[2][2]->skin=load_bitmap("spell2.2.bmp",NULL);
-    spell[2][2]->PAcost=3;
-    spell[2][2]->type=1;
-    spell[2][2]->damageMIN=0;
-    spell[2][2]->damageMAX=0;
-    spell[2][2]->miss=0;
-    spell[2][2]->min=2;
-    spell[2][2]->max=4;
-
-    spell[2][3]->skin=load_bitmap("spell2.3.bmp",NULL);
-    spell[2][3]->PAcost=3;
-    spell[2][3]->type=1;
-    spell[2][3]->damageMIN=0;
-    spell[2][3]->damageMAX=0;
-    spell[2][3]->miss=0;
-    spell[2][3]->min=2;
-    spell[2][3]->max=4;
-
-    //paladin
-    classe[3]->skinclass[0]=load_bitmap("perso_paladin.bmp",NULL);
-    classe[3]->skinclass[1]=load_bitmap("perso_paladin1.bmp",NULL);
-    classe[3]->skinclass[2]=load_bitmap("perso_paladin2.bmp",NULL);
-    classe[3]->basePA=10;
-    classe[3]->basePM=6;
-    classe[3]->health=110;
-    classe[3]->damage=20;
-    classe[3]->attaquecost=2;
-
-    spell[3][0]->skin=load_bitmap("spell3.0.bmp",NULL);
-    spell[3][0]->PAcost=2;
-    spell[3][0]->damageMIN=10;
-    spell[3][0]->damageMAX=20;
-    spell[3][0]->miss=10;
-    spell[3][0]->type=1;
-    spell[3][0]->min=2;
-    spell[3][0]->max=4;
-
-    spell[3][1]->skin=load_bitmap("spell3.1.bmp",NULL);
-    spell[3][1]->frame[0]=load_bitmap("foudre1.bmp",NULL);
-    spell[3][1]->frame[1]=load_bitmap("foudre2.bmp",NULL);
-    spell[3][1]->frame[2]=load_bitmap("foudre3.bmp",NULL);
-    spell[3][1]->frame[3]=load_bitmap("foudre4.bmp",NULL);
-    spell[3][1]->PAcost=2;
-    spell[3][1]->type=0;
-    spell[3][1]->damageMIN=10;
-    spell[3][1]->damageMAX=20;
-    spell[3][1]->miss=10;
-    spell[3][1]->min=2;
-    spell[3][1]->max=4;
-
-    spell[3][2]->skin=load_bitmap("spell3.2.bmp",NULL);
-    spell[3][2]->PAcost=3;
-    spell[3][2]->type=1;
-    spell[3][2]->damageMIN=0;
-    spell[3][2]->damageMAX=0;
-    spell[3][2]->miss=0;
-    spell[3][2]->min=2;
-    spell[3][2]->max=4;
-
-    spell[3][3]->skin=load_bitmap("spell3.3.bmp",NULL);
-    spell[3][3]->PAcost=3;
-    spell[3][3]->type=1;
-    spell[3][3]->damageMIN=20;
-    spell[3][3]->damageMAX=50;
-    spell[3][3]->miss=40;
-    spell[3][3]->min=2;
-    spell[3][3]->max=4;
-
-
+    charger_map(game);
+    charger_spell("donees/spells.txt",spell);
+    charger_classes("donees/classes.txt", classe);
     player[0]->skinnum=0;
     player[1]->skinnum=0;
     player[2]->skinnum=0;

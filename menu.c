@@ -20,7 +20,7 @@ void play(player_t *player[], game_t *game, spell_t ***spell){
 }
 
 void configurerpartie(game_t *game){
-    BITMAP *nbjoueurs = load_bitmap("selection joueurs.bmp", NULL);
+    BITMAP *nbjoueurs = load_bitmap("image/selection joueurs.bmp", NULL);
     stretch_blit(nbjoueurs, screen, 0, 0, nbjoueurs->w, nbjoueurs->h, 0, 0, SCREEN_W, SCREEN_H);
     game->nbplayers = 0;
     rest(50);
@@ -46,8 +46,8 @@ void configurerpartie(game_t *game){
 
 
 void classe_pseudos(game_t *game, player_t *player[]){
-    BITMAP *pseudo = load_bitmap("saisi pseudo.bmp", NULL);
-    BITMAP *choixclasse = load_bitmap("choix class.bmp", NULL);
+    BITMAP *pseudo = load_bitmap("image/saisi pseudo.bmp", NULL);
+    BITMAP *choixclasse = load_bitmap("image/choix class.bmp", NULL);
     stretch_blit(pseudo, screen, 0, 0, pseudo->w, pseudo->h, 0, 0, SCREEN_W, SCREEN_H);
     for(int i=0; i<game->nbplayers; i++) {
         char saisie[10] = "";
@@ -94,8 +94,7 @@ void classe_pseudos(game_t *game, player_t *player[]){
                 while(mouse_b & 1) { rest(10); }
             }
         }
-        printf("%s\n",player[i]->name);
-        printf("%d\n",player[i]->classe);
+
     }
     destroy_bitmap(pseudo);
     destroy_bitmap(choixclasse);
@@ -103,8 +102,8 @@ void classe_pseudos(game_t *game, player_t *player[]){
 
 
 void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *classe[]) {
-    BITMAP *ecrantitre = load_bitmap("ecran start.bmp", NULL);
-    BITMAP *menu = load_bitmap("menu2.bmp", NULL);
+    BITMAP *ecrantitre = load_bitmap("image/ecran start.bmp", NULL);
+    BITMAP *menu = load_bitmap("image/menu2.bmp", NULL);
     BITMAP *ecranapres = load_bitmap("ecranapres.bmp", NULL);
     stretch_blit(ecrantitre, screen,0, 0, ecrantitre->w, ecrantitre->h, 0, 0, SCREEN_W, SCREEN_H);
     rest(50);

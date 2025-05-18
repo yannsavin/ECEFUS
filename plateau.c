@@ -185,9 +185,6 @@ void moove(player_t *player[], game_t *game, spell_t ***spell) {
 
             attaque(player, game, spell, src_y, src_x);
         }
-        while (mouse_b & 1) {
-            rest(10);
-        }
     }
 }
 

@@ -33,14 +33,14 @@ typedef struct player {
     int spellselect,classe,incantation,dodge;
     char name[20];
     int number,PA,basePA,PM,basePM,attaquecost;
-    int spelltab[4];
+    int nb_skins;
     int casex,casey,bonus;
     int poison,stack,poisondag,buff;
     int x,y,pixel_x,pixel_y;
     int health,basehealth,damage,basedamage,shild;
     int stackdamage,skinnum;
     BITMAP *skin;
-    BITMAP *skinclass[5];
+    BITMAP *skinclass[6];
 }player_t;
 typedef struct spell {
     char name[50];
@@ -73,5 +73,20 @@ void configurerpartie(game_t *game);
 void classe_pseudos(game_t *game, player_t *player[]);
 int collision(player_t *player[],game_t *game,int x, int y);
 void temps(player_t *player[], game_t *game,spell_t ***spell);
+void assasin_tp(player_t *player[],game_t *game,spell_t ***spell,int src_y,int src_x);
+void assasin_buff(player_t *player[],game_t *game, spell_t ***spell);
+void assasin_poison(player_t *player[],game_t *game, spell_t ***spell);
+void berserk_heal(player_t *player[],game_t *game,spell_t ***spell);
+void berserk_damage(player_t *player[],game_t *game,spell_t ***spell);
+int paladin_stund(player_t *player[],game_t *game,spell_t ***spell,int src_y,int src_x);
+int paladin_heal(player_t *player[],game_t *game,spell_t ***spell);
+void mage_cleans(player_t *player[],game_t *game,spell_t ***spell);
+int paladin_DEMACIA(player_t *player[],game_t *game,spell_t ***spell);
+int mage_incnatation(player_t *player[],game_t *game,spell_t ***spell);
+void assasin_dodge(player_t *player[],game_t *game,spell_t ***spell);
+void berserk_shild(player_t *player[],game_t *game,spell_t ***spell);
+void testpoison(player_t *player[],game_t *game, spell_t ***spell);
+void damagetaken(player_t *player[],game_t *game, spell_t ***spell,int src_y,int src_x);
+int damagetakenAOE(player_t *player[], game_t *game, spell_t ***spell, int src_y, int src_x);
 #endif //GAME_H
 

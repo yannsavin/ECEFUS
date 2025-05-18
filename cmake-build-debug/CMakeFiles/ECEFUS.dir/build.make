@@ -152,6 +152,76 @@ CMakeFiles/ECEFUS.dir/menu.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/menu.c.s"
 	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\menu.c -o CMakeFiles\ECEFUS.dir\menu.c.s
 
+CMakeFiles/ECEFUS.dir/mage.c.obj: CMakeFiles/ECEFUS.dir/flags.make
+CMakeFiles/ECEFUS.dir/mage.c.obj: C:/ECEFUS/mage.c
+CMakeFiles/ECEFUS.dir/mage.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/ECEFUS.dir/mage.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/mage.c.obj -MF CMakeFiles\ECEFUS.dir\mage.c.obj.d -o CMakeFiles\ECEFUS.dir\mage.c.obj -c C:\ECEFUS\mage.c
+
+CMakeFiles/ECEFUS.dir/mage.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/mage.c.i"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\mage.c > CMakeFiles\ECEFUS.dir\mage.c.i
+
+CMakeFiles/ECEFUS.dir/mage.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/mage.c.s"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\mage.c -o CMakeFiles\ECEFUS.dir\mage.c.s
+
+CMakeFiles/ECEFUS.dir/guerrier.c.obj: CMakeFiles/ECEFUS.dir/flags.make
+CMakeFiles/ECEFUS.dir/guerrier.c.obj: C:/ECEFUS/guerrier.c
+CMakeFiles/ECEFUS.dir/guerrier.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building C object CMakeFiles/ECEFUS.dir/guerrier.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/guerrier.c.obj -MF CMakeFiles\ECEFUS.dir\guerrier.c.obj.d -o CMakeFiles\ECEFUS.dir\guerrier.c.obj -c C:\ECEFUS\guerrier.c
+
+CMakeFiles/ECEFUS.dir/guerrier.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/guerrier.c.i"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\guerrier.c > CMakeFiles\ECEFUS.dir\guerrier.c.i
+
+CMakeFiles/ECEFUS.dir/guerrier.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/guerrier.c.s"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\guerrier.c -o CMakeFiles\ECEFUS.dir\guerrier.c.s
+
+CMakeFiles/ECEFUS.dir/assasin.c.obj: CMakeFiles/ECEFUS.dir/flags.make
+CMakeFiles/ECEFUS.dir/assasin.c.obj: C:/ECEFUS/assasin.c
+CMakeFiles/ECEFUS.dir/assasin.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/ECEFUS.dir/assasin.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/assasin.c.obj -MF CMakeFiles\ECEFUS.dir\assasin.c.obj.d -o CMakeFiles\ECEFUS.dir\assasin.c.obj -c C:\ECEFUS\assasin.c
+
+CMakeFiles/ECEFUS.dir/assasin.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/assasin.c.i"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\assasin.c > CMakeFiles\ECEFUS.dir\assasin.c.i
+
+CMakeFiles/ECEFUS.dir/assasin.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/assasin.c.s"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\assasin.c -o CMakeFiles\ECEFUS.dir\assasin.c.s
+
+CMakeFiles/ECEFUS.dir/paladin.c.obj: CMakeFiles/ECEFUS.dir/flags.make
+CMakeFiles/ECEFUS.dir/paladin.c.obj: C:/ECEFUS/paladin.c
+CMakeFiles/ECEFUS.dir/paladin.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/ECEFUS.dir/paladin.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/paladin.c.obj -MF CMakeFiles\ECEFUS.dir\paladin.c.obj.d -o CMakeFiles\ECEFUS.dir\paladin.c.obj -c C:\ECEFUS\paladin.c
+
+CMakeFiles/ECEFUS.dir/paladin.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/paladin.c.i"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\paladin.c > CMakeFiles\ECEFUS.dir\paladin.c.i
+
+CMakeFiles/ECEFUS.dir/paladin.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/paladin.c.s"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\paladin.c -o CMakeFiles\ECEFUS.dir\paladin.c.s
+
+CMakeFiles/ECEFUS.dir/damage.c.obj: CMakeFiles/ECEFUS.dir/flags.make
+CMakeFiles/ECEFUS.dir/damage.c.obj: C:/ECEFUS/damage.c
+CMakeFiles/ECEFUS.dir/damage.c.obj: CMakeFiles/ECEFUS.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building C object CMakeFiles/ECEFUS.dir/damage.c.obj"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -MD -MT CMakeFiles/ECEFUS.dir/damage.c.obj -MF CMakeFiles\ECEFUS.dir\damage.c.obj.d -o CMakeFiles\ECEFUS.dir\damage.c.obj -c C:\ECEFUS\damage.c
+
+CMakeFiles/ECEFUS.dir/damage.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing C source to CMakeFiles/ECEFUS.dir/damage.c.i"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\ECEFUS\damage.c > CMakeFiles\ECEFUS.dir\damage.c.i
+
+CMakeFiles/ECEFUS.dir/damage.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling C source to assembly CMakeFiles/ECEFUS.dir/damage.c.s"
+	C:\MinGW\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\ECEFUS\damage.c -o CMakeFiles\ECEFUS.dir\damage.c.s
+
 # Object files for target ECEFUS
 ECEFUS_OBJECTS = \
 "CMakeFiles/ECEFUS.dir/main.c.obj" \
@@ -159,7 +229,12 @@ ECEFUS_OBJECTS = \
 "CMakeFiles/ECEFUS.dir/affichage.c.obj" \
 "CMakeFiles/ECEFUS.dir/spell.c.obj" \
 "CMakeFiles/ECEFUS.dir/plateau.c.obj" \
-"CMakeFiles/ECEFUS.dir/menu.c.obj"
+"CMakeFiles/ECEFUS.dir/menu.c.obj" \
+"CMakeFiles/ECEFUS.dir/mage.c.obj" \
+"CMakeFiles/ECEFUS.dir/guerrier.c.obj" \
+"CMakeFiles/ECEFUS.dir/assasin.c.obj" \
+"CMakeFiles/ECEFUS.dir/paladin.c.obj" \
+"CMakeFiles/ECEFUS.dir/damage.c.obj"
 
 # External object files for target ECEFUS
 ECEFUS_EXTERNAL_OBJECTS =
@@ -170,11 +245,16 @@ ECEFUS.exe: CMakeFiles/ECEFUS.dir/affichage.c.obj
 ECEFUS.exe: CMakeFiles/ECEFUS.dir/spell.c.obj
 ECEFUS.exe: CMakeFiles/ECEFUS.dir/plateau.c.obj
 ECEFUS.exe: CMakeFiles/ECEFUS.dir/menu.c.obj
+ECEFUS.exe: CMakeFiles/ECEFUS.dir/mage.c.obj
+ECEFUS.exe: CMakeFiles/ECEFUS.dir/guerrier.c.obj
+ECEFUS.exe: CMakeFiles/ECEFUS.dir/assasin.c.obj
+ECEFUS.exe: CMakeFiles/ECEFUS.dir/paladin.c.obj
+ECEFUS.exe: CMakeFiles/ECEFUS.dir/damage.c.obj
 ECEFUS.exe: CMakeFiles/ECEFUS.dir/build.make
 ECEFUS.exe: CMakeFiles/ECEFUS.dir/linkLibs.rsp
 ECEFUS.exe: CMakeFiles/ECEFUS.dir/objects1.rsp
 ECEFUS.exe: CMakeFiles/ECEFUS.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable ECEFUS.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\ECEFUS\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking C executable ECEFUS.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\ECEFUS.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

@@ -10,6 +10,11 @@ add_executable(ECEFUS main.c
         spell.c
         plateau.c
         menu.c
+        mage.c
+        guerrier.c
+        assasin.c
+        paladin.c
+        damage.c
 )
 
 target_link_libraries(ECEFUS -lmingw32 -lalleg44)

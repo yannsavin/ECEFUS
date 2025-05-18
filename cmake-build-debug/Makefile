@@ -152,6 +152,78 @@ affichage.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/affichage.c.s
 .PHONY : affichage.c.s
 
+assasin.obj: assasin.c.obj
+.PHONY : assasin.obj
+
+# target to build an object file
+assasin.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/assasin.c.obj
+.PHONY : assasin.c.obj
+
+assasin.i: assasin.c.i
+.PHONY : assasin.i
+
+# target to preprocess a source file
+assasin.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/assasin.c.i
+.PHONY : assasin.c.i
+
+assasin.s: assasin.c.s
+.PHONY : assasin.s
+
+# target to generate assembly for a file
+assasin.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/assasin.c.s
+.PHONY : assasin.c.s
+
+damage.obj: damage.c.obj
+.PHONY : damage.obj
+
+# target to build an object file
+damage.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/damage.c.obj
+.PHONY : damage.c.obj
+
+damage.i: damage.c.i
+.PHONY : damage.i
+
+# target to preprocess a source file
+damage.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/damage.c.i
+.PHONY : damage.c.i
+
+damage.s: damage.c.s
+.PHONY : damage.s
+
+# target to generate assembly for a file
+damage.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/damage.c.s
+.PHONY : damage.c.s
+
+guerrier.obj: guerrier.c.obj
+.PHONY : guerrier.obj
+
+# target to build an object file
+guerrier.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/guerrier.c.obj
+.PHONY : guerrier.c.obj
+
+guerrier.i: guerrier.c.i
+.PHONY : guerrier.i
+
+# target to preprocess a source file
+guerrier.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/guerrier.c.i
+.PHONY : guerrier.c.i
+
+guerrier.s: guerrier.c.s
+.PHONY : guerrier.s
+
+# target to generate assembly for a file
+guerrier.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/guerrier.c.s
+.PHONY : guerrier.c.s
+
 init.obj: init.c.obj
 .PHONY : init.obj
 
@@ -175,6 +247,30 @@ init.s: init.c.s
 init.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/init.c.s
 .PHONY : init.c.s
+
+mage.obj: mage.c.obj
+.PHONY : mage.obj
+
+# target to build an object file
+mage.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/mage.c.obj
+.PHONY : mage.c.obj
+
+mage.i: mage.c.i
+.PHONY : mage.i
+
+# target to preprocess a source file
+mage.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/mage.c.i
+.PHONY : mage.c.i
+
+mage.s: mage.c.s
+.PHONY : mage.s
+
+# target to generate assembly for a file
+mage.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/mage.c.s
+.PHONY : mage.c.s
 
 main.obj: main.c.obj
 .PHONY : main.obj
@@ -223,6 +319,30 @@ menu.s: menu.c.s
 menu.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/menu.c.s
 .PHONY : menu.c.s
+
+paladin.obj: paladin.c.obj
+.PHONY : paladin.obj
+
+# target to build an object file
+paladin.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/paladin.c.obj
+.PHONY : paladin.c.obj
+
+paladin.i: paladin.c.i
+.PHONY : paladin.i
+
+# target to preprocess a source file
+paladin.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/paladin.c.i
+.PHONY : paladin.c.i
+
+paladin.s: paladin.c.s
+.PHONY : paladin.s
+
+# target to generate assembly for a file
+paladin.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\ECEFUS.dir\build.make CMakeFiles/ECEFUS.dir/paladin.c.s
+.PHONY : paladin.c.s
 
 plateau.obj: plateau.c.obj
 .PHONY : plateau.obj
@@ -284,15 +404,30 @@ help:
 	@echo ... affichage.obj
 	@echo ... affichage.i
 	@echo ... affichage.s
+	@echo ... assasin.obj
+	@echo ... assasin.i
+	@echo ... assasin.s
+	@echo ... damage.obj
+	@echo ... damage.i
+	@echo ... damage.s
+	@echo ... guerrier.obj
+	@echo ... guerrier.i
+	@echo ... guerrier.s
 	@echo ... init.obj
 	@echo ... init.i
 	@echo ... init.s
+	@echo ... mage.obj
+	@echo ... mage.i
+	@echo ... mage.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
 	@echo ... menu.obj
 	@echo ... menu.i
 	@echo ... menu.s
+	@echo ... paladin.obj
+	@echo ... paladin.i
+	@echo ... paladin.s
 	@echo ... plateau.obj
 	@echo ... plateau.i
 	@echo ... plateau.s

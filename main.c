@@ -20,6 +20,7 @@ int main() {
     game_t game;
     initialisation_allegro(&game);
     install_timer();
+    install_mouse();
     install_int(decrementer_timer,1000);
     srand(time(NULL));
     game.tourjoueur=0;
@@ -44,15 +45,9 @@ int main() {
             spell[i][j] = (spell_t*)malloc(sizeof(spell_t));
         }
     }
-    printf("Avant init\n");
     init(player, &game, spell,classe);
-    printf("Après init\n");
-    printf("Avant init_map\n");
     init_map(&game);
-    printf("Après init_map\n");
-    printf("Avant affichage\n");
     menu_jeu(player, &game, spell,classe);
-    printf("Après affichage\n");
     destroy(player,&game,spell);
     allegro_exit();
     return 0;

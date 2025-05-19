@@ -27,9 +27,10 @@ int affichage_peros_map(player_t *player[], game_t *game, spell_t ***spell) {
         }
     }
     sprintf(buffer_text, "%s", player[game->tourjoueur]->name);
-    if (game->n_map==1 && game->n_map==3) {
+    if (game->n_map==1 || game->n_map==3) {
         textout_ex(game->buffer, font, buffer_text, player[game->tourjoueur]->pixel_x+20, player[game->tourjoueur]->pixel_y, makecol(255, 0, 255), -1);
-    } else {textout_ex(game->buffer, font, buffer_text, player[game->tourjoueur]->pixel_x+20, player[game->tourjoueur]->pixel_y, makecol(255, 255, 0), -1);}
+    }
+    else {textout_ex(game->buffer, font, buffer_text, player[game->tourjoueur]->pixel_x+20, player[game->tourjoueur]->pixel_y, makecol(255, 255, 0), -1);}
 
 }
 

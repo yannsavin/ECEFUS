@@ -89,32 +89,31 @@ void choixmap(game_t *game) {
 }
 void afficher_classement(player_t *player[], game_t *game) {
     clear_to_color(screen, makecol(0, 0, 0));
-    int a =0;
-    textout_ex(screen, font, "Classement :", 500, 100, makecol(255, 255, 255), -1);
-    for (int i =0;i >game->nbplayers-1 ; i++) {
-        a+=1;
-        for (int j = 0; j < game->nbplayers; j++) {
-            if (player[i]->rang == j) {
+    BITMAP *classement = load_bitmap("image/classement.bmp", NULL);
+    stretch_blit(classement, screen, 0, 0, classement->w, classement->h, 0, 0, SCREEN_W, SCREEN_H);
+    textout_ex(screen, font, "Classement :", 700, 400, makecol(255, 255, 255), -1);
+
+    const int start_y = 450;
+    const int line_spacing = 30;
+
+    for (int r = 0; r <= game->nbplayers; r++) {
+        printf("\n%d ",r);
+        for (int i = 0; i < game->nbplayers; i++) {
+            printf(" %d ",i);
+            if (player[i]->rang == r) {
+                printf("gg");
                 char buffer[64];
-                sprintf(buffer, "%d. %s", game->rank - i + 1, player[i]->name);
-                textout_ex(screen, font, buffer, 500, 300 - a * 30, makecol(255, 255, 255), -1);
-                break;
-            }
-            if (player[i]->rang == 5) {
-                char buffer[64];
-                sprintf(buffer, "1. %s", player[i]->name);
-                textout_ex(screen, font, buffer, 500, 150+30, makecol(255, 255, 255), -1);
+                sprintf(buffer, "%d. %s", r, player[i]->name);
+                textout_ex(screen, font, buffer, 700, start_y + (r - 1) * line_spacing, makecol(255, 255, 255), -1);
                 break;
             }
         }
     }
-    while (!(mouse_b & 1)) {
-        rest(10);
-    }
-    while (mouse_b & 1) {
-        rest(10);
-    }
+
+    while (!(mouse_b & 1)) rest(10);
+    while (mouse_b & 1) rest(10);
 }
+
 
 void fin(player_t *player[], game_t *game, spell_t ***spell, player_t *classe[]) {
     int a=0;
@@ -127,7 +126,7 @@ void fin(player_t *player[], game_t *game, spell_t ***spell, player_t *classe[])
     if (a==game->nbplayers-1) {
         for (int i = 0; i < game->nbplayers; i++) {
             if (player[i]->state == 1 && player[i]->rang == 0) {
-                player[i]->rang = 5;
+                player[i]->rang = game->rank;
             }
         }
         afficher_classement(player, game);
@@ -140,12 +139,12 @@ void fin(player_t *player[], game_t *game, spell_t ***spell, player_t *classe[])
                 while (mouse_b & 1) {
                     rest(10);
                 }
-                if (x >= 395 && x <= 1050 && y >= 50 && y <= 200) {
+                if (x >= 420 && x <= 1100 && y >= 380 && y <= 500) {
                     reinit_player(player,game,spell,classe);
                     temps_restant = 30;
                     play(player, game, spell, classe);
                 }
-                else if(x >= 395 && x <= 1050 && y >= 300 && y <= 450){
+                else if(x >= 420 && x <= 1100 && y >= 580 && y <= 700){
                     configurerpartie(game);
                     rest(100);
                     classe_pseudos(game, player,classe);
@@ -154,7 +153,7 @@ void fin(player_t *player[], game_t *game, spell_t ***spell, player_t *classe[])
                     temps_restant = 30;
                     play(player, game, spell, classe);
                 }
-                else if (x >= 395 && x <= 1050 && y >= 610 && y <= 765) {
+                else if (x >= 420 && x <= 1100 && y >= 770 && y <= 900) {
                     choisi = 1;
                     allegro_exit();
                 }
@@ -285,6 +284,7 @@ void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *class
             }
             if (x >= 560 && x <= 1033 && y >= 460 && y <= 615) {
                 configurerpartie(game);
+                game->rank=game->nbplayers;
                 rest(100);
                 classe_pseudos(game, player,classe);
                 initplayer(player, game, spell,classe);

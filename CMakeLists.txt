@@ -18,3 +18,5 @@ add_executable(ECEFUS main.c
 )
 
 target_link_libraries(ECEFUS -lmingw32 -lalleg44)
+
+set(CMAKE_C_COMPILER "C:/MinGW/bin/gcc.exe")

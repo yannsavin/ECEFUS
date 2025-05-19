@@ -168,8 +168,6 @@ void charger_spell(const char *nom_fichier,spell_t ***spell) {
 
 void init(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]) {
     game->conseille=-1;
-    game->rank=0;
-
     charger_map(game);
     charger_spell("donees/spells.txt",spell);
     charger_classes("donees/classes.txt", classe);
@@ -188,17 +186,19 @@ void initplayer(player_t *player[],game_t *game, spell_t ***spell,player_t *clas
         player[i]->casex=-1;
         player[i]->casey=-1;
         while (player[i]->casex==-1 || player[i]->casey==-1) {
-            a=rand()%nbcases;
-            b=rand()%nbcases;
-            if (game->data[a][b]!=3 && game->data[a][b]!=4) {
-                player[i]->casex=b;
-                player[i]->casey=a;
-            }
+            do {
+                a = rand() % nbcases;
+                b = rand() % nbcases;
+            } while (game->data[a][b] == 3 || game->data[a][b] == 4);
+
+            player[i]->casex = a;
+            player[i]->casey = b;
         }
         player[i]->pixel_x = player[i]->casex * caseX + decalageX;
         player[i]->pixel_y = player[i]->casey * caseY + decalageY;
         player[i]->stund=0;
         player[i]->ccimune=0;
+        player[i]->rang=0;
         player[i]->stack=0;
         player[i]->shild=0;
         player[i]->dodge=0;

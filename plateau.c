@@ -192,9 +192,15 @@ void moove(player_t *player[], game_t *game, spell_t ***spell) {
 void life(player_t *player[], game_t *game) {
     for (int i = 0; i < game->nbplayers; i++) {
         if(player[i]->health<=0) {
+            player[i]->health=1;
             player[i]->state=0;
+            player[i]->casex=-1;
+            player[i]->casey=-1;
+            player[i]->pixel_y=-1;
+            player[i]->pixel_x=-1;
             player[i]->rang=game->rank;
-            game->rank+=1;
+            game->rank-=1;
+            printf("joueur%s rang%d\ngame%d\n\n",player[i]->name,player[i]->rang ,game->rank);
         }
     }
 }

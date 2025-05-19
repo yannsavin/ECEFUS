@@ -80,6 +80,7 @@ void place_spell(player_t *player[],game_t *game,spell_t ***spell) {
                     player[game->tourjoueur]->stackDEMACIA+=1;
                     damagetaken(player,game,spell,src_y,src_x);
                     a=1;
+                    player[game->tourjoueur]->action=0;
                 }
                 if (player[game->tourjoueur]->classe==guerrier) {
                     a=send_axe(player,game,spell,src_y,src_x);

@@ -78,6 +78,7 @@ void place_spell(player_t *player[],game_t *game,spell_t ***spell) {
                 ){
                 if (player[game->tourjoueur]->classe==3 && player[game->tourjoueur]->spellselect==1) {
                     player[game->tourjoueur]->stackDEMACIA+=1;
+                    player[game->tourjoueur]->PA-=spell[player[game->tourjoueur]->classe][player[game->tourjoueur]->spellselect]->PAcost;
                     damagetaken(player,game,spell,src_y,src_x);
                     a=1;
                     player[game->tourjoueur]->action=0;

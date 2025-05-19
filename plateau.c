@@ -200,7 +200,6 @@ void life(player_t *player[], game_t *game) {
             player[i]->pixel_x=-1;
             player[i]->rang=game->rank;
             game->rank-=1;
-            printf("joueur%s rang%d\ngame%d\n\n",player[i]->name,player[i]->rang ,game->rank);
         }
     }
 }

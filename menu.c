@@ -53,7 +53,7 @@ void reinit_player(player_t *player[], game_t *game, spell_t ***spell, player_t 
     }
 }
 
-void choixmap(game_t *game) {
+void choixmap(player_t *player[], game_t *game, spell_t ***spell, player_t *classe[]) {
     BITMAP *choixcarte = load_bitmap("image/choix map.bmp", NULL);
     stretch_blit(choixcarte, screen, 0, 0, choixcarte->w, choixcarte->h, 0, 0, SCREEN_W, SCREEN_H);
     int choisi = 0;
@@ -63,23 +63,23 @@ void choixmap(game_t *game) {
             int y = mouse_y;
             if (x >= 83 && x <= 355 && y >= 500 && y <= 790) {
                 game->n_map=2;
-                init_map(game, "donees/montagne.txt");
+                init_map(player,game,spell,classe, "donees/montagne.txt");
                 choisi=1;
             } else if (x >= 400 && x <= 670 && y >= 500 && y <= 790) {
                 game->n_map=1;
-                init_map(game, "donees/neige.txt");
+                init_map(player,game,spell,classe, "donees/neige.txt");
                 choisi=1;
             } else if (x >= 715 && x <= 985 && y >= 500 && y <= 790) {
                 game->n_map=3;
-                init_map(game, "donees/sable.txt");
+                init_map(player,game,spell,classe, "donees/sable.txt");
                 choisi=1;
             } else if (x >= 1030 && x <= 1285 && y >= 500 && y <= 790) {
                 game->n_map=0;
-                init_map(game, "donees/foret.txt");
+                init_map(player,game,spell,classe, "donees/foret.txt");
                 choisi=1;
             } else if (x >= 1325 && x <= 1600 && y >= 500 && y <= 790) {
                 game->n_map = 5;
-                init_map(game, "donees/foret.txt");
+                init_map(player,game,spell,classe, "donees/foret.txt");
                 choisi=1;
             }
             rest(10);
@@ -149,7 +149,7 @@ void fin(player_t *player[], game_t *game, spell_t ***spell, player_t *classe[])
                     rest(100);
                     classe_pseudos(game, player,classe);
                     initplayer(player, game, spell, classe);
-                    choixmap(game);
+                    choixmap(player,game,spell,classe);
                     temps_restant = 30;
                     play(player, game, spell, classe);
                 }
@@ -288,7 +288,7 @@ void menu_jeu(player_t *player[], game_t *game, spell_t ***spell,player_t *class
                 rest(100);
                 classe_pseudos(game, player,classe);
                 initplayer(player, game, spell,classe);
-                choixmap(game);
+                choixmap(player,game,spell,classe);
                 temps_restant=30;
                 play(player, game, spell,classe);
             }

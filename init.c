@@ -14,7 +14,45 @@ void initialisation_allegro(game_t *game) {
     show_mouse(screen);
 }
 
-void init_map(game_t *game, const char *nom_fichier) {
+void player_coord(player_t *player[], game_t *game, spell_t ***spell, player_t *classe[]) {
+    for (int i = 0; i < game->nbplayers; i++) {
+        for(int i=0; i < nbcases; i++) {
+            printf("\n");
+            for (int j = 0; j < nbcases; j++) {
+                printf("%d ",game->data[i][j]);
+            }
+        }
+        int valid = 0;
+        while (!valid) {
+            int y = rand() % nbcases;
+            int x = rand() % nbcases;
+
+            if (game->data[y][x] == 3 || game->data[y][x] == 4)
+                continue;
+
+            int occupied = 0;
+            for (int j = 0; j < i; j++) {
+                if (player[j]->casex == x && player[j]->casey == y) {
+                    occupied = 1;
+                    break;
+                }
+            }
+
+            if (!occupied) {
+                player[i]->casex = x;
+                player[i]->casey = y;
+                printf("\n%d %d",y,x);
+                valid = 1;
+            }
+        }
+
+        player[i]->pixel_x = player[i]->casex * caseX + decalageX;
+        player[i]->pixel_y = player[i]->casey * caseY + decalageY;
+    }
+}
+
+
+void init_map(player_t *player[], game_t *game, spell_t ***spell, player_t *classe[], const char *nom_fichier) {
     game->map = create_bitmap(960, 960);
 
     if (game->n_map >= 0 && game->n_map <= 4) {
@@ -61,7 +99,9 @@ void init_map(game_t *game, const char *nom_fichier) {
             draw_sprite(game->map, game->cases[game->n_map][game->data[i][j]], i * caseX, j * caseY);
         }
     }
+    player_coord(player,game,spell,classe);
 }
+
 
 void charger_classes(const char *nom_fichier, player_t *classe[]) {
     FILE *f = fopen(nom_fichier, "r");
@@ -177,47 +217,33 @@ void init(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]) 
     player[3]->skinnum=0;
 }
 
-void initplayer(player_t *player[],game_t *game, spell_t ***spell,player_t *classe[]) {
-    int a,b;
-    for(int i=0;i<game->nbplayers;i++) {
-        player[i]->stackdamage=0;
-        player[i]->incantation=0;
-        player[i]->skin=classe[player[i]->classe]->skinclass[player[i]->skinnum];
-        player[i]->casex=-1;
-        player[i]->casey=-1;
-        while (player[i]->casex==-1 || player[i]->casey==-1) {
-            do {
-                a = rand() % nbcases;
-                b = rand() % nbcases;
-            } while (game->data[a][b] == 3 || game->data[a][b] == 4);
-
-            player[i]->casex = a;
-            player[i]->casey = b;
-        }
-        player[i]->pixel_x = player[i]->casex * caseX + decalageX;
-        player[i]->pixel_y = player[i]->casey * caseY + decalageY;
-        player[i]->stund=0;
-        player[i]->ccimune=0;
-        player[i]->rang=0;
-        player[i]->stack=0;
-        player[i]->shild=0;
-        player[i]->dodge=0;
-        player[i]->action=0;
-        player[i]->healcd=0;
-        player[i]->cleanscd=0;
-        player[i]->basePA=classe[player[i]->classe]->basePA;
-        player[i]->PA=player[i]->basePA;
-        player[i]->basePM=classe[player[i]->classe]->basePM;
-        player[i]->PM=player[i]->basePM;
-        player[i]->basehealth=classe[player[i]->classe]->health;
-        player[i]->health=player[i]->basehealth;
-        player[i]->basedamage=classe[player[i]->classe]->damage;
-        player[i]->damage=player[i]->basedamage;
-        player[i]->attaquecost=classe[player[i]->classe]->attaquecost;
-        player[i]->state=1;
-        player[i]->spellselect=-1;
-        player[i]->bonus=0;
-        player[i]->stackDEMACIA=0;
+void initplayer(player_t *player[], game_t *game, spell_t ***spell, player_t *classe[]) {
+    for (int i = 0; i < game->nbplayers; i++) {
+        player[i]->stackdamage = 0;
+        player[i]->incantation = 0;
+        player[i]->skin = classe[player[i]->classe]->skinclass[player[i]->skinnum];
+        player[i]->stund = 0;
+        player[i]->ccimune = 0;
+        player[i]->rang = 0;
+        player[i]->stack = 0;
+        player[i]->shild = 0;
+        player[i]->dodge = 0;
+        player[i]->action = 0;
+        player[i]->healcd = 0;
+        player[i]->cleanscd = 0;
+        player[i]->basePA = classe[player[i]->classe]->basePA;
+        player[i]->PA = player[i]->basePA;
+        player[i]->basePM = classe[player[i]->classe]->basePM;
+        player[i]->PM = player[i]->basePM;
+        player[i]->basehealth = classe[player[i]->classe]->health;
+        player[i]->health = player[i]->basehealth;
+        player[i]->basedamage = classe[player[i]->classe]->damage;
+        player[i]->damage = player[i]->basedamage;
+        player[i]->attaquecost = classe[player[i]->classe]->attaquecost;
+        player[i]->state = 1;
+        player[i]->spellselect = -1;
+        player[i]->bonus = 0;
+        player[i]->stackDEMACIA = 0;
     }
 }
 

@@ -53,7 +53,7 @@ typedef struct spell {
 }spell_t;
 
 void initialisation_allegro(game_t *game);   //initialisation allegro
-void init_map(game_t *game, const char *nom_fichier) ;              //initiallisation map
+void init_map(player_t *player[], game_t *game, spell_t ***spell, player_t *classe[], const char *nom_fichier) ;              //initiallisation map
 void init(player_t *player[],game_t *game, spell_t ***spell,player_t *class[]); //appelle toutes les fonction d'initialisation (player,class,spell)
 int affichage(player_t *player[], game_t *game, spell_t ***spell);   //affichage du jeux (map,perso,hud)
 void destroy(player_t *player[],game_t *game,spell_t ***spell);     //detruit les bitmap et libere l'espace a la fin du programme
